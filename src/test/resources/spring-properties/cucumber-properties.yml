@@ -1,0 +1,20 @@
+webdriver.binary.path: src/test/resources/binaries
+webdriver.screenshots: true
+webdriver.remote: false
+
+---
+
+spring-properties:
+  profiles: firefox
+
+webdriver.binary.executable: geckodriver
+
+---
+
+spring-properties:
+  profiles: chrome
+
+webdriver.binary.executable: chromedriver
+
+---
+
