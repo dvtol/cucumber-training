@@ -30,13 +30,14 @@ End with an example of getting some data out of the system or using it for a lit
 ## Running the tests
 
 Maven (local via chrome, remote via selenium grid) run cmds
+Selenium grid has the 'default' spring profile and runs will be executed via remote. 
 
 ```
-TODO
+remote: mvn clean test
 ```
 
 ```
-TODO
+local: mvn clean test -Dspring.profiles.active=chrome-local
 ```
 
 ### Break down into end to end tests
