@@ -1,6 +1,6 @@
-# Appie Today - Regression Test
+# Ah.nl (ahws) - Keten Tests
 
-Appie Today regression test set. 
+Ah.nl keten test set. 
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ A step by step series of examples that tell you have to get a development env ru
 Say what the step will be
 
 ```
-(1) git clone https://dtol@scm.ecom.ahold.nl/stash/scm/at/appie-today-cucumber.git
+(1) https://<own-user>@scm.ecom.ahold.nl/stash/scm/core/ecommerce-ahws-keten.git
 (2) insert lombok plugin
 ```
 
@@ -32,11 +32,11 @@ End with an example of getting some data out of the system or using it for a lit
 Maven (local via chrome, remote via selenium grid) run cmds
 
 ```
-mvn clean test -Dspring.profiles.active=chrome
+TODO
 ```
 
 ```
-mvn clean test -Dspring.profiles.active=remote
+TODO
 ```
 
 ### Break down into end to end tests
@@ -73,15 +73,18 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 We use [Git](https://git-scm.com//) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
-## Authors
+## Authors - AH Web Testers
 
-* **Danny van Tol** danny.tol.van@ahold.com **Initial committer**
-* **Reinier Timmer** reinier.timmer@ahold.com
+* **Danny van Tol** danny.tol.van@ahold.com
+* **Sherwin Angelo** sherwin.angelo@ahold.com
+* **Gerwin Vaatstra** gerwin.vaatstra@ahold.com
+* **Jeroen Tuitjer** jeroen.tuitjer@ahold.com
+* **Reint-Jan Panman** reint-jan.panman@ahold.com
+* **Maaike Vos** maaike.j.vos@ahold.com
+* **Fred Steenbergen** fred.steenbergen@ahold.com
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-
-* To Do
