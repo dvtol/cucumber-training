@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ahold.ecommerce.ahws.keten</groupId>
-    <artifactId>ahws.keten</artifactId>
+    <groupId>com.ahold.ecommerce.ahws</groupId>
+    <artifactId>ecommerce-ahws-keten</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>ahws Keten</name>
+    <name>Ahws Keten</name>
 
     <properties>
         <selenium.version>3.4.0</selenium.version>
@@ -168,7 +168,7 @@
                             <!-- Mandatory -->
                             <!-- List of package names to scan for glue code. -->
                             <glue>
-                                <package>com.ahold.ecommerce.appietoday.cucumber</package>
+                                <package>com.ahold.ecommerce</package>
                             </glue>
                             <!-- These are optional, with the default values -->
                             <!-- Where to output the generated tests -->

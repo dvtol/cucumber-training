@@ -1,5 +1,5 @@
 #language: nl
-@Googletest @ignored
+@Googletest
 Functionaliteit: extra t.b.v. test buiten het AH netwerk met Google
 
 Achtergrond: Feature: Google calculator
