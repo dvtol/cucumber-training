@@ -53,7 +53,7 @@ Give an example
 Explain what these tests test and why
 
 ```
-- Making use of PageObjects and StepDefs sepetely to keep clean OO programming. 
+- Making use of PageObjects and StepDefs separately to keep clean OO programming. 
 - Making use of annotated tags, including ignore tag for tests we don't want to be executed.
 - Making use of spring (beans) to run this framework with different profiles.
 ```
