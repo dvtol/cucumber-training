@@ -1,5 +1,7 @@
 package com.ahold.ecommerce.driver;
 
+import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
@@ -34,6 +36,32 @@ public class WebDriverConfiguration {
 
     @Value("${webdriver.binary.executable}")
     String webDriverExecutable;
+
+    @Value("${browser.name.local}")
+    String localBrowserName;
+
+    @Value("${browser.name.remote}")
+    String remoteBrowserName;
+
+    @Bean
+    @Profile("WDM")
+    public WebDriver getDriver() {
+        if ("chrome".equalsIgnoreCase(localBrowserName)) {
+            ChromeDriverManager.getInstance().proxy(Proxy).setup();
+            final ChromeOptions options = new ChromeOptions();
+            options.addArguments("--start-fullscreen");
+            return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
+        }
+        if ("firefox".equalsIgnoreCase(localBrowserName)) {
+            FirefoxDriverManager.getInstance().proxy(Proxy).setup();
+            final FirefoxProfile firefoxProfile = new FirefoxProfile();
+            firefoxProfile.setPreference("network.proxy.type", 0);
+            firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
+            return new org.openqa.selenium.firefox.FirefoxDriver(firefoxProfile);
+        }
+
+        throw new IllegalArgumentException(String.format("Illegal value for browser parameter: %s", localBrowserName));
+    }
 
     @Bean
     @Profile("chrome-local")
