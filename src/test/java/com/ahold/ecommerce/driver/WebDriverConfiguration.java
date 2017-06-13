@@ -49,7 +49,7 @@ public class WebDriverConfiguration {
      int impWaitTimeout;
 
     @Bean
-    @Profile("WDM")
+    @Profile("wdm")
     public WebDriver getDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
             ChromeDriverManager.getInstance().proxy(Proxy).setup();
