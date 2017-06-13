@@ -35,13 +35,19 @@ public class WebDriverConfiguration {
     File webDriverPath;
 
     @Value("${webdriver.binary.executable}")
-    String webDriverExecutable;
+     String webDriverExecutable;
 
     @Value("${browser.name.local}")
-    String localBrowserName;
+     String localBrowserName;
 
     @Value("${browser.name.remote}")
-    String remoteBrowserName;
+     String remoteBrowserName;
+
+    @Value("${remote.url.address}")
+     String remoteUrl;
+
+    @Value("${implicit.wait.timeout.seconds}")
+     int impWaitTimeout;
 
     @Bean
     @Profile("WDM")
@@ -99,15 +105,14 @@ public class WebDriverConfiguration {
                 .setSocksProxy(Proxy);
 
         // request node to the hub
-        node = "https://selenium-node-chrome.tools.ecom.ahold.nl/wd/hub";
         DesiredCapabilities cap = DesiredCapabilities.chrome();
         cap.setBrowserName("chrome");
         cap.setPlatform(Platform.LINUX);
         cap.setCapability(CapabilityType.PROXY, proxy);
-        driver = new RemoteWebDriver(new URL(node), cap);
+        driver = new RemoteWebDriver(new URL(remoteUrl), cap);
 
         // puts an Implicit wait, Will wait for 10 seconds before throwing an exception
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(impWaitTimeout, TimeUnit.SECONDS);
 
         return new EventFiringWebDriver(driver);
     }
