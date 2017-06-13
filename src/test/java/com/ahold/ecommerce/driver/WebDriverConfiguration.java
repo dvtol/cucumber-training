@@ -28,7 +28,6 @@ public class WebDriverConfiguration {
     private static final String FIREFOX_DRIVER_SYSTEM_PROPERTY = "webdriver.gecko.driver";
 
     private static RemoteWebDriver driver;
-    private String node;
     private String Proxy = "http://newproxypac.ah.nl:8000";
 
     @Value("${webdriver.binary.path}")
