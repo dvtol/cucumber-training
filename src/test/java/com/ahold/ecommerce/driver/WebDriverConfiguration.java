@@ -2,7 +2,6 @@ package com.ahold.ecommerce.driver;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -25,7 +24,6 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class WebDriverConfiguration {
 
-    private static final String CHROME_DRIVER_SYSTEM_PROPERTY = "webdriver.chrome.driver";
     private static RemoteWebDriver driver;
     private String Proxy = "http://newproxypac.ah.nl:8000";
 
@@ -50,7 +48,7 @@ public class WebDriverConfiguration {
     @Bean
     @Profile("default")
     // spring profile for webdriver manager for chrome and firefox
-    public WebDriver getDriver() {
+    public WebDriver getLocalDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
             ChromeDriverManager.getInstance().proxy(Proxy).setup();
             final ChromeOptions options = new ChromeOptions();
@@ -68,23 +66,11 @@ public class WebDriverConfiguration {
         throw new IllegalArgumentException(String.format("Illegal value for browser parameter: %s", localBrowserName));
     }
 
-    @Bean
-    @Profile("chrome-local")
-    // spring profile for running test local with chrome
-    public WebDriver chromeDriver() {
-        final File pathToBinary = getExecutableFile();
-        System.setProperty(CHROME_DRIVER_SYSTEM_PROPERTY, pathToBinary.getAbsolutePath());
-
-        final ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-fullscreen");
-
-        return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
-    }
 
     @Bean
     @Profile("remote")
     // default spring profile. profile runs auto if no parameter is selected
-    public WebDriver remoteDriver() throws MalformedURLException {
+    public WebDriver getRemoteDriver() throws MalformedURLException {
 
         // set ah proxy
         org.openqa.selenium.Proxy proxy = new Proxy().setHttpProxy(Proxy).setFtpProxy(Proxy).setSslProxy(Proxy)
@@ -107,23 +93,5 @@ public class WebDriverConfiguration {
         driver.manage().timeouts().implicitlyWait(impWaitTimeout, TimeUnit.SECONDS);
 
         return new EventFiringWebDriver(driver);
-    }
-
-    private File getExecutableFile() {
-        // selects OS executable based on os-name and arch-type
-        String extension;
-        String osName = System.getProperty("os.name").toLowerCase();
-
-        if (osName.contains("windows")) {
-            extension = ".exe";
-        } else if (osName.contains("mac os x")) {
-            extension = "";
-        } else if (osName.contains("linux")) {
-            extension = ".linux64";
-        } else {
-            throw new UnsupportedOperationException("Platform " + osName);
-        }
-
-        return new File(this.webDriverPath, webDriverExecutable + extension);
     }
 }
