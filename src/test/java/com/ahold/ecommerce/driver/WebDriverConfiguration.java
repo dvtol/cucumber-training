@@ -48,7 +48,7 @@ public class WebDriverConfiguration {
     int impWaitTimeout;
 
     @Bean
-    @Profile("wdm")
+    @Profile("default")
     // spring profile for webdriver manager for chrome and firefox
     public WebDriver getDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
@@ -82,7 +82,7 @@ public class WebDriverConfiguration {
     }
 
     @Bean
-    @Profile("default")
+    @Profile("remote")
     // default spring profile. profile runs auto if no parameter is selected
     public WebDriver remoteDriver() throws MalformedURLException {
 
