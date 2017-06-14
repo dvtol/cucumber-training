@@ -12,12 +12,14 @@ browser.name.local: chrome
 #chrome
 #firefoxVersion
 #chromeVersion
+
+#set local browser version when using specific version
+firefox.version: v0.17.0
+chrome.version: 2.79
+
 browser.name.remote: chrome
 #--options--#
 #firefox
 #chrome
 
 
-#set local browser version when using specific version
-firefox.version: v0.17.0
-chrome.version: 2.79
