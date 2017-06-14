@@ -83,7 +83,7 @@ public class WebDriverConfiguration {
 
     @Bean
     @Profile("default")
-    // default spring profile. profile runs auto if no parameter is selecteda
+    // default spring profile. profile runs auto if no parameter is selected
     public WebDriver remoteDriver() throws MalformedURLException {
 
         // set ah proxy
