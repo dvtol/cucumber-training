@@ -8,5 +8,5 @@ webdriver.binary.executable: geckodriver
 webdriver.binary.executable: chromedriver
 
 # set local or remote browser
-browser.name.local: firefox
+browser.name.local: chrome
 browser.name.remote: chrome

@@ -30,19 +30,19 @@ public class WebDriverConfiguration {
     private String Proxy = "http://newproxypac.ah.nl:8000";
 
     @Value("${webdriver.binary.path}")
-    File webDriverPath;
+    private File webDriverPath;
 
     @Value("${webdriver.binary.executable}")
-    String webDriverExecutable;
+    private String webDriverExecutable;
 
     @Value("${browser.name.local}")
-    String localBrowserName;
+    private String localBrowserName;
 
     @Value("${browser.name.remote}")
-    String remoteBrowserName;
+    private String remoteBrowserName;
 
     @Value("${remote.url.address}")
-    String remoteUrl;
+    private String remoteUrl;
 
     @Value("${implicit.wait.timeout.seconds}")
     int impWaitTimeout;
