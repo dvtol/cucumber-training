@@ -1,9 +1,12 @@
+
+# sets binary and boolean value for screenshots
 webdriver.binary.path: src/test/resources/binaries
 webdriver.screenshots: true
 
+# driver executables
 webdriver.binary.executable: geckodriver
 webdriver.binary.executable: chromedriver
 
+# set local or remote browser
 browser.name.local: chrome
 browser.name.remote: chrome
-

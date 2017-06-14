@@ -1,0 +1,6 @@
+
+# set country code
+country.code: NL
+
+# set environment of choice
+target.host.name: tst8.ah.nl
