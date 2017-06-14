@@ -86,13 +86,19 @@ public class WebDriverConfiguration {
         // set ah proxy
         org.openqa.selenium.Proxy proxy = new Proxy().setHttpProxy(Proxy).setFtpProxy(Proxy).setSslProxy(Proxy)
                 .setSocksProxy(Proxy);
-
+        DesiredCapabilities capabilities = null;
+        if(remoteBrowserName.toLowerCase().contains("chrome")){
+            capabilities = DesiredCapabilities.chrome();
+            capabilities.setBrowserName("chrome");
+            capabilities.setCapability(CapabilityType.PROXY, proxy);
+        }
+        if(remoteBrowserName.toLowerCase().contains("firefox")){
+            capabilities = DesiredCapabilities.firefox();
+            capabilities.setBrowserName("firefox");
+            capabilities.setCapability(CapabilityType.PROXY, proxy);
+        }
         // request node to the hub
-        DesiredCapabilities cap = DesiredCapabilities.chrome();
-        cap.setBrowserName("chrome");
-        cap.setPlatform(Platform.LINUX);
-        cap.setCapability(CapabilityType.PROXY, proxy);
-        driver = new RemoteWebDriver(new URL(remoteUrl), cap);
+        driver = new RemoteWebDriver(new URL(remoteUrl), capabilities);
 
         // puts an Implicit wait, Will wait for 10 seconds before throwing an exception
         driver.manage().timeouts().implicitlyWait(impWaitTimeout, TimeUnit.SECONDS);
