@@ -1,5 +1,6 @@
-country.code: NL
-target.host.name: tst8.ah.nl
 
+# default remote node address
 remote.url.address: https://selenium-node-chrome.tools.ecom.ahold.nl/wd/hub
-implicit.wait.timeout.seconds: 10
+
+# implicit wait timeout for element(s) search
+implicit.wait.timeout.seconds: 15

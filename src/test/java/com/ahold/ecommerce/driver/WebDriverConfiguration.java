@@ -33,22 +33,23 @@ public class WebDriverConfiguration {
     File webDriverPath;
 
     @Value("${webdriver.binary.executable}")
-     String webDriverExecutable;
+    String webDriverExecutable;
 
     @Value("${browser.name.local}")
-     String localBrowserName;
+    String localBrowserName;
 
     @Value("${browser.name.remote}")
-     String remoteBrowserName;
+    String remoteBrowserName;
 
     @Value("${remote.url.address}")
-     String remoteUrl;
+    String remoteUrl;
 
     @Value("${implicit.wait.timeout.seconds}")
-     int impWaitTimeout;
+    int impWaitTimeout;
 
     @Bean
     @Profile("wdm")
+    // spring profile for webdriver manager for chrome and firefox
     public WebDriver getDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
             ChromeDriverManager.getInstance().proxy(Proxy).setup();
@@ -61,7 +62,7 @@ public class WebDriverConfiguration {
             final FirefoxProfile firefoxProfile = new FirefoxProfile();
             firefoxProfile.setPreference("network.proxy.type", 0);
             firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
-            return  new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
+            return new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
         }
 
         throw new IllegalArgumentException(String.format("Illegal value for browser parameter: %s", localBrowserName));
@@ -69,6 +70,7 @@ public class WebDriverConfiguration {
 
     @Bean
     @Profile("chrome-local")
+    // spring profile for running test local with chrome
     public WebDriver chromeDriver() {
         final File pathToBinary = getExecutableFile();
         System.setProperty(CHROME_DRIVER_SYSTEM_PROPERTY, pathToBinary.getAbsolutePath());
@@ -81,18 +83,19 @@ public class WebDriverConfiguration {
 
     @Bean
     @Profile("default")
+    // default spring profile. profile runs auto if no parameter is selecteda
     public WebDriver remoteDriver() throws MalformedURLException {
 
         // set ah proxy
         org.openqa.selenium.Proxy proxy = new Proxy().setHttpProxy(Proxy).setFtpProxy(Proxy).setSslProxy(Proxy)
                 .setSocksProxy(Proxy);
         DesiredCapabilities capabilities = null;
-        if(remoteBrowserName.toLowerCase().contains("chrome")){
+        if (remoteBrowserName.toLowerCase().contains("chrome")) {
             capabilities = DesiredCapabilities.chrome();
             capabilities.setBrowserName("chrome");
             capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
-        if(remoteBrowserName.toLowerCase().contains("firefox")){
+        if (remoteBrowserName.toLowerCase().contains("firefox")) {
             capabilities = DesiredCapabilities.firefox();
             capabilities.setBrowserName("firefox");
             capabilities.setCapability(CapabilityType.PROXY, proxy);
@@ -107,6 +110,7 @@ public class WebDriverConfiguration {
     }
 
     private File getExecutableFile() {
+        // selects OS executable based on os-name and arch-type
         String extension;
         String osName = System.getProperty("os.name").toLowerCase();
 

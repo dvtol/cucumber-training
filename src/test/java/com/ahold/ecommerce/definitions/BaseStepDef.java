@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
-@ContextConfiguration(locations = {"classpath:spring-properties/cucumber-context.xml"})
+@ContextConfiguration(locations = {"classpath:spring-properties/_cucumber-context.xml"})
 public abstract class BaseStepDef {
 
     @Autowired
