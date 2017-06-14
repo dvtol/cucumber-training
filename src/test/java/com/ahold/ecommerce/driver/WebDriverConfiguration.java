@@ -42,6 +42,12 @@ public class WebDriverConfiguration {
     @Value("${remote.url.address}")
     private String remoteUrl;
 
+    @Value("${chrome.version}")
+    private String chromeVersion;
+
+    @Value("${firefox.version}")
+    private String firefoxVersion;
+
     @Value("${implicit.wait.timeout.seconds}")
     int impWaitTimeout;
 
@@ -57,6 +63,19 @@ public class WebDriverConfiguration {
         }
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
             FirefoxDriverManager.getInstance().proxy(Proxy).setup();
+            final FirefoxProfile firefoxProfile = new FirefoxProfile();
+            firefoxProfile.setPreference("network.proxy.type", 0);
+            firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
+            return new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
+        }
+        if ("chromeVersion".equalsIgnoreCase(localBrowserName)) {
+            ChromeDriverManager.getInstance().version(chromeVersion).proxy(Proxy).setup();
+            final ChromeOptions options = new ChromeOptions();
+            options.addArguments("--start-fullscreen");
+            return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
+        }
+        if ("firefoxVersion".equalsIgnoreCase(localBrowserName)) {
+            FirefoxDriverManager.getInstance().version(firefoxVersion).proxy(Proxy).setup();
             final FirefoxProfile firefoxProfile = new FirefoxProfile();
             firefoxProfile.setPreference("network.proxy.type", 0);
             firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
