@@ -7,11 +7,13 @@ target.host.name: tst8.ah.nl
 
 # set local or remote browser
 browser.name.local: chrome
+#--options--#
 #firefox
 #chrome
 #firefoxVersion
 #chromeVersion
 browser.name.remote: chrome
+#--options--#
 #firefox
 #chrome
 

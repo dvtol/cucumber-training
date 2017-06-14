@@ -1,5 +1,4 @@
-# sets binary and boolean value for screenshots
-webdriver.binary.path: src/test/resources/binaries
+# sets boolean value for screenshots
 webdriver.screenshots: true
 
 # default remote node address

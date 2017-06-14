@@ -27,12 +27,6 @@ public class WebDriverConfiguration {
     private static RemoteWebDriver driver;
     private String Proxy = "http://newproxypac.ah.nl:8000";
 
-    @Value("${webdriver.binary.path}")
-    private File webDriverPath;
-
-    @Value("${webdriver.binary.executable}")
-    private String webDriverExecutable;
-
     @Value("${browser.name.local}")
     private String localBrowserName;
 
