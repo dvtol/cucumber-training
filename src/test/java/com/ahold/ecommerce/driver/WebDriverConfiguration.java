@@ -47,7 +47,7 @@ public class WebDriverConfiguration {
 
     @Bean
     @Profile("default")
-    // spring profile for webdriver manager for chrome and firefox
+    // default spring profile for chrome and firefox
     public WebDriver getLocalDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
             ChromeDriverManager.getInstance().proxy(Proxy).setup();
@@ -69,7 +69,7 @@ public class WebDriverConfiguration {
 
     @Bean
     @Profile("remote")
-    // default spring profile. profile runs auto if no parameter is selected
+    // remote spring profile. runs via selenium grid
     public WebDriver getRemoteDriver() throws MalformedURLException {
 
         // set ah proxy
