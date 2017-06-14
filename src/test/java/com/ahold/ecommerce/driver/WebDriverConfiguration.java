@@ -26,8 +26,6 @@ import java.util.concurrent.TimeUnit;
 public class WebDriverConfiguration {
 
     private static final String CHROME_DRIVER_SYSTEM_PROPERTY = "webdriver.chrome.driver";
-    private static final String FIREFOX_DRIVER_SYSTEM_PROPERTY = "webdriver.gecko.driver";
-
     private static RemoteWebDriver driver;
     private String Proxy = "http://newproxypac.ah.nl:8000";
 
