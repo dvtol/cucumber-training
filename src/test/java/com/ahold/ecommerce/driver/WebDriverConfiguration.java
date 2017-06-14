@@ -6,6 +6,7 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -62,7 +63,7 @@ public class WebDriverConfiguration {
             final FirefoxProfile firefoxProfile = new FirefoxProfile();
             firefoxProfile.setPreference("network.proxy.type", 0);
             firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
-            return new org.openqa.selenium.firefox.FirefoxDriver(firefoxProfile);
+            return  new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
         }
 
         throw new IllegalArgumentException(String.format("Illegal value for browser parameter: %s", localBrowserName));
@@ -77,22 +78,7 @@ public class WebDriverConfiguration {
         final ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-fullscreen");
 
-        return new EventFiringWebDriver(
-                new org.openqa.selenium.chrome.ChromeDriver(options));
-    }
-
-    @Bean
-    @Profile("firefox-local")
-    public WebDriver firefoxDriver() {
-
-        final File pathToBinary = getExecutableFile();
-        System.setProperty(FIREFOX_DRIVER_SYSTEM_PROPERTY, pathToBinary.getAbsolutePath());
-
-        final FirefoxProfile firefoxProfile = new FirefoxProfile();
-        firefoxProfile.setPreference("network.proxy.type", 0);
-        firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
-
-        return new org.openqa.selenium.firefox.FirefoxDriver(firefoxProfile);
+        return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
     }
 
     @Bean
