@@ -7,5 +7,3 @@ webdriver.binary.executable: chromedriver
 browser.name.local: chrome
 browser.name.remote: chrome
 
-remote.url.address: https://selenium-node-chrome.tools.ecom.ahold.nl/wd/hub
-implicit.wait.timeout.seconds: 10

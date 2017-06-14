@@ -1,2 +1,5 @@
 country.code: NL
 target.host.name: tst8.ah.nl
+
+remote.url.address: https://selenium-node-chrome.tools.ecom.ahold.nl/wd/hub
+implicit.wait.timeout.seconds: 10
