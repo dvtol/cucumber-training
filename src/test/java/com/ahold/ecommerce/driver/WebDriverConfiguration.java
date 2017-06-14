@@ -29,7 +29,6 @@ public class WebDriverConfiguration {
     private static final String FIREFOX_DRIVER_SYSTEM_PROPERTY = "webdriver.gecko.driver";
 
     private static RemoteWebDriver driver;
-    private String node;
     private String Proxy = "http://newproxypac.ah.nl:8000";
 
     @Value("${webdriver.binary.path}")
@@ -51,7 +50,7 @@ public class WebDriverConfiguration {
      int impWaitTimeout;
 
     @Bean
-    @Profile("WDM")
+    @Profile("wdm")
     public WebDriver getDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
             ChromeDriverManager.getInstance().proxy(Proxy).setup();
@@ -80,20 +79,6 @@ public class WebDriverConfiguration {
         options.addArguments("--start-fullscreen");
 
         return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
-    }
-
-    @Bean
-    @Profile("firefox-local")
-    public WebDriver firefoxDriver() {
-
-        final File pathToBinary = getExecutableFile();
-        System.setProperty(FIREFOX_DRIVER_SYSTEM_PROPERTY, pathToBinary.getAbsolutePath());
-
-        final FirefoxProfile firefoxProfile = new FirefoxProfile();
-        firefoxProfile.setPreference("network.proxy.type", 0);
-        firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
-
-        return new org.openqa.selenium.firefox.FirefoxDriver(firefoxProfile);
     }
 
     @Bean
