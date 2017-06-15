@@ -58,7 +58,6 @@ public class WebDriverConfiguration {
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
             FirefoxDriverManager.getInstance().proxy(Proxy).setup();
             final FirefoxProfile firefoxProfile = new FirefoxProfile();
-            firefoxProfile.setPreference("network.proxy.type", 0);
             firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
             return new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
         }
@@ -71,7 +70,6 @@ public class WebDriverConfiguration {
         if ("firefoxVersion".equalsIgnoreCase(localBrowserName)) {
             FirefoxDriverManager.getInstance().version(firefoxVersion).proxy(Proxy).setup();
             final FirefoxProfile firefoxProfile = new FirefoxProfile();
-            firefoxProfile.setPreference("network.proxy.type", 0);
             firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
             return new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
         }
