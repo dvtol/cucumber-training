@@ -1,9 +1,13 @@
 # set environment of choice
 target.host.name: tst8.ah.nl
 
-# set local or remote browser
+# set local browser
 browser.name.local: chrome
-#--options--#
+#firefox
+#chrome
+
+# set remote browser
+browser.name.remote: chrome
 #firefox
 #chrome
 
@@ -12,14 +16,6 @@ firefox.driver.version: latest
 #example: 0.17.0
 chrome.driver.version: latest
 #example: 2.30
-
-browser.name.remote: chrome
-#--options--#
-#firefox
-#chrome
-
-# sets binary and boolean value for screenshots
-webdriver.screenshots: true
 
 
 

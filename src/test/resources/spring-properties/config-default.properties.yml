@@ -4,6 +4,9 @@ webdriver.screenshots: true
 # default remote node address
 remote.url.address: https://selenium-node-chrome.tools.ecom.ahold.nl/wd/hub
 
+# set environment of choice
+target.host.name: tst8.ah.nl
+
 # implicit wait timeout for element(s) search
 implicit.wait.timeout.seconds: 15
 
