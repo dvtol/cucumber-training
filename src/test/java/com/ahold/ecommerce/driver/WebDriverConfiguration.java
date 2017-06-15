@@ -50,6 +50,7 @@ public class WebDriverConfiguration {
     // default spring profile for chrome and firefox
     public WebDriver getLocalDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
+
             if(chromeDriverVersion.equals("latest")){
                 ChromeDriverManager.getInstance().proxy(Proxy).setup();
             }else{
@@ -60,6 +61,7 @@ public class WebDriverConfiguration {
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
+
             if(firefoxDriverVersion.equals("latest")){
                 FirefoxDriverManager.getInstance().proxy(Proxy).setup();
             }else{

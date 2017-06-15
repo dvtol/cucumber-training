@@ -11,6 +11,8 @@ implicit.wait.timeout.seconds: 15
 browser.name.local: chrome
 browser.name.remote: chrome
 
-#set local browser version when using specific version
-firefox.version: latest
-chrome.version: latest
+#set local browser driver version. latest is the latest version
+firefox.driver.version: latest
+#example: 0.17.0
+chrome.driver.version: latest
+#example: 2.30
