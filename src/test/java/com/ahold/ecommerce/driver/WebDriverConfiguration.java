@@ -27,12 +27,6 @@ public class WebDriverConfiguration {
     private static RemoteWebDriver driver;
     private String Proxy = "http://newproxypac.ah.nl:8000";
 
-    @Value("${webdriver.binary.path}")
-    private File webDriverPath;
-
-    @Value("${webdriver.binary.executable}")
-    private String webDriverExecutable;
-
     @Value("${browser.name.local}")
     private String localBrowserName;
 
@@ -42,6 +36,12 @@ public class WebDriverConfiguration {
     @Value("${remote.url.address}")
     private String remoteUrl;
 
+    @Value("${chrome.driver.version}")
+    private String chromeDriverVersion;
+
+    @Value("${firefox.driver.version}")
+    private String firefoxDriverVersion;
+
     @Value("${implicit.wait.timeout.seconds}")
     int impWaitTimeout;
 
@@ -50,19 +50,27 @@ public class WebDriverConfiguration {
     // default spring profile for chrome and firefox
     public WebDriver getLocalDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
-            ChromeDriverManager.getInstance().proxy(Proxy).setup();
+
+            if (chromeDriverVersion.equals("latest")) {
+                ChromeDriverManager.getInstance().proxy(Proxy).setup();
+            } else {
+                ChromeDriverManager.getInstance().version(chromeDriverVersion).proxy(Proxy).setup();
+            }
             final ChromeOptions options = new ChromeOptions();
             options.addArguments("--start-fullscreen");
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
-            FirefoxDriverManager.getInstance().proxy(Proxy).setup();
+
+            if (firefoxDriverVersion.equals("latest")) {
+                FirefoxDriverManager.getInstance().proxy(Proxy).setup();
+            } else {
+                FirefoxDriverManager.getInstance().version(firefoxDriverVersion).proxy(Proxy).setup();
+            }
             final FirefoxProfile firefoxProfile = new FirefoxProfile();
-            firefoxProfile.setPreference("network.proxy.type", 0);
             firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
             return new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
         }
-
         throw new IllegalArgumentException(String.format("Illegal value for browser parameter: %s", localBrowserName));
     }
 
