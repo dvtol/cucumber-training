@@ -51,9 +51,9 @@ public class WebDriverConfiguration {
     public WebDriver getLocalDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
 
-            if(chromeDriverVersion.equals("latest")){
+            if (chromeDriverVersion.equals("latest")) {
                 ChromeDriverManager.getInstance().proxy(Proxy).setup();
-            }else{
+            } else {
                 ChromeDriverManager.getInstance().version(chromeDriverVersion).proxy(Proxy).setup();
             }
             final ChromeOptions options = new ChromeOptions();
@@ -62,9 +62,9 @@ public class WebDriverConfiguration {
         }
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
 
-            if(firefoxDriverVersion.equals("latest")){
+            if (firefoxDriverVersion.equals("latest")) {
                 FirefoxDriverManager.getInstance().proxy(Proxy).setup();
-            }else{
+            } else {
                 FirefoxDriverManager.getInstance().version(firefoxDriverVersion).proxy(Proxy).setup();
             }
             final FirefoxProfile firefoxProfile = new FirefoxProfile();
