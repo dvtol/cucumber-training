@@ -1,7 +1,3 @@
-# sets binary and boolean value for screenshots
-webdriver.binary.path: src/test/resources/binaries
-webdriver.screenshots: true
-
 # set environment of choice
 target.host.name: tst8.ah.nl
 
@@ -10,16 +6,18 @@ browser.name.local: chrome
 #--options--#
 #firefox
 #chrome
-#firefoxVersion
-#chromeVersion
 
 #set local browser version when using specific version
-firefox.version: v0.17.0
-chrome.version: 2.79
+firefox.version: latest
+chrome.version: latest
 
 browser.name.remote: chrome
 #--options--#
 #firefox
 #chrome
+
+# sets binary and boolean value for screenshots
+webdriver.screenshots: true
+
 
 

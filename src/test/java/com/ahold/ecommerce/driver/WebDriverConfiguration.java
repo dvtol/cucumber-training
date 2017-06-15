@@ -50,30 +50,25 @@ public class WebDriverConfiguration {
     // default spring profile for chrome and firefox
     public WebDriver getLocalDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
-            ChromeDriverManager.getInstance().proxy(Proxy).setup();
+            if(chromeVersion.equals("latest")){
+                ChromeDriverManager.getInstance().proxy(Proxy).setup();
+            }else{
+                ChromeDriverManager.getInstance().version(chromeVersion).proxy(Proxy).setup();
+            }
             final ChromeOptions options = new ChromeOptions();
             options.addArguments("--start-fullscreen");
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
-            FirefoxDriverManager.getInstance().proxy(Proxy).setup();
+            if(chromeVersion.equals("latest")){
+                FirefoxDriverManager.getInstance().proxy(Proxy).setup();
+            }else{
+                FirefoxDriverManager.getInstance().version(firefoxVersion).proxy(Proxy).setup();
+            }
             final FirefoxProfile firefoxProfile = new FirefoxProfile();
             firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
             return new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
         }
-        if ("chromeVersion".equalsIgnoreCase(localBrowserName)) {
-            ChromeDriverManager.getInstance().version(chromeVersion).proxy(Proxy).setup();
-            final ChromeOptions options = new ChromeOptions();
-            options.addArguments("--start-fullscreen");
-            return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
-        }
-        if ("firefoxVersion".equalsIgnoreCase(localBrowserName)) {
-            FirefoxDriverManager.getInstance().version(firefoxVersion).proxy(Proxy).setup();
-            final FirefoxProfile firefoxProfile = new FirefoxProfile();
-            firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
-            return new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
-        }
-
         throw new IllegalArgumentException(String.format("Illegal value for browser parameter: %s", localBrowserName));
     }
 

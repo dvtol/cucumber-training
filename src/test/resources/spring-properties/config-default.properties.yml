@@ -12,5 +12,5 @@ browser.name.local: chrome
 browser.name.remote: chrome
 
 #set local browser version when using specific version
-firefox.version: v0.17.0
-chrome.version: 2.79
+firefox.version: latest
+chrome.version: latest
