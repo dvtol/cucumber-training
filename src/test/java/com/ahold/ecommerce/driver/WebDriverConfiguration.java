@@ -36,11 +36,11 @@ public class WebDriverConfiguration {
     @Value("${remote.url.address}")
     private String remoteUrl;
 
-    @Value("${chrome.version}")
-    private String chromeVersion;
+    @Value("${chrome.driver.version}")
+    private String chromeDriverVersion;
 
-    @Value("${firefox.version}")
-    private String firefoxVersion;
+    @Value("${firefox.driver.version}")
+    private String firefoxDriverVersion;
 
     @Value("${implicit.wait.timeout.seconds}")
     int impWaitTimeout;
@@ -50,20 +50,20 @@ public class WebDriverConfiguration {
     // default spring profile for chrome and firefox
     public WebDriver getLocalDriver() {
         if ("chrome".equalsIgnoreCase(localBrowserName)) {
-            if(chromeVersion.equals("latest")){
+            if(chromeDriverVersion.equals("latest")){
                 ChromeDriverManager.getInstance().proxy(Proxy).setup();
             }else{
-                ChromeDriverManager.getInstance().version(chromeVersion).proxy(Proxy).setup();
+                ChromeDriverManager.getInstance().version(chromeDriverVersion).proxy(Proxy).setup();
             }
             final ChromeOptions options = new ChromeOptions();
             options.addArguments("--start-fullscreen");
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
-            if(firefoxVersion.equals("latest")){
+            if(firefoxDriverVersion.equals("latest")){
                 FirefoxDriverManager.getInstance().proxy(Proxy).setup();
             }else{
-                FirefoxDriverManager.getInstance().version(firefoxVersion).proxy(Proxy).setup();
+                FirefoxDriverManager.getInstance().version(firefoxDriverVersion).proxy(Proxy).setup();
             }
             final FirefoxProfile firefoxProfile = new FirefoxProfile();
             firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
