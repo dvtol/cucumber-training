@@ -60,7 +60,7 @@ public class WebDriverConfiguration {
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
-            if(chromeVersion.equals("latest")){
+            if(firefoxVersion.equals("latest")){
                 FirefoxDriverManager.getInstance().proxy(Proxy).setup();
             }else{
                 FirefoxDriverManager.getInstance().version(firefoxVersion).proxy(Proxy).setup();
