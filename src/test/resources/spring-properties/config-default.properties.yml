@@ -10,6 +10,9 @@ target.host.name: tst8.ah.nl
 # implicit wait timeout for element(s) search
 implicit.wait.timeout.seconds: 15
 
+# webdriver wait
+timeout.interval.seconds: 15
+
 # set local or remote browser
 browser.name.local: chrome
 browser.name.remote: chrome

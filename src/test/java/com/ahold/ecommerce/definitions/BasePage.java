@@ -1,9 +1,26 @@
 package com.ahold.ecommerce.definitions;
 
 import com.google.common.base.Function;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NotFoundException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -11,30 +28,15 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Year;
-import java.time.ZoneId;
-import java.time.temporal.TemporalUnit;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
 @SuppressWarnings("unused")
 @Component
-public class BasePage {
+public class BasePage extends BasePageAH{
     private WebDriver webDriver;
 
-    private static final long SECONDS_TO_WAIT_ACCORDING_SLA = 15;
     private static final long SECONDS_PAGELOAD_TIMEOUT = 12;
 
     public BasePage(final WebDriver webdriver) {
+        super(webdriver);
         this.webDriver = webdriver;
     }
 
@@ -52,7 +54,7 @@ public class BasePage {
     }
 
     private WebDriverWait getWebDriverWait() {
-        return getWebDriverWait(SECONDS_TO_WAIT_ACCORDING_SLA);
+        return getWebDriverWait(timeOutInterval);
     }
 
     public WebElement findElement(final By locator) {
@@ -162,7 +164,7 @@ public class BasePage {
     }
 
     public void waitForElementPresent(final By locator) {
-        waitForElementPresent(locator, SECONDS_TO_WAIT_ACCORDING_SLA);
+        waitForElementPresent(locator, timeOutInterval);
     }
 
     public void waitForElementVisible(final By locator, final long numberOfSeconds) {
@@ -171,7 +173,7 @@ public class BasePage {
     }
 
     public void waitForElementVisible(final By locator) {
-        waitForElementVisible(locator, SECONDS_TO_WAIT_ACCORDING_SLA);
+        waitForElementVisible(locator, timeOutInterval);
     }
 
     public void sendKey(final By locator, final Keys key) {
