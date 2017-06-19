@@ -50,7 +50,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -75,16 +74,9 @@ public class BasePageAH {
 
     protected final WebDriver driver;
 
-    @Autowired
     public BasePageAH(WebDriver driver) {
         this.driver = driver;
         this.driver.manage().window().setSize(new Dimension(1300, 1024));
-
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                shutdown();
-            }
-        });
     }
 
     public static By css(final String format, final Object... args) {
