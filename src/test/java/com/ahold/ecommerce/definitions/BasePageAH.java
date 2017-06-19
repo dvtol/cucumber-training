@@ -662,15 +662,6 @@ public class BasePageAH {
         }
     }
 
-    @Deprecated
-    public boolean isVisible(final By by) {
-        try {
-            return driver.findElement(by).isDisplayed();
-        } catch (NoSuchElementException | StaleElementReferenceException e) {
-            return true;
-        }
-    }
-
     public void assertPresent(final By by) {
         pollShortly().until(ExpectedConditions.presenceOfElementLocated(by));
     }
