@@ -7,8 +7,15 @@ remote.url.address: https://selenium-node-chrome.tools.ecom.ahold.nl/wd/hub
 # set environment of choice
 target.host.name: tst8.ah.nl
 
+# Login for the dev-page
+dev.login: admin
+dev.password: uzGcALbMUXaWJzWQ
+
 # implicit wait timeout for element(s) search
 implicit.wait.timeout.seconds: 15
+
+# webdriver wait
+timeout.interval.seconds: 15
 
 # set local or remote browser
 browser.name.local: chrome
