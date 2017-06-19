@@ -96,7 +96,7 @@ public class BasePage {
     /**
      * Navigate to the ah.nl home page of the given environment
      *
-     * @param environment subdomain of the environment, eg 'tst', 'beta'
+     * @param environment subdomain of the environment, eg 'tst'
      */
     public void navigateToEnvironment(final String environment) {
         navigateToEnvironment(environment, "/");
@@ -105,7 +105,7 @@ public class BasePage {
     /**
      * Navigate to the given ah.nl page of an environment
      *
-     * @param environment subdomain of the environment, eg 'tst', 'beta'
+     * @param environment subdomain of the environment, eg 'tst'
      * @param path        path to navigate to, should start with a '/'
      */
     public void navigateToEnvironment(final String environment, final String path) {
