@@ -94,21 +94,22 @@ public class BasePage {
     }
 
     /**
-     * Navigate to the appie today home page of the given environment
-     * @param environment    subdomain of the environment, eg 'tst', 'beta'
+     * Navigate to the ah.nl home page of the given environment
+     *
+     * @param environment subdomain of the environment, eg 'tst', 'beta'
      */
     public void navigateToEnvironment(final String environment) {
         navigateToEnvironment(environment, "/");
     }
 
     /**
+     * Navigate to the given ah.nl page of an environment
      *
-     * Navigate to the given appie today page of an environment
-     * @param environment    subdomain of the environment, eg 'tst', 'beta'
-     * @param path           path to navigate to, should start with a '/'
+     * @param environment subdomain of the environment, eg 'tst', 'beta'
+     * @param path        path to navigate to, should start with a '/'
      */
     public void navigateToEnvironment(final String environment, final String path) {
-        navigateToPage("http://" + environment + ".appietoday.nl" + path);
+        navigateToPage("http://" + environment + ".ah.nl" + path);
     }
 
     public void navigateForward() {
@@ -200,7 +201,8 @@ public class BasePage {
     /**
      * Click the button given by the locator
      * Note: alleen voor form fields
-     * @param locator    the locator defining which button to click
+     *
+     * @param locator the locator defining which button to click
      */
     public void buttonClick(final By locator) {
         waitForElementVisible(locator);
@@ -210,7 +212,8 @@ public class BasePage {
     /**
      * Click the button that has the given data-test attribute
      * Note: alleen voor form fields
-     * @param dataTest   the value of the data-test attribute
+     *
+     * @param dataTest the value of the data-test attribute
      */
     public void buttonClick(final String dataTest) {
         final By locator = byTestHook(dataTest);
@@ -533,18 +536,6 @@ public class BasePage {
         wait.until(anyTextToBePresentInElementValue(locator));
     }
 
-
-
-    // used for debugging purposes only
-    @Deprecated
-    public void pause(final long timeInMillies) {
-        try {
-            Thread.sleep(timeInMillies);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     /* custom expected conditions */
     private static ExpectedCondition<Boolean> isEnabledOfElementLocated(final By locator, final boolean isEnabled) {
         return new ExpectedCondition<Boolean>() {
@@ -564,6 +555,7 @@ public class BasePage {
     private static ExpectedCondition<Boolean> anyTextToBePresentInElementLocated(final By locator) {
         return new ExpectedCondition<Boolean>() {
             private String text;
+
             public Boolean apply(final WebDriver driver) {
                 text = driver.findElement(locator).getText();
                 return !text.isEmpty();
@@ -578,10 +570,11 @@ public class BasePage {
     public static ExpectedCondition<Boolean> anyTextToBePresentInElementValue(final By locator) {
         return new ExpectedCondition<Boolean>() {
             private String text;
+
             public Boolean apply(final WebDriver driver) {
                 try {
                     text = driver.findElement(locator).getAttribute("value");
-                    return text != null?Boolean.valueOf(!text.isEmpty()):Boolean.valueOf(false);
+                    return text != null ? Boolean.valueOf(!text.isEmpty()) : Boolean.valueOf(false);
                 } catch (StaleElementReferenceException var3) {
                     return null;
                 }
@@ -596,11 +589,12 @@ public class BasePage {
 
     /**
      * A selector by the value of the data-test attribute
+     *
      * @param dataTest
      * @return
      */
     private By byTestHook(String dataTest) {
-        return  By.xpath(String.format("//*[@data-test=\"%s\"]", dataTest));
+        return By.xpath(String.format("//*[@data-test=\"%s\"]", dataTest));
     }
 
     // custom assertions
