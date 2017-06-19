@@ -22,7 +22,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
@@ -61,23 +60,25 @@ public class BasePageAH {
     private static final int WAIT_REFRESH = 5;
 
     @Value("${timeout.interval.seconds}")
-    protected int timeOutInterval;
+    int timeOutInterval;
 
     @Value("${dev.login}")
-    protected String dev_login;
+    private String dev_login;
 
     @Value("${dev.password}")
-    protected String dev_password;
+    private String dev_password;
 
     @Value("${target.host.name:tst8.ah.nl}")
-    protected String targetHostName;
+    private String targetHostName;
 
-    protected final WebDriver driver;
+    private final WebDriver driver;
 
-    public BasePageAH(WebDriver driver) {
+    BasePageAH(WebDriver driver) {
         this.driver = driver;
         this.driver.manage().window().setSize(new Dimension(1300, 1024));
     }
+
+    /* Selectors */
 
     public static By css(final String format, final Object... args) {
         return By.cssSelector(format(format, args));
@@ -97,13 +98,6 @@ public class BasePageAH {
 
     public static By dataterm(final String value) {
         return css("[data-term='%s']", value);
-    }
-
-    public BasePageAH switchTo(WebElement webElement) {
-        WebDriver frame = driver.switchTo().frame(webElement);
-        BasePageAH switchedDriver = new BasePageAH(frame);
-        switchedDriver.setTimeOutInterval(timeOutInterval);
-        return switchedDriver;
     }
 
 
@@ -137,68 +131,39 @@ public class BasePageAH {
         return css("[data-testhookid='%s']%s", testHookId, extraCSS);
     }
 
-    public void goBack() {
-        driver.navigate().back();
-    }
+    /* Webdriver & Browser commands */
 
     private WebDriverWait pauseQuickly() {
         return new WebDriverWait(driver, WAIT_REFRESH);
     }
 
-    public void deleteAllSessionCookies() {
-        for (final Cookie cookie : driver.manage().getCookies()) {
-            // remove all but cookies-accepted
-            if (!cookie.getName().equals("cookies-accepted")) {
-                driver.manage().deleteCookie(cookie);
-            }
+    public void setTimeOutInterval(int timeOutInterval) {
+        this.timeOutInterval = timeOutInterval;
+    }
+
+    public void sleep(final Duration duration) {
+        try {
+            Thread.sleep(duration.toMillis());
+        } catch (final InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void deleteJSessionIdCookie() {
-        driver.manage().deleteCookieNamed("JSESSIONID");
+    private <V> V expectShortly(final ExpectedCondition<V> webElementExpectedCondition) {
+        return new WebDriverWait(driver, timeOutInterval).until(webElementExpectedCondition);
     }
 
-    public void setDimension(Dimension dimension) {
-        driver.manage().window().setSize(dimension);
+    private void shortFluentWait(final Function<WebDriver, Boolean> function) {
+        new FluentWait<>(driver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
+                .until(function);
     }
 
-    public void deleteAllCookies() {
-        driver.manage().deleteAllCookies();
-    }
-
-    public void shutdown() {
-        driver.quit();
+    public void goBack() {
+        driver.navigate().back();
     }
 
     public void get(String url) {
         driver.get(url);
-    }
-
-    public void setup() {
-        closeTabs();
-        deleteAllCookies();
-        acceptCookies();
-    }
-
-    private void closeTabs() {
-        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        for (int i = 1; i < tabs.size(); i++) {
-            driver.switchTo().window(tabs.get(i)).close();
-        }
-        driver.switchTo().window(tabs.get(0));
-    }
-
-    private void acceptCookies() {
-        // need page before cookies can be set
-        openPath("/privacy");
-        // version number/cookie value hard coded. Might change in future.
-        final Cookie cookie = new Cookie("cookies-accepted", "1.3");
-        driver.manage().addCookie(cookie);
-        log.info("Cookie set: " + cookie.getName());
-    }
-
-    public Set<Cookie> getCookies() {
-        return driver.manage().getCookies();
     }
 
     public boolean onHomePage() {
@@ -208,6 +173,29 @@ public class BasePageAH {
     public void openHomePage() {
         get(format("https://%s", targetHostName));
         assertValidPage();
+    }
+
+    public byte[] getScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    public boolean canScreenshot() {
+        return TakesScreenshot.class.isInstance(driver);
+    }
+
+    public String executeScript(final String string, final Object... args) {
+        if (JavascriptExecutor.class.isInstance(driver)) {
+            return (String) ((JavascriptExecutor) driver).executeScript(format(string, args));
+        }
+        throw new RuntimeException("Cannot execute JavaScript");
+    }
+
+    public void prompt() {
+        JOptionPane.showMessageDialog(null, "Confirm to continue...");
+    }
+
+    public void scrollTo(By by) {
+        new Actions(driver).moveToElement(expectShortly(presenceOfElementLocated(by))).perform();
     }
 
     /**
@@ -243,30 +231,20 @@ public class BasePageAH {
         openPath("/grid/sitetarget/" + siteTarget, args);
     }
 
-    public boolean isUrl(final String subUrl) {
-        final String url = getUrl();
-        return url.contains(targetHostName + subUrl);
-    }
-
-    public boolean isNetherlands() {
-        return targetHostName.contains("ah.nl");
-    }
-
-    public boolean hasElement(final By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (TimeoutException | NoSuchElementException te) {
-            return false;
-        }
-    }
-
     public Cookie getCookie(String cookieName) {
         return driver.manage().getCookieNamed(cookieName);
     }
 
-    public void input(final By by, final String value) {
-        expectShortly(presenceOfElementLocated(by)).sendKeys(value);
+    public String getUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public URL getURL() {
+        try {
+            return new URL(getUrl());
+        } catch (final MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -277,6 +255,9 @@ public class BasePageAH {
      * @param value the string to be send to the element.
      * @param keys  additional keys like {@link Keys#ENTER} to send to the element.
      */
+
+    /* ELEMENTS - Interact */
+
     public void inputVisible(final By by, final String value, final Keys... keys) {
         retryOnElementNotClickable(() -> visible(by, element -> this.inputVisible(element, value, keys)));
     }
@@ -286,35 +267,6 @@ public class BasePageAH {
         element.clear();
         element.sendKeys(value);
         Arrays.asList(keys).forEach(element::sendKeys);
-    }
-
-    public BasePageAH switchToDefault() {
-        WebDriver frame = driver.switchTo().defaultContent();
-        return new BasePageAH(frame);
-    }
-
-    /**
-     * Higher order method, consumes the given consumer, for a given locator.
-     *
-     * @param by       the locator.
-     * @param consumer the consumer.
-     */
-    public void visible(final By by, final Consumer<WebElement> consumer) {
-        consumer.accept(visible(by));
-    }
-
-    /**
-     * Retrieve a {@link WebElement} or <code>null</code> which will wait for an AJAX call to complete and then for 10 seconds.
-     *
-     * @param by the locator.
-     * @return the web element.
-     */
-    public WebElement visible(final By by) {
-        return expectShortly(visibilityOfElementLocated(by));
-    }
-
-    private <V> V expectShortly(final ExpectedCondition<V> webElementExpectedCondition) {
-        return new WebDriverWait(driver, timeOutInterval).until(webElementExpectedCondition);
     }
 
     public void clickVisible(final By by) {
@@ -344,89 +296,6 @@ public class BasePageAH {
                 throw e;
             }
         }
-    }
-
-    public WebElement presence(final By by) {
-        return expectShortly(presenceOfElementLocated(by));
-    }
-
-    public String getUrl() {
-        return driver.getCurrentUrl();
-    }
-
-    public URL getURL() {
-        try {
-            return new URL(getUrl());
-        } catch (final MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void retry(final Predicate<Void> predicate) {
-        for (int i = 0; i < 2; i++) {
-            try {
-                if (predicate.apply(null)) {
-                    return;
-                }
-                log.warn("Retrying...");
-            } catch (final TimeoutException e) {
-                log.warn("Retrying... {}", e.getMessage());
-                if (i == 1) {
-                    throw e;
-                }
-            }
-        }
-    }
-
-    public void content(final By by, final String text) {
-        assertTrue(text, expectShortly(textToBePresentInElementLocated(by, text)));
-    }
-
-    public void refreshWhilePresent(final By by) {
-        for (int i = 0; i < 5; i++) {
-            try {
-                pauseQuickly().until(visibilityOfElementLocated(by));
-                driver.navigate().refresh();
-            } catch (NoSuchElementException | TimeoutException e) {
-                return;
-            }
-        }
-        fail(format("%s still present", by.toString()));
-    }
-
-    public void refreshWhileNotPresent(final By by) {
-        for (int i = 0; i < 10; i++) {
-            try {
-                driver.navigate().refresh();
-                if (presentAndVisible(by)) {
-                    return;
-                } else {
-                    Thread.sleep(1000);
-                }
-            } catch (NoSuchElementException | TimeoutException e) {
-                break;
-            } catch (InterruptedException ignored) {
-            }
-        }
-        fail(format("%s still not present", by.toString()));
-    }
-
-    public void refreshPage() {
-        driver.navigate().refresh();
-    }
-
-    public List<WebElement> elements(final By by) {
-        return expectShortly(presenceOfAllElementsLocatedBy(by));
-    }
-
-    public WebElement element(final By by) {
-        final List<WebElement> es = elements(by);
-        return es.get(0);
-    }
-
-    public WebElement last(final By by) {
-        final List<WebElement> es = elements(by);
-        return es.get(es.size() - 1);
     }
 
     public WebElement extractCheckBox(final By by) {
@@ -464,12 +333,115 @@ public class BasePageAH {
         throw new IllegalArgumentException("Could not find element macthing: " + by);
     }
 
+    /* ELEMENTS - Presence and visibility */
+
+    public void waitForAjaxCallToFinish() {
+        pollVisible(css("html.js-content-ready"));
+    }
+
+    public void waitForShoppinglist() {
+        try {
+            assertPresent(testHook("shoppinglist_quantityshoppinglist"));
+            assertPresentDynamic(
+                    By.xpath("//*[@data-testhookid='shoppinglist_quantityshoppinglist'][contains(@style, 'transform: matrix')]"));
+        } catch (final NoSuchElementException | TimeoutException e) {
+            log.error("Waiting for the shoppinglist to update took too long", e);
+        }
+    }
+
+    public WebElement presence(final By by) {
+        return expectShortly(presenceOfElementLocated(by));
+    }
+
+    /**
+     * Higher order method, consumes the given consumer, for a given locator.
+     *
+     * @param by       the locator.
+     * @param consumer the consumer.
+     */
+    public void visible(final By by, final Consumer<WebElement> consumer) {
+        consumer.accept(visible(by));
+    }
+
+    /**
+     * Retrieve a {@link WebElement} or <code>null</code> which will wait for an AJAX call to complete and then for 10 seconds.
+     *
+     * @param by the locator.
+     * @return the web element.
+     */
+    public WebElement visible(final By by) {
+        return expectShortly(visibilityOfElementLocated(by));
+    }
+
+    public void retry(final Predicate<Void> predicate) {
+        for (int i = 0; i < 2; i++) {
+            try {
+                if (predicate.apply(null)) {
+                    return;
+                }
+                log.warn("Retrying...");
+            } catch (final TimeoutException e) {
+                log.warn("Retrying... {}", e.getMessage());
+                if (i == 1) {
+                    throw e;
+                }
+            }
+        }
+    }
+
+    public void refreshWhilePresent(final By by) {
+        for (int i = 0; i < 5; i++) {
+            try {
+                pauseQuickly().until(visibilityOfElementLocated(by));
+                driver.navigate().refresh();
+            } catch (NoSuchElementException | TimeoutException e) {
+                return;
+            }
+        }
+        fail(format("%s still present", by.toString()));
+    }
+
+    public void refreshWhileNotPresent(final By by) {
+        for (int i = 0; i < 10; i++) {
+            try {
+                driver.navigate().refresh();
+                if (presentAndVisible(by)) {
+                    return;
+                } else {
+                    Thread.sleep(1000);
+                }
+            } catch (NoSuchElementException | TimeoutException e) {
+                break;
+            } catch (InterruptedException ignored) {
+            }
+        }
+        fail(format("%s still not present", by.toString()));
+    }
+
+    public List<WebElement> elements(final By by) {
+        return expectShortly(presenceOfAllElementsLocatedBy(by));
+    }
+
+    public WebElement element(final By by) {
+        final List<WebElement> es = elements(by);
+        return es.get(0);
+    }
+
+    public WebElement last(final By by) {
+        final List<WebElement> es = elements(by);
+        return es.get(es.size() - 1);
+    }
+
     public boolean presentOneElement(final By by) {
         return driver.findElements(by).size() == 1;
     }
 
     public boolean presentOneOrMoreElements(final By by) {
         return driver.findElements(by).size() >= 1;
+    }
+
+    private WebElement elementIfVisible(WebElement element) {
+        return element.isDisplayed() ? element : null;
     }
 
     public int noOfElements(final By by) {
@@ -479,14 +451,6 @@ public class BasePageAH {
     public boolean presentAndVisible(final By by) {
         List<WebElement> elements = driver.findElements(by);
         return elements.size() >= 1 && elements.get(0).isDisplayed();
-    }
-
-    public void sleep(final Duration duration) {
-        try {
-            Thread.sleep(duration.toMillis());
-        } catch (final InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public boolean pollPresentAndVisible(final By by) {
@@ -528,22 +492,20 @@ public class BasePageAH {
 
     private Wait<WebDriver> pollShortly() {
         return new FluentWait<>(driver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
-            .ignoring(NoSuchElementException.class);
+                .ignoring(NoSuchElementException.class);
     }
 
     private Wait<WebDriver> pollVeryShortly() {
         return new FluentWait<>(driver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS)
-            .ignoring(NoSuchElementException.class);
+                .ignoring(NoSuchElementException.class);
     }
 
     private <T> Wait<T> pollShortly(T t) {
         return new FluentWait<>(t).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
-            .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
     }
 
-    public byte[] getScreenshot() {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-    }
+    /* Asserts */
 
     public void assertPath(final Matcher<String> matcher) {
         shortFluentWait(element -> matchString(matcher, getURL().getFile()));
@@ -625,10 +587,6 @@ public class BasePageAH {
         return wait.until(element -> elementIfVisible(webElement.findElement(by)));
     }
 
-    private WebElement elementIfVisible(WebElement element) {
-        return element.isDisplayed() ? element : null;
-    }
-
     public void assertNotVisible(final By by) {
         pollShortly().until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
@@ -700,11 +658,6 @@ public class BasePageAH {
         Assert.assertThat(error.getText().contains(foutmelding), CoreMatchers.is(true));
     }
 
-    private void shortFluentWait(final Function<WebDriver, Boolean> function) {
-        new FluentWait<>(driver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
-            .until(function);
-    }
-
     private Boolean matchString(final Matcher<String> matcher, final String string) {
         if (matcher.matches(string)) {
             return true;
@@ -713,37 +666,13 @@ public class BasePageAH {
         return false;
     }
 
-    public boolean canScreenshot() {
-        return TakesScreenshot.class.isInstance(driver);
-    }
+    /* Tabs */
 
-    public String executeScript(final String string, final Object... args) {
-        if (JavascriptExecutor.class.isInstance(driver)) {
-            return (String) ((JavascriptExecutor) driver).executeScript(format(string, args));
-        }
-        throw new RuntimeException("Cannot execute JavaScript");
-    }
-
-    public void prompt() {
-        JOptionPane.showMessageDialog(null, "Confirm to continue...");
-    }
-
-    public void scrollTo(By by) {
-        new Actions(driver).moveToElement(expectShortly(presenceOfElementLocated(by))).perform();
-    }
-
-    public void waitForAjaxCallToFinish() {
-        pollVisible(css("html.js-content-ready"));
-    }
-
-    public void waitForShoppinglist() {
-        try {
-            assertPresent(testHook("shoppinglist_quantityshoppinglist"));
-            assertPresentDynamic(
-                By.xpath("//*[@data-testhookid='shoppinglist_quantityshoppinglist'][contains(@style, 'transform: matrix')]"));
-        } catch (final NoSuchElementException | TimeoutException e) {
-            log.error("Waiting for the shoppinglist to update took too long", e);
-        }
+    public BasePageAH switchTo(WebElement webElement) {
+        WebDriver frame = driver.switchTo().frame(webElement);
+        BasePageAH switchedDriver = new BasePageAH(frame);
+        switchedDriver.setTimeOutInterval(timeOutInterval);
+        return switchedDriver;
     }
 
     public void focusSecondTab() {
@@ -793,8 +722,10 @@ public class BasePageAH {
         return driver.getTitle();
     }
 
-    public void setTimeOutInterval(int timeOutInterval) {
-        this.timeOutInterval = timeOutInterval;
+    public BasePageAH switchToDefault() {
+        WebDriver frame = driver.switchTo().defaultContent();
+        return new BasePageAH(frame);
     }
+
 
 }
