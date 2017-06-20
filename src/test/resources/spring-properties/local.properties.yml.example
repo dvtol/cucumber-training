@@ -5,6 +5,7 @@ target.host.name: tst8.ah.nl
 browser.name.local: chrome
 #firefox
 #chrome
+#chromeHeadless
 
 # set remote browser
 browser.name.remote: chrome
