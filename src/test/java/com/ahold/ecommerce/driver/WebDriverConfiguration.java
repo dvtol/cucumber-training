@@ -57,11 +57,10 @@ public class WebDriverConfiguration {
                 ChromeDriverManager.getInstance().version(chromeDriverVersion).proxy(Proxy).setup();
             }
             final ChromeOptions options = new ChromeOptions();
-            if(localBrowserName.toLowerCase().contains("headless")){
-                //https://developers.google.com/web/updates/2017/04/headless-chrome
+            if (localBrowserName.toLowerCase().contains("headless")) {
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
-            }else {
+            } else {
                 options.addArguments("--start-fullscreen");
             }
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
