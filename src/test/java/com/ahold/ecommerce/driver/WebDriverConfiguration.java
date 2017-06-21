@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -49,15 +50,19 @@ public class WebDriverConfiguration {
     @Profile("default")
     // default spring profile for chrome and firefox
     public WebDriver getLocalDriver() {
-        if ("chrome".equalsIgnoreCase(localBrowserName)) {
-
+        if (localBrowserName.contains("chrome")) {
             if (chromeDriverVersion.equals("latest")) {
                 ChromeDriverManager.getInstance().proxy(Proxy).setup();
             } else {
                 ChromeDriverManager.getInstance().version(chromeDriverVersion).proxy(Proxy).setup();
             }
             final ChromeOptions options = new ChromeOptions();
-            options.addArguments("--start-fullscreen");
+            if (localBrowserName.toLowerCase().contains("headless")) {
+                options.addArguments("--headless");
+                options.addArguments("--disable-gpu");
+            } else {
+                options.addArguments("--start-fullscreen");
+            }
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
