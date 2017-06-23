@@ -1,43 +1,482 @@
 package com.ahold.ecommerce.definitions;
 
 import com.google.common.base.Function;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.time.Duration;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import static java.lang.String.format;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+import static org.openqa.selenium.support.ui.ExpectedConditions.or;
+import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
+
 
 @SuppressWarnings("unused")
 @Component
-public class BasePage extends BasePageAH{
+public class BasePage {
     private WebDriver webDriver;
 
     private static final long SECONDS_PAGELOAD_TIMEOUT = 12;
+    private static final long SECONDS_PAGELOAD_REFRESH = 12;
+
+    @Value("${timeout.interval.seconds}")
+    int timeOutInterval;
+
+    @Value("${dev.login}")
+    private String dev_login;
+
+    @Value("${dev.password}")
+    private String dev_password;
+
+    @Value("${target.host.name:tst8.ah.nl}")
+    private String targetHostName;
 
     public BasePage(final WebDriver webdriver) {
-        super(webdriver);
         this.webDriver = webdriver;
+    }
+
+    /* Selectors */
+
+    public static By css(final String format, final Object... args) {
+        return By.cssSelector(format(format, args));
+    }
+
+    public static By id(final String format, final Object... args) {
+        return By.id(format(format, args));
+    }
+
+    public static By appieValue(final String value) {
+        return css("[data-appie='%s']", value);
+    }
+
+    public static By name(final String value) {
+        return css("[name='%s']", value);
+    }
+
+    public static By dataterm(final String value) {
+        return css("[data-term='%s']", value);
+    }
+
+    /**
+     * Retrieve a test hook {@link By locator}. A Test hook on a web element is HTML element attribute with the name
+     * <pre>data-testhookid</pre> The test hook by can be retrieved with optional arguments which are used as in {@link By#cssSelector(String)}
+     *
+     * @param format the test-hook identifier.
+     * @param args   additional arguments for the test-hook identifier.
+     * @return the resolved test-hook locator.
+     */
+    public static By testHook(final String format, final Object... args) {
+        return css("[data-testhookid='%s']", format(format, args));
+    }
+
+    public static By testHookStartsWith(String format, final Object... args) {
+        return css("[data-testhookid^='%s']", format(format, args));
+    }
+
+    public static By testHookStartsWithWithinCss(String css, String testHookId) {
+        return css("%s [data-testhookid^='%s']", css, testHookId);
+    }
+
+    //Used to find another element in the hierarchy of the element of the specified testhook
+    public static By cssWithinTestHook(String testHookId, String css) {
+        return css("[data-testhookid='%s'] %s", testHookId, css);
+    }
+
+    //Used to find elements with the specified testhook plus the extraCSS
+    public static By cssCombinedWithTestHook(String testHookId, String extraCSS) {
+        return css("[data-testhookid='%s']%s", testHookId, extraCSS);
+    }
+
+    /* Webdriver & Browser commands */
+
+    private WebDriverWait pauseQuickly() {
+        return new WebDriverWait(webDriver, SECONDS_PAGELOAD_REFRESH);
+    }
+
+    public void setTimeOutInterval(int timeOutInterval) {
+        this.timeOutInterval = timeOutInterval;
+    }
+
+    public void sleep(final Duration duration) {
+        try {
+            Thread.sleep(duration.toMillis());
+        } catch (final InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private <V> V expectShortly(final ExpectedCondition<V> webElementExpectedCondition) {
+        return new WebDriverWait(webDriver, timeOutInterval).until(webElementExpectedCondition);
+    }
+
+    public void goBack() {
+        webDriver.navigate().back();
+    }
+
+    public void get(String url) {
+        webDriver.get(url);
+    }
+
+    public boolean onHomePage() {
+        return getUrl().equals(format("https://%s", targetHostName));
+    }
+
+    public void openHomePage() {
+        get(format("https://%s", targetHostName));
+        assertValidPage();
+    }
+
+    public byte[] getScreenshot() {
+        return ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    public boolean canScreenshot() {
+        return TakesScreenshot.class.isInstance(webDriver);
+    }
+
+    public String executeScript(final String string, final Object... args) {
+        if (JavascriptExecutor.class.isInstance(webDriver)) {
+            return (String) ((JavascriptExecutor) webDriver).executeScript(format(string, args));
+        }
+        throw new RuntimeException("Cannot execute JavaScript");
+    }
+
+    public void scrollTo(By by) {
+        new Actions(webDriver).moveToElement(expectShortly(presenceOfElementLocated(by))).perform();
+    }
+
+    /**
+     * Officially the 'path' component of a url does not contain the first slash ("/"), but seeing that for testing purposes it's easier to
+     * pass an absolute url with a "/" that's what's expected for the format parameter
+     *
+     * @param format url starting with "/"
+     * @param args   additional arguments.
+     */
+    public void openPath(final String format, final Object... args) {
+        get(format("https://%s%s", targetHostName, format(format, args)));
+        assertValidPage();
+    }
+
+    /**
+     * Same as openPath but with Basic authentication for the specified path
+     *
+     * @param path url starting with "/"
+     * @param args additional arguments.
+     */
+    public void openPathWithLoginForDev(final String path, final Object... args) {
+        get(format("https://%s:%s@%s%s", dev_login, dev_password, targetHostName, format(path, args)));
+        assertValidPage();
+    }
+
+    /**
+     * Open a site target page
+     *
+     * @param siteTarget The site target to navigate to
+     * @param args       Arguments to insert into the URL string
+     */
+    public void openPageBySiteTarget(final String siteTarget, final Object... args) {
+        openPath("/grid/sitetarget/" + siteTarget, args);
+    }
+
+    public Cookie getCookie(String cookieName) {
+        return webDriver.manage().getCookieNamed(cookieName);
+    }
+
+    public String getUrl() {
+        return webDriver.getCurrentUrl();
+    }
+
+    public URL getURL() {
+        try {
+            return new URL(getUrl());
+        } catch (final MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /* ELEMENTS - Interact */
+
+    public void inputVisible(final WebElement element, final String value, final Keys... keys) {
+        element.click();
+        element.clear();
+        element.sendKeys(value);
+        Arrays.asList(keys).forEach(element::sendKeys);
+    }
+
+    public void waitForAjaxCallToFinish() {
+        pollVisible(css("html.js-content-ready"));
+    }
+
+    public void waitForShoppinglist() {
+        try {
+            assertPresent(testHook("shoppinglist_quantityshoppinglist"));
+            assertPresentDynamic(
+                    By.xpath("//*[@data-testhookid='shoppinglist_quantityshoppinglist'][contains(@style, 'transform: matrix')]"));
+        } catch (final NoSuchElementException | TimeoutException e) {
+            //log.error("Waiting for the shoppinglist to update took too long", e);
+        }
+    }
+
+    public List<WebElement> elements(final By by) {
+        return expectShortly(presenceOfAllElementsLocatedBy(by));
+    }
+
+    public WebElement element(final By by) {
+        final List<WebElement> es = elements(by);
+        return es.get(0);
+    }
+
+    public WebElement last(final By by) {
+        final List<WebElement> es = elements(by);
+        return es.get(es.size() - 1);
+    }
+
+    public boolean presentOneElement(final By by) {
+        return webDriver.findElements(by).size() == 1;
+    }
+
+    public boolean presentOneOrMoreElements(final By by) {
+        return webDriver.findElements(by).size() >= 1;
+    }
+
+    private WebElement elementIfVisible(WebElement element) {
+        return element.isDisplayed() ? element : null;
+    }
+
+    public int noOfElements(final By by) {
+        return webDriver.findElements(by).size();
+    }
+
+    public boolean presentAndVisible(final By by) {
+        List<WebElement> elements = webDriver.findElements(by);
+        return elements.size() >= 1 && elements.get(0).isDisplayed();
+    }
+
+    public boolean pollPresentAndVisible(final By by) {
+        return pollVisible(by) != null;
+    }
+
+    public WebElement pollVisible(final By by) {
+        return pollShortly().until(visibilityOfElementLocated(by));
+    }
+
+    public void pollClickFirstVisible(final By by) {
+        pollShortly().until(presenceOfAllElementsLocatedBy(by)).stream().filter(WebElement::isDisplayed).findFirst().get().click();
+    }
+
+    private Wait<WebDriver> pollShortly() {
+        return new FluentWait<>(webDriver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
+                .ignoring(NoSuchElementException.class);
+    }
+
+    private Wait<WebDriver> pollVeryShortly() {
+        return new FluentWait<>(webDriver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS)
+                .ignoring(NoSuchElementException.class);
+    }
+
+    private <T> Wait<T> pollShortly(T t) {
+        return new FluentWait<>(t).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
+                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+    }
+
+    /* Asserts */
+
+    public void assertPath(final String path) {
+        pollShortly().until(ExpectedConditions.urlContains(path));
+    }
+
+    public static ExpectedCondition<Boolean> urlMatches(final Matcher<String> matcher) {
+        return new ExpectedCondition<Boolean>() {
+            private String currentUrl = "";
+
+            public Boolean apply(WebDriver driver) {
+                this.currentUrl = driver.getCurrentUrl();
+                return matcher.matches(currentUrl);
+            }
+
+            public String toString() {
+                return String.format("Url should match with the matcher. Current url: \"%s\"", this.currentUrl);
+            }
+        };
+    }
+
+    /**
+     * Polls shortly until either the element using the given by selector finds a visible element, or
+     * the current page's url matches using the given matcher.
+     *
+     * @param by  element locator
+     * @param url url matcher
+     * @throws TimeoutException on {@link #pollShortly()} timeout
+     */
+    public void assertVisibleOrPath(final By by, final Matcher<String> url) {
+        pollShortly().until(or(visibilityOfElementLocated(by), urlMatches(url)));
+    }
+
+    /**
+     * Polls shortly until either the element using the given by selector finds a visible element, or
+     * the current page's url matches using the given matcher.
+     *
+     * @param by   element locator
+     * @param url1 url to possibly match
+     * @param url2 url to possibly match
+     * @throws TimeoutException on {@link #pollShortly()} timeout
+     */
+    public void assertVisibleOrContainsEitherPath(final By by, final String url1, final String url2) {
+        pollShortly().until(or(visibilityOfElementLocated(by), urlContains(url1), urlContains(url2)));
+    }
+
+    /**
+     * Asserts that the path matches either of the 2 provided paths
+     *
+     * @param url1 possible path 1
+     * @param url2 possible path 2
+     */
+
+    public void assertEitherPaths(final String url1, final String url2) {
+        pollShortly().until(or(urlContains(url1), urlContains(url2)));
+    }
+
+    public void assertVisible(final By by) {
+        pollShortly().until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public WebElement assertVisible(final WebElement webElement, final By by) {
+        Wait<WebElement> wait = pollShortly(webElement);
+        return wait.until(element -> elementIfVisible(webElement.findElement(by)));
+    }
+
+    public void assertNotVisible(final By by) {
+        pollShortly().until(ExpectedConditions.invisibilityOfElementLocated(by));
+    }
+
+    public void assertVisible(final By by, boolean expectedVisibility) {
+        if (expectedVisibility) {
+            assertVisible(by);
+        } else {
+            assertNotVisible(by);
+        }
+    }
+
+    public void assertVisible(final WebElement webElement, final By by, boolean expectedVisibility) {
+        if (expectedVisibility) {
+            assertVisible(webElement, by);
+        } else {
+            assertNotVisible(webElement, by);
+        }
+    }
+
+    public void assertNotVisible(final WebElement webElement, final By by) {
+        Wait<WebElement> wait = pollShortly(webElement);
+        wait.until(invisible -> isInvisible(webElement.findElement(by)));
+    }
+
+    private boolean isInvisible(final WebElement webElement) {
+        try {
+            return webElement.isDisplayed();
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            return true;
+        }
+    }
+
+    public void assertPresent(final By by) {
+        pollShortly().until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    public void assertPresentDynamic(final By by) {
+        pollVeryShortly().until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    public void assertNotPresent(final By by) {
+        pollShortly().until(ExpectedConditions.not(presenceOfAllElementsLocatedBy(by)));
+    }
+
+    public void assertText(final By by, String text) {
+        pollShortly().until(textToBePresentInElementLocated(by, text));
+    }
+
+    public void assertTextInValue(final By by, String text) {
+        pollShortly().until(ExpectedConditions.textToBePresentInElementValue(by, text));
+    }
+
+    public void assertValidPage() {
+        if (!getUrl().endsWith("/404")) {
+            Assert.assertEquals("Only Testing", webDriver.getTitle());
+        }
+    }
+
+    public void assertErrorById(String id, String foutmelding) {
+        WebElement error = element(By.id(id));
+        Assert.assertThat(error.getText().contains(foutmelding), CoreMatchers.is(true));
+    }
+
+    public void assertErrorByXpath(String xpath, String foutmelding) {
+        WebElement error = element(By.xpath(xpath));
+        Assert.assertThat(error.getText().contains(foutmelding), CoreMatchers.is(true));
+    }
+
+    private Boolean matchString(final Matcher<String> matcher, final String string) {
+        if (matcher.matches(string)) {
+            return true;
+        }
+        //log.info("Waiting for '{}' to match {}", string, matcher);
+        return false;
+    }
+
+    /* Tabs */
+
+    public void focusSecondTab() {
+        focusOnTab(1);
+    }
+
+    public void focusOnTab(int tabIndexNo) {
+        pollShortly().until(driver -> driver.getWindowHandles().size() > tabIndexNo);
+        webDriver.switchTo().window(new ArrayList<>(webDriver.getWindowHandles()).get(tabIndexNo));
+    }
+
+    public void openTab() {
+        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+    }
+
+    public void closeTab() {
+        webDriver.close();
+    }
+
+    /**
+     * If the given {@link WebElement element} has focus.
+     *
+     * @param element the target element.
+     */
+    public boolean hasFocus(WebElement element) {
+        return element.equals(webDriver.switchTo().activeElement());
+    }
+
+    /**
+     * Should trigger a javascript .blur event, by sending a TAB key to the given web element.
+     *
+     * @param element the target element.
+     */
+    public void unFocus(WebElement element) {
+        element.sendKeys(Keys.TAB);
+    }
+
+    public String getTitle() {
+        return webDriver.getTitle();
     }
 
     /* WebDriver */
@@ -611,13 +1050,6 @@ public class BasePage extends BasePageAH{
     private void shortFluentWait(final Function<WebDriver, Boolean> function) {
         new FluentWait<>(webDriver).withTimeout(SECONDS_PAGELOAD_TIMEOUT, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
                 .until(function);
-    }
-
-    private Boolean matchString(final Matcher<String> matcher, final String string) {
-        if (matcher.matches(string)) {
-            return true;
-        }
-        return false;
     }
 
     private String getCurrentPath() {
