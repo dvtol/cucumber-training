@@ -11,6 +11,7 @@ import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
@@ -31,13 +32,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 @SuppressWarnings("unused")
 @Component
 public class BasePage {
-    private WebDriver webDriver;
 
-    private static final long SECONDS_PAGELOAD_TIMEOUT = 12;
+    private WebDriver webDriver;
+    private static final long SECONDS_TIMEOUT_INTERVAL= 15;
     private static final long SECONDS_PAGELOAD_REFRESH = 5;
 
     @Value("${timeout.interval.seconds}")
-    int timeOutInterval;
+    @Setter private int timeOutInterval;
 
     @Value("${dev.login}")
     private String dev_login;
@@ -110,10 +111,6 @@ public class BasePage {
         return new WebDriverWait(webDriver, SECONDS_PAGELOAD_REFRESH);
     }
 
-    public void setTimeOutInterval(int timeOutInterval) {
-        this.timeOutInterval = timeOutInterval;
-    }
-
     public void sleep(final Duration duration) {
         try {
             Thread.sleep(duration.toMillis());
@@ -123,7 +120,7 @@ public class BasePage {
     }
 
     private <V> V expectShortly(final ExpectedCondition<V> webElementExpectedCondition) {
-        return new WebDriverWait(webDriver, timeOutInterval).until(webElementExpectedCondition);
+        return new WebDriverWait(webDriver, SECONDS_TIMEOUT_INTERVAL).until(webElementExpectedCondition);
     }
 
     public void goBack() {
@@ -282,17 +279,17 @@ public class BasePage {
     }
 
     private Wait<WebDriver> pollShortly() {
-        return new FluentWait<>(webDriver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
+        return new FluentWait<>(webDriver).withTimeout(SECONDS_TIMEOUT_INTERVAL, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
 
     private Wait<WebDriver> pollVeryShortly() {
-        return new FluentWait<>(webDriver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS)
+        return new FluentWait<>(webDriver).withTimeout(SECONDS_TIMEOUT_INTERVAL, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS)
                 .ignoring(NoSuchElementException.class);
     }
 
     private <T> Wait<T> pollShortly(T t) {
-        return new FluentWait<>(t).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
+        return new FluentWait<>(t).withTimeout(SECONDS_TIMEOUT_INTERVAL, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
     }
 
@@ -494,7 +491,7 @@ public class BasePage {
     }
 
     private WebDriverWait getWebDriverWait() {
-        return getWebDriverWait(timeOutInterval);
+        return getWebDriverWait(SECONDS_TIMEOUT_INTERVAL);
     }
 
     public WebElement findElement(final By locator) {
@@ -510,7 +507,7 @@ public class BasePage {
     }
 
     public void waitForPageToLoad(final By waitForElement) {
-        waitForPageToLoad(SECONDS_PAGELOAD_TIMEOUT, waitForElement);
+        waitForPageToLoad(SECONDS_TIMEOUT_INTERVAL, waitForElement);
     }
 
     public void waitForPageToLoad(final long numberOfSeconds, final By locator) {
@@ -605,7 +602,7 @@ public class BasePage {
     }
 
     public void waitForElementPresent(final By locator) {
-        waitForElementPresent(locator, timeOutInterval);
+        waitForElementPresent(locator, SECONDS_TIMEOUT_INTERVAL);
     }
 
     public void waitForElementVisible(final By locator, final long numberOfSeconds) {
@@ -614,7 +611,7 @@ public class BasePage {
     }
 
     public void waitForElementVisible(final By locator) {
-        waitForElementVisible(locator, timeOutInterval);
+        waitForElementVisible(locator, SECONDS_TIMEOUT_INTERVAL);
     }
 
     public void sendKey(final By locator, final Keys key) {
@@ -1049,7 +1046,7 @@ public class BasePage {
     }
 
     private void shortFluentWait(final Function<WebDriver, Boolean> function) {
-        new FluentWait<>(webDriver).withTimeout(SECONDS_PAGELOAD_TIMEOUT, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
+        new FluentWait<>(webDriver).withTimeout(SECONDS_TIMEOUT_INTERVAL, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
                 .until(function);
     }
 

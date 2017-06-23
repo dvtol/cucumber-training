@@ -27,8 +27,6 @@ public class TestHooks extends WebDriverConfiguration {
     @Value("${webdriver.screenshots:false}")
     private boolean screenshots;
 
-
-    @Autowired
     public TestHooks(EventFiringWebDriver webDriver, BasePage basePage) {
         this.webDriver = webDriver;
         this.basePage = basePage;
