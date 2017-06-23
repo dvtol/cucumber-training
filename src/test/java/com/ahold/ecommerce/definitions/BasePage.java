@@ -33,7 +33,7 @@ public class BasePage {
     private WebDriver webDriver;
 
     private static final long SECONDS_PAGELOAD_TIMEOUT = 12;
-    private static final long SECONDS_PAGELOAD_REFRESH = 12;
+    private static final long SECONDS_PAGELOAD_REFRESH = 5;
 
     @Value("${timeout.interval.seconds}")
     int timeOutInterval;
