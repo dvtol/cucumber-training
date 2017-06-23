@@ -11,6 +11,7 @@ import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -26,7 +27,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 import static org.openqa.selenium.support.ui.ExpectedConditions.or;
 import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 
-
+@Slf4j
 @SuppressWarnings("unused")
 @Component
 public class BasePage {
@@ -229,7 +230,7 @@ public class BasePage {
             assertPresentDynamic(
                     By.xpath("//*[@data-testhookid='shoppinglist_quantityshoppinglist'][contains(@style, 'transform: matrix')]"));
         } catch (final NoSuchElementException | TimeoutException e) {
-            //log.error("Waiting for the shoppinglist to update took too long", e);
+            log.error("Waiting for the shoppinglist to update took too long", e);
         }
     }
 
@@ -434,7 +435,7 @@ public class BasePage {
         if (matcher.matches(string)) {
             return true;
         }
-        //log.info("Waiting for '{}' to match {}", string, matcher);
+        log.info("Waiting for '{}' to match {}", string, matcher);
         return false;
     }
 
