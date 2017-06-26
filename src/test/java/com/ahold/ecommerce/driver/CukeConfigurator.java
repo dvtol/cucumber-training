@@ -47,7 +47,7 @@ public class CukeConfigurator {
 
     /**
      * screenshot value links to class/method:
-     * {@link com.ahold.ecommerce.driver.TestHooks#embedScreenshot(Scenario)} (Scenario)} method()}
+     * {@link com.ahold.ecommerce.driver.TestHooks#embedScreenshot}
      */
     @Value("${webdriver.screenshots:false}")
     protected boolean screenshots;
