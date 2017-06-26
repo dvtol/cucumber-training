@@ -2,9 +2,9 @@ package com.ahold.ecommerce.driver;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import lombok.Setter;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -16,14 +16,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-public class WebDriverConfiguration {
+public class CukeConfigurator {
 
     private static RemoteWebDriver driver;
     private String Proxy = "http://newproxypac.ah.nl:8000";
@@ -44,7 +42,22 @@ public class WebDriverConfiguration {
     private String firefoxDriverVersion;
 
     @Value("${implicit.wait.timeout.seconds}")
-    int impWaitTimeout;
+    protected int impWaitTimeout;
+
+    @Value("${webdriver.screenshots:false}")
+    protected boolean screenshots;
+
+    @Value("${timeout.interval.seconds}")
+    @Setter protected int timeOutInterval;
+
+    @Value("${dev.login}")
+    protected String dev_login;
+
+    @Value("${dev.password}")
+    protected String dev_password;
+
+    @Value("${target.host.name:tst8.ah.nl}")
+    protected String targetHostName;
 
     @Bean
     @Profile("default")

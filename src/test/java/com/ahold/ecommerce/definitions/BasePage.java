@@ -1,5 +1,6 @@
 package com.ahold.ecommerce.definitions;
 
+import com.ahold.ecommerce.driver.CukeConfigurator;
 import com.google.common.base.Function;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -28,23 +29,11 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 @Slf4j
 @SuppressWarnings("unused")
 @Component
-public class BasePage {
+public class BasePage extends CukeConfigurator {
 
     private WebDriver webDriver;
     private static final long SECONDS_TIMEOUT_INTERVAL= 15;
     private static final long SECONDS_PAGELOAD_REFRESH = 5;
-
-    @Value("${timeout.interval.seconds}")
-    @Setter private int timeOutInterval;
-
-    @Value("${dev.login}")
-    private String dev_login;
-
-    @Value("${dev.password}")
-    private String dev_password;
-
-    @Value("${target.host.name:tst8.ah.nl}")
-    private String targetHostName;
 
     public BasePage(final WebDriver webdriver) {
         this.webDriver = webdriver;
