@@ -1,5 +1,6 @@
 package com.ahold.ecommerce.driver;
 
+import cucumber.api.Scenario;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import lombok.Setter;
@@ -44,9 +45,17 @@ public class CukeConfigurator {
     @Value("${implicit.wait.timeout.seconds}")
     protected int impWaitTimeout;
 
+    /**
+     * screenshot value links to class/method:
+     * {@link com.ahold.ecommerce.driver.TestHooks#embedScreenshot(Scenario)} (Scenario)} method()}
+     */
     @Value("${webdriver.screenshots:false}")
     protected boolean screenshots;
 
+    /**
+     * below values link to class:
+     * {@link com.ahold.ecommerce.definitions.BasePage}
+     */
     @Value("${timeout.interval.seconds}")
     @Setter protected int timeOutInterval;
 
