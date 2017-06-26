@@ -1,7 +1,6 @@
 package com.ahold.ecommerce.definitions;
 
 import com.google.common.base.Function;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -10,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.CoreMatchers;
@@ -22,7 +20,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
 import static java.lang.String.format;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 import static org.openqa.selenium.support.ui.ExpectedConditions.or;
