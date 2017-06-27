@@ -1,8 +1,10 @@
 package com.ahold.ecommerce.driver;
 
-import cucumber.api.Scenario;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
 import lombok.Setter;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
@@ -17,9 +19,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class CukeConfigurator {
@@ -83,7 +82,7 @@ public class CukeConfigurator {
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
             } else {
-                options.addArguments("--start-fullscreen");
+                options.addArguments("--start-maximized");
             }
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }

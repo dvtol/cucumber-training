@@ -1,5 +1,13 @@
 package com.ahold.ecommerce.definitions;
 
+import static java.lang.String.format;
+import static org.openqa.selenium.support.ui.ExpectedConditions.or;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfAllElementsLocatedBy;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
+
 import com.ahold.ecommerce.driver.CukeConfigurator;
 import com.google.common.base.Function;
 import java.net.MalformedURLException;
@@ -8,23 +16,36 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.NotFoundException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.*;
-import org.springframework.beans.factory.annotation.Value;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
-import static java.lang.String.format;
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
-import static org.openqa.selenium.support.ui.ExpectedConditions.or;
-import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 
 @Slf4j
 @SuppressWarnings("unused")
@@ -32,11 +53,14 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 public class BasePage extends CukeConfigurator {
 
     private WebDriver webDriver;
-    private static final long SECONDS_TIMEOUT_INTERVAL= 15;
+    //    private static final long SECONDS_TIMEOUT_INTERVAL= 15;
     private static final long SECONDS_PAGELOAD_REFRESH = 5;
 
     public BasePage(final WebDriver webdriver) {
         this.webDriver = webdriver;
+        System.out.println(this.timeOutInterval);
+        System.out.println(super.timeOutInterval);
+        System.out.println(dev_login);
     }
 
     /* Selectors */
@@ -106,7 +130,7 @@ public class BasePage extends CukeConfigurator {
     }
 
     private <V> V expectShortly(final ExpectedCondition<V> webElementExpectedCondition) {
-        return new WebDriverWait(webDriver, SECONDS_TIMEOUT_INTERVAL).until(webElementExpectedCondition);
+        return new WebDriverWait(webDriver, timeOutInterval).until(webElementExpectedCondition);
     }
 
     public void goBack() {
@@ -265,17 +289,17 @@ public class BasePage extends CukeConfigurator {
     }
 
     private Wait<WebDriver> pollShortly() {
-        return new FluentWait<>(webDriver).withTimeout(SECONDS_TIMEOUT_INTERVAL, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
+        return new FluentWait<>(webDriver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
     }
 
     private Wait<WebDriver> pollVeryShortly() {
-        return new FluentWait<>(webDriver).withTimeout(SECONDS_TIMEOUT_INTERVAL, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS)
+        return new FluentWait<>(webDriver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS)
                 .ignoring(NoSuchElementException.class);
     }
 
     private <T> Wait<T> pollShortly(T t) {
-        return new FluentWait<>(t).withTimeout(SECONDS_TIMEOUT_INTERVAL, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
+        return new FluentWait<>(t).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(500, TimeUnit.MILLISECONDS)
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
     }
 
@@ -477,7 +501,7 @@ public class BasePage extends CukeConfigurator {
     }
 
     private WebDriverWait getWebDriverWait() {
-        return getWebDriverWait(SECONDS_TIMEOUT_INTERVAL);
+        return getWebDriverWait(timeOutInterval);
     }
 
     public WebElement findElement(final By locator) {
@@ -493,7 +517,7 @@ public class BasePage extends CukeConfigurator {
     }
 
     public void waitForPageToLoad(final By waitForElement) {
-        waitForPageToLoad(SECONDS_TIMEOUT_INTERVAL, waitForElement);
+        waitForPageToLoad(timeOutInterval, waitForElement);
     }
 
     public void waitForPageToLoad(final long numberOfSeconds, final By locator) {
@@ -588,7 +612,7 @@ public class BasePage extends CukeConfigurator {
     }
 
     public void waitForElementPresent(final By locator) {
-        waitForElementPresent(locator, SECONDS_TIMEOUT_INTERVAL);
+        waitForElementPresent(locator, timeOutInterval);
     }
 
     public void waitForElementVisible(final By locator, final long numberOfSeconds) {
@@ -597,7 +621,7 @@ public class BasePage extends CukeConfigurator {
     }
 
     public void waitForElementVisible(final By locator) {
-        waitForElementVisible(locator, SECONDS_TIMEOUT_INTERVAL);
+        waitForElementVisible(locator, timeOutInterval);
     }
 
     public void sendKey(final By locator, final Keys key) {
@@ -1032,7 +1056,7 @@ public class BasePage extends CukeConfigurator {
     }
 
     private void shortFluentWait(final Function<WebDriver, Boolean> function) {
-        new FluentWait<>(webDriver).withTimeout(SECONDS_TIMEOUT_INTERVAL, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
+        new FluentWait<>(webDriver).withTimeout(timeOutInterval, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
                 .until(function);
     }
 
