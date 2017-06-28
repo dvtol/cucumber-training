@@ -2,8 +2,13 @@ package com.ahold.ecommerce.driver;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import lombok.Setter;
 import org.openqa.selenium.Proxy;
@@ -22,6 +27,9 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class CukeConfigurator {
+    public CukeConfigurator() {
+        setProp();
+    }
 
     private static RemoteWebDriver driver;
     private String Proxy = "http://newproxypac.ah.nl:8000";
@@ -55,22 +63,18 @@ public class CukeConfigurator {
      * below values link to class:
      * {@link com.ahold.ecommerce.definitions.BasePage}
      */
-    @Value("${timeout.interval.seconds}")
-    @Setter protected int timeOutInterval;
-
-    @Value("${dev.login}")
+    @Setter
+    protected int timeOutInterval;
     protected String dev_login;
-
-    @Value("${dev.password}")
     protected String dev_password;
-
-    @Value("${target.host.name:tst8.ah.nl}")
     protected String targetHostName;
+
 
     @Bean
     @Profile("default")
     // default spring profile for chrome and firefox
     public WebDriver getLocalDriver() {
+
         if (localBrowserName.contains("chrome")) {
             if (chromeDriverVersion.equals("latest")) {
                 ChromeDriverManager.getInstance().proxy(Proxy).setup();
@@ -127,5 +131,37 @@ public class CukeConfigurator {
         driver.manage().timeouts().implicitlyWait(impWaitTimeout, TimeUnit.SECONDS);
 
         return new EventFiringWebDriver(driver);
+    }
+
+    public void setProp() {
+        Properties propDefault = new Properties();
+        Properties propLocal = new Properties();
+        InputStream inputDefault = null;
+        InputStream inputLocal = null;
+        try {
+            inputDefault = new FileInputStream("src/test/resources/spring-properties/config-default.properties.yml");
+            propDefault.load(inputDefault);
+            dev_login = propDefault.getProperty("dev.login");
+            dev_password = propDefault.getProperty("dev.password");
+            targetHostName = propDefault.getProperty("target.host.name");
+            timeOutInterval = Integer.parseInt(propDefault.getProperty("timeout.interval.seconds"));
+            Path path = Paths.get("src/test/resources/spring-properties/local.properties.yml");
+            if (Files.exists(path)) {
+                inputLocal = new FileInputStream("src/test/resources/spring-properties/local.properties.yml");
+                propLocal.load(inputLocal);
+                targetHostName = propDefault.getProperty("target.host.name");
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        } finally {
+            if (inputLocal != null) {
+                try {
+                    inputLocal.close();
+                    inputDefault.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

@@ -16,11 +16,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.CoreMatchers;
@@ -51,17 +47,15 @@ import org.springframework.stereotype.Component;
 @SuppressWarnings("unused")
 @Component
 public class BasePage extends CukeConfigurator {
-
     private WebDriver webDriver;
     //    private static final long SECONDS_TIMEOUT_INTERVAL= 15;
     private static final long SECONDS_PAGELOAD_REFRESH = 5;
 
     public BasePage(final WebDriver webdriver) {
         this.webDriver = webdriver;
-        System.out.println(this.timeOutInterval);
-        System.out.println(super.timeOutInterval);
-        System.out.println(dev_login);
     }
+
+
 
     /* Selectors */
 
