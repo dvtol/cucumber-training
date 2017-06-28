@@ -1,9 +1,9 @@
 #language: nl
 @CookieNotice
-Functionaliteit: controleren cookie-melding Appie Today website
+Functionaliteit: controleren cookie-melding AH.nl website
 
   Achtergrond: Feature: controleer cookie-melding
-    Gegeven gebruiker is op Appie Today omgeving "tst"
+    #Gegeven gebruiker is op AH web omgeving "tst"
 
   #Scenario: 1 cookie-melding wordt gegeven voor een nieuwe gebruiker
     #Gegeven de gebruiker heeft de cookies geaccepteert
