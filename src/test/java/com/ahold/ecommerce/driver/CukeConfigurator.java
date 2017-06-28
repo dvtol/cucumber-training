@@ -2,9 +2,17 @@ package com.ahold.ecommerce.driver;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+import lombok.Setter;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -17,13 +25,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
-
 @Configuration
-public class WebDriverConfiguration {
+public class CukeConfigurator {
+    public CukeConfigurator() {
+        setProp();
+    }
 
     private static RemoteWebDriver driver;
     private String Proxy = "http://newproxypac.ah.nl:8000";
@@ -44,12 +50,31 @@ public class WebDriverConfiguration {
     private String firefoxDriverVersion;
 
     @Value("${implicit.wait.timeout.seconds}")
-    int impWaitTimeout;
+    protected int impWaitTimeout;
+
+    /**
+     * screenshot value links to class/method:
+     * {@link com.ahold.ecommerce.driver.TestHooks#embedScreenshot}
+     */
+    @Value("${webdriver.screenshots:false}")
+    protected boolean screenshots;
+
+    /**
+     * below values link to class:
+     * {@link com.ahold.ecommerce.definitions.BasePage}
+     */
+    @Setter
+    protected int timeOutInterval;
+    protected String dev_login;
+    protected String dev_password;
+    protected String targetHostName;
+
 
     @Bean
     @Profile("default")
     // default spring profile for chrome and firefox
     public WebDriver getLocalDriver() {
+
         if (localBrowserName.contains("chrome")) {
             if (chromeDriverVersion.equals("latest")) {
                 ChromeDriverManager.getInstance().proxy(Proxy).setup();
@@ -61,7 +86,7 @@ public class WebDriverConfiguration {
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
             } else {
-                options.addArguments("--start-fullscreen");
+                options.addArguments("--start-maximized");
             }
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }
@@ -106,5 +131,37 @@ public class WebDriverConfiguration {
         driver.manage().timeouts().implicitlyWait(impWaitTimeout, TimeUnit.SECONDS);
 
         return new EventFiringWebDriver(driver);
+    }
+
+    public void setProp() {
+        Properties propDefault = new Properties();
+        Properties propLocal = new Properties();
+        InputStream inputDefault = null;
+        InputStream inputLocal = null;
+        try {
+            inputDefault = new FileInputStream("src/test/resources/spring-properties/config-default.properties.yml");
+            propDefault.load(inputDefault);
+            dev_login = propDefault.getProperty("dev.login");
+            dev_password = propDefault.getProperty("dev.password");
+            targetHostName = propDefault.getProperty("target.host.name");
+            timeOutInterval = Integer.parseInt(propDefault.getProperty("timeout.interval.seconds"));
+            Path path = Paths.get("src/test/resources/spring-properties/local.properties.yml");
+            if (Files.exists(path)) {
+                inputLocal = new FileInputStream("src/test/resources/spring-properties/local.properties.yml");
+                propLocal.load(inputLocal);
+                targetHostName = propDefault.getProperty("target.host.name");
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        } finally {
+            if (inputLocal != null) {
+                try {
+                    inputLocal.close();
+                    inputDefault.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
