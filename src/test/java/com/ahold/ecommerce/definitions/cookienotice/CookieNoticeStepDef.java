@@ -1,6 +1,6 @@
 package com.ahold.ecommerce.definitions.cookienotice;
 
-import com.ahold.ecommerce.definitions.BaseStepDef;
+import com.ahold.ecommerce.definitions._generics.BaseStepDef;
 import cucumber.api.java.nl.Dan;
 import org.openqa.selenium.support.PageFactory;
 
