@@ -11,24 +11,15 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-
 import java.util.logging.Level;
 
 @Slf4j
-public class TestHooks extends WebDriverConfiguration {
+public class TestHooks extends CukeConfigurator {
 
     private final EventFiringWebDriver webDriver;
-
     private final BasePage basePage;
 
-    @Value("${webdriver.screenshots:false}")
-    private boolean screenshots;
 
-
-    @Autowired
     public TestHooks(EventFiringWebDriver webDriver, BasePage basePage) {
         this.webDriver = webDriver;
         this.basePage = basePage;

@@ -7,11 +7,11 @@ import javax.annotation.PostConstruct;
 
 public class CommonStepDef extends BaseStepDef {
 
-    private BasePage basePage;
+    private CookieNoticePage cookieNoticePage;
 
     @PostConstruct
     public void setUp() {
-        basePage = PageFactory.initElements(webDriver, CookieNoticePage.class);
+        cookieNoticePage = PageFactory.initElements(webDriver, CookieNoticePage.class);
     }
 
     /* Sample for ah.nl
