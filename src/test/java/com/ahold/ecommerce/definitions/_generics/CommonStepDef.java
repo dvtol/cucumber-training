@@ -1,4 +1,4 @@
-package com.ahold.ecommerce.definitions;
+package com.ahold.ecommerce.definitions._generics;
 
 import com.ahold.ecommerce.definitions.cookienotice.CookieNoticePage;
 import org.openqa.selenium.support.PageFactory;

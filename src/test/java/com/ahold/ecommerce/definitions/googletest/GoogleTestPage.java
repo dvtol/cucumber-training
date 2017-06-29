@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.ahold.ecommerce.definitions.BasePage;
+import com.ahold.ecommerce.definitions._generics.BasePage;
 
 public class GoogleTestPage extends BasePage {
 

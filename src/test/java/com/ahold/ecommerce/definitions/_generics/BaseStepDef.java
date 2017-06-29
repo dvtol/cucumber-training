@@ -1,4 +1,4 @@
-package com.ahold.ecommerce.definitions;
+package com.ahold.ecommerce.definitions._generics;
 
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package com.ahold.ecommerce.driver;
 
+import com.ahold.ecommerce.definitions._generics.BasePage;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import java.io.*;
@@ -61,7 +62,7 @@ public class CukeConfigurator {
 
     /**
      * below values link to class:
-     * {@link com.ahold.ecommerce.definitions.BasePage}
+     * {@link BasePage}
      */
     @Setter
     protected int timeOutInterval;
