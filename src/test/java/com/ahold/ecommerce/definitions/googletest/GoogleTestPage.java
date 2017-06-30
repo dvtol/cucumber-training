@@ -27,7 +27,7 @@ public class GoogleTestPage extends BasePage {
 
     public void enterTestdataInSearchBox() {
         final WebElement searchBox = findElement(By.name("q"));
-        searchBox.sendKeys(testdata.setJsonData("ah_customers", "adres"));
+        searchBox.sendKeys(testdata.JsonData("ah_customers", "adres"));
         searchBox.submit();
     }
 

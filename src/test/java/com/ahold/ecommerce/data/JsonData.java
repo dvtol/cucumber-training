@@ -10,7 +10,7 @@ import org.json.simple.parser.ParseException;
 
 public class JsonData extends CukeConfigurator {
 
-    public String setJsonData(String category, String data) {
+    public String JsonData(String category, String data) {
         JSONParser parser = new JSONParser();
         Object obj = null;
         try {
@@ -21,11 +21,11 @@ public class JsonData extends CukeConfigurator {
             e.printStackTrace();
         }
         JSONObject jsonObject = (JSONObject) obj;
-        JSONArray numbers = (JSONArray) jsonObject.get(category);
+        JSONArray jsondata = (JSONArray) jsonObject.get(category);
 
         String ah_data = null;
-        for (Object number : numbers) {
-            JSONObject jsonNumber = (JSONObject) number;
+        for (Object ahobjects : jsondata) {
+            JSONObject jsonNumber = (JSONObject) ahobjects;
             ah_data = (String) jsonNumber.get(data);
         }
         return ah_data;
