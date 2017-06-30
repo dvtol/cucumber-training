@@ -69,6 +69,7 @@ public class CukeConfigurator {
     protected String dev_login;
     protected String dev_password;
     protected String targetHostName;
+    protected String testdata_dir;
 
 
     @Bean
@@ -146,6 +147,7 @@ public class CukeConfigurator {
             dev_password = propDefault.getProperty("dev.password");
             targetHostName = propDefault.getProperty("target.host.name");
             timeOutInterval = Integer.parseInt(propDefault.getProperty("timeout.interval.seconds"));
+            testdata_dir = propDefault.getProperty("test.data.dir");
             Path path = Paths.get("src/test/resources/spring-properties/local.properties.yml");
             if (Files.exists(path)) {
                 inputLocal = new FileInputStream("src/test/resources/spring-properties/local.properties.yml");

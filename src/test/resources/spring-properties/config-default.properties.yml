@@ -26,3 +26,5 @@ firefox.driver.version: latest
 #example: 0.17.0
 chrome.driver.version: latest
 #example: 2.30
+
+test.data.dir: src/test/java/com/ahold/ecommerce/data/testdata

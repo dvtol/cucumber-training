@@ -32,4 +32,9 @@ public class GoogleTestStepDef extends BaseStepDef {
         googleTestPage.controleerVerwachteWaarde(verwachteResultaat);
 	}
 
+	@Als("^enter testdata in searchbox$")
+	public void enter_testdata_in_searchbox() {
+		googleTestPage.enterTestdataInSearchBox();
+	}
+
 }
