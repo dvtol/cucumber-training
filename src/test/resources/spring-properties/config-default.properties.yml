@@ -2,12 +2,12 @@
 webdriver.screenshots: true
 
 # default remote node address
-remote.url.address: https://selenium-node-chrome.tools.ecom.ahold.nl/wd/hub
+remote.url.address: http://zalenium.tools.ecom.ahold.nl/wd/hub
 
 # set environment of choice
 target.host.name: tst8.ah.nl
 
-# Login for the dev-page
+# login for the dev-page
 dev.login: admin
 dev.password: uzGcALbMUXaWJzWQ
 
@@ -21,8 +21,11 @@ timeout.interval.seconds: 15
 browser.name.local: chrome
 browser.name.remote: chrome
 
-#set local browser driver version. latest is the latest version
+# set local browser driver version. latest is the latest version
 firefox.driver.version: latest
-#example: 0.17.0
+# e.g.: 0.17.0
 chrome.driver.version: latest
-#example: 2.30
+# e.g.: 2.30
+
+# test dir for JSON data
+test.data.dir: src/test/java/com/ahold/ecommerce/data/testdata

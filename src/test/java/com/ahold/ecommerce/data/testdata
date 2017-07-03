@@ -1,0 +1,18 @@
+{
+  "bonus_card_numbers": [
+    {
+      "natural": "103134242323",
+      "integer": "234456456788",
+      "real": "12398473838"
+    }
+  ],
+
+  "ah_customers": [
+    {
+      "naam": "Dhr test",
+      "adres": "teststraat 151",
+      "woonplaats": "Zaandam",
+      "telefoon": "075 12312312"
+    }
+  ]
+}

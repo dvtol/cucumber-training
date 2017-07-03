@@ -1,5 +1,6 @@
 package com.ahold.ecommerce.driver;
 
+import com.ahold.ecommerce.definitions._generics.BasePage;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import java.io.*;
@@ -61,13 +62,14 @@ public class CukeConfigurator {
 
     /**
      * below values link to class:
-     * {@link com.ahold.ecommerce.definitions.BasePage}
+     * {@link BasePage}
      */
     @Setter
     protected int timeOutInterval;
     protected String dev_login;
     protected String dev_password;
     protected String targetHostName;
+    protected String testdata_dir;
 
 
     @Bean
@@ -145,6 +147,7 @@ public class CukeConfigurator {
             dev_password = propDefault.getProperty("dev.password");
             targetHostName = propDefault.getProperty("target.host.name");
             timeOutInterval = Integer.parseInt(propDefault.getProperty("timeout.interval.seconds"));
+            testdata_dir = propDefault.getProperty("test.data.dir");
             Path path = Paths.get("src/test/resources/spring-properties/local.properties.yml");
             if (Files.exists(path)) {
                 inputLocal = new FileInputStream("src/test/resources/spring-properties/local.properties.yml");
