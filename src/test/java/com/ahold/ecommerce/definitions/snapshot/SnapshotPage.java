@@ -25,12 +25,12 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 /**
  * Created by sherwin on 2-7-2017.
  */
-public class AllureHelper extends BasePage{
+public class SnapshotPage extends BasePage{
     private WebDriver driver;
     private String resultLocation = "C:\\screenshots\\", baselineLocation = "C:\\screenshots\\", runType = "actual";
     private int compareMarge = 0;
 
-    public AllureHelper(WebDriver webdriver) {
+    public SnapshotPage(WebDriver webdriver) {
         super(webdriver);
         this.driver = webdriver;
     }
@@ -39,7 +39,7 @@ public class AllureHelper extends BasePage{
         navigateToPage("https://www.ah.nl");
     }
 
-   /* public AllureHelper(WebDriver driver) {
+   /* public SnapshotPage(WebDriver driver) {
         this.driver = driver;
 
     }*/
@@ -60,7 +60,6 @@ public class AllureHelper extends BasePage{
         } else if (runType.toLowerCase().equals("actual")) {
             return "_actual-attachment.PNG";
         }
-
         return "";
     }
 
@@ -73,7 +72,6 @@ public class AllureHelper extends BasePage{
             return "_dif-attachment.PNG";
 
         }
-
         return "";
     }
 
