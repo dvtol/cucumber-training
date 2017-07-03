@@ -6,12 +6,16 @@ import static org.junit.Assert.assertFalse;
 import com.ahold.ecommerce.definitions.BasePage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import cucumber.api.java.After;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.qameta.allure.Attachment;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import javax.imageio.ImageIO;
+import lombok.Getter;
+import lombok.Setter;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +33,8 @@ public class SnapshotPage extends BasePage{
     private WebDriver driver;
     private String resultLocation = "C:\\screenshots\\", baselineLocation = "C:\\screenshots\\", runType = "actual";
     private int compareMarge = 0;
-
+    @Getter
+    private LinkedList<String> actualSnapshotsLocationNameAndPath,expectedSnapshotsLocationNameAndPath,diffSnapshotsLocationNameAndPath = new LinkedList<String>();
     public SnapshotPage(WebDriver webdriver) {
         super(webdriver);
         this.driver = webdriver;
@@ -43,6 +48,13 @@ public class SnapshotPage extends BasePage{
         this.driver = driver;
 
     }*/
+
+    @After("@Snapshot")
+    public void afterSnapshotTest(){
+        if(runType.equals("actual")){
+
+        }
+    }
     @Test
     public void checkIfSnapshotIsCreated(){
         Configuration.browser = "chrome";
@@ -74,6 +86,16 @@ public class SnapshotPage extends BasePage{
         }
         return "";
     }
+    //Function is created to add all snapshots that are created in a linkedlist so that they can be copied to the correct folder
+    public void addSnapshotNameAndLocationPathInInLinkedList(String locationNameAndPath){
+        if(locationNameAndPath.contains("baseline")){
+            expectedSnapshotsLocationNameAndPath.add(locationNameAndPath);
+        }else if(locationNameAndPath.contains("actual")){
+            actualSnapshotsLocationNameAndPath.add(locationNameAndPath);
+        }else{
+            diffSnapshotsLocationNameAndPath.add(locationNameAndPath);
+        }
+    }
 
     public void takeSnapshotAndCompare(String snapshotName, String Element) {
         //-attachment
@@ -99,6 +121,7 @@ public class SnapshotPage extends BasePage{
             }
             ImageIO.write(image, "PNG",
                     new File(pathToScreen));
+            addSnapshotNameAndLocationPathInInLinkedList(pathToScreen);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -137,6 +160,7 @@ public class SnapshotPage extends BasePage{
             }
             ImageIO.write(diffImage, "PNG",
                     new File(dif_));
+            addSnapshotNameAndLocationPathInInLinkedList(dif_);
         } catch (IOException e) {
             e.printStackTrace();
         }
