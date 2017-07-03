@@ -12,3 +12,7 @@ Scenario: 1 eerste berekening met google
 Scenario: 2 tweede berekening met google
    Als enter "665+335" in searchbox
    Dan I should get result as "1000"
+
+Scenario: 3 search testdata met google
+   Als enter testdata in searchbox
+   #Dan I should search based on input data
