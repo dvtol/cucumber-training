@@ -11,7 +11,7 @@
     <name>Ahws Keten</name>
 
     <properties>
-        <selenium.version>3.4.0</selenium.version>
+        <selenium.version>3.3.0</selenium.version>
         <slf4j.version>1.7.25</slf4j.version>
         <info.cukes.version>1.2.5</info.cukes.version>
         <junit.version>4.12</junit.version>
@@ -20,7 +20,7 @@
         <selenide.version>4.5</selenide.version>
         <maven.surefire.version>2.20</maven.surefire.version>
         <webdrivermanager.version>1.7.0</webdrivermanager.version>
-        <number.of.threads>1</number.of.threads>
+        <number.of.threads>4</number.of.threads>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
