@@ -2,7 +2,7 @@
 webdriver.screenshots: true
 
 # default remote node address
-remote.url.address: https://selenium-node-chrome.tools.ecom.ahold.nl/wd/hub
+remote.url.address: http://zalenium.tools.ecom.ahold.nl//wd/hub
 
 # set environment of choice
 target.host.name: tst8.ah.nl
