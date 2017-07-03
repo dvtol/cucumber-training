@@ -20,7 +20,7 @@
         <selenide.version>4.5</selenide.version>
         <maven.surefire.version>2.20</maven.surefire.version>
         <webdrivermanager.version>1.7.0</webdrivermanager.version>
-        <number.of.threads>1</number.of.threads>
+        <number.of.threads>2</number.of.threads>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
