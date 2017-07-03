@@ -195,16 +195,29 @@ public class SnapshotPage extends BasePage{
         return bImage;
     }
 
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] saveScreenshot(byte[] screenShot) {
+    @Attachment(value = "diff", type = "image/png")
+    public byte[] diffAttachment(byte[] screenShot) {
         return screenShot;
     }
+    @Attachment(value = "actual", type = "image/png")
+    public byte[] actualAttachment(byte[] screenShot) {
+        return screenShot;
+    }
+    @Attachment(value = "expected", type = "image/png")
+    public byte[] expectedAttachment(byte[] screenShot) {
+        return screenShot;
+    }
+
 
     @Attachment(value = "Compare result")
     public String createCompareResultOnScreenshot(String screenShot) {
         return screenShot;
     }
-
+    /*Example input variable
+    exp_ =snapshotname_dif-attachment.PNG
+    act_=snapshotname_baseline-attachment.PNG
+    diff_ = snapshotname_diff-attachment.PNG
+    */
     public String createHTMLWithImages(String exp_,String act_, String diff_){
         return "<!DOCTYPE html>"+
                 "<html>"+
