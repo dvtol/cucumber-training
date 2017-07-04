@@ -10,7 +10,6 @@ allure-results/
 allure-report/
 build/
 allure-report/
-
 src/test/java/com/ahold/ecommerce/data/snapshotnaam_baseline-attachment.PNG
 src/test/java/com/ahold/ecommerce/data/promoElement_baseline-attachment.PNG
 src/test/java/com/ahold/ecommerce/data/bannerElement_baseline-attachment.PNG
