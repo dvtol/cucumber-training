@@ -4,6 +4,8 @@ import com.ahold.ecommerce.definitions.BasePage;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriverException;
@@ -48,6 +50,11 @@ public class TestHooks extends CukeConfigurator {
         }
     }
 
+    @Attachment
+    public String attachmentOfTheLog(String actionSequence) {
+        return actionSequence.toString();
+    }
+
     @After
     public void embedScreenshot(final Scenario scenario) {
         if (screenshots) {
@@ -56,6 +63,7 @@ public class TestHooks extends CukeConfigurator {
             scenario.write("Current Page Title: " + webDriver.getTitle());
             try {
                 final byte[] screenshot = webDriver.getScreenshotAs(OutputType.BYTES);
+                failedSnapshot(screenshot);
                 scenario.embed(screenshot, "image/png");
             } catch (final WebDriverException somePlatformsDontSupportScreenshots) {
                 somePlatformsDontSupportScreenshots.printStackTrace();
@@ -64,5 +72,10 @@ public class TestHooks extends CukeConfigurator {
                 log.info("creating screenshot done");
             }
         }
+    }
+
+    @Attachment(value = "Snapshot of failed test", type = "image/png")
+    public byte[] failedSnapshot(byte[] screen) {
+        return  screen;
     }
 }

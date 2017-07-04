@@ -1,17 +1,24 @@
 package com.ahold.ecommerce.definitions.snapshot;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.Assert.assertFalse;
 
 import com.ahold.ecommerce.definitions.BasePage;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.After;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import javax.imageio.ImageIO;
 import lombok.Getter;
@@ -31,17 +38,18 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
  */
 public class SnapshotPage extends BasePage{
     private WebDriver driver;
-    private String resultLocation = "C:\\screenshots\\", baselineLocation = "C:\\screenshots\\", runType = "actual";
+    @Setter
+    private String resultLocation = "", baselineLocation = "", runType = "";
+    @Setter
     private int compareMarge = 0;
-    @Getter
-    private LinkedList<String> actualSnapshotsLocationNameAndPath,expectedSnapshotsLocationNameAndPath,diffSnapshotsLocationNameAndPath = new LinkedList<String>();
     public SnapshotPage(WebDriver webdriver) {
         super(webdriver);
         this.driver = webdriver;
+        WebDriverRunner.setWebDriver(this.driver);
     }
     public void navigateToAH() {
 
-        navigateToPage("https://www.ah.nl");
+        navigateToPage("https://tst8.ah.nl/");
     }
 
    /* public SnapshotPage(WebDriver driver) {
@@ -86,25 +94,18 @@ public class SnapshotPage extends BasePage{
         }
         return "";
     }
-    //Function is created to add all snapshots that are created in a linkedlist so that they can be copied to the correct folder
-    public void addSnapshotNameAndLocationPathInInLinkedList(String locationNameAndPath){
-        if(locationNameAndPath.contains("baseline")){
-            expectedSnapshotsLocationNameAndPath.add(locationNameAndPath);
-        }else if(locationNameAndPath.contains("actual")){
-            actualSnapshotsLocationNameAndPath.add(locationNameAndPath);
-        }else{
-            diffSnapshotsLocationNameAndPath.add(locationNameAndPath);
-        }
-    }
 
-    public void takeSnapshotAndCompare(String snapshotName, String Element) {
+
+    public void takeSnapshotAndCompare(String snapshotName, String element) {
         //-attachment
+        
         Screenshot screenshot = null;
-        if (Element.length() < 2) {//check if snapshot is full page or a snapshot of an element
+        if (element.length() < 2) {//check if snapshot is full page or a snapshot of an element
             screenshot = new AShot()
                     .shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
         } else {
-            WebElement webElement = driver.findElement(By.cssSelector(Element));
+            $(element).shouldBe(Condition.visible).scrollTo();
+            WebElement webElement = driver.findElement(By.cssSelector(element));
             screenshot = new AShot()
                     .shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver, webElement);
         }
@@ -121,7 +122,6 @@ public class SnapshotPage extends BasePage{
             }
             ImageIO.write(image, "PNG",
                     new File(pathToScreen));
-            addSnapshotNameAndLocationPathInInLinkedList(pathToScreen);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,16 +140,15 @@ public class SnapshotPage extends BasePage{
         String act_ = resultLocation + snapshotName + getRunTypeNameExtension();
         String exp_ = baselineLocation + snapshotName + getRunTypeNameExtension("baseline");
         String dif_ = resultLocation + snapshotName + getRunTypeNameExtension("dif");
-        createCompareResultOnScreenshot(createHTMLWithImages(
-                snapshotName + getRunTypeNameExtension("baseline"),
-                 snapshotName + getRunTypeNameExtension(),
-                 snapshotName + getRunTypeNameExtension("dif")));
+
         try {
             diff = new ImageDiffer().makeDiff(stringToImage(act_), stringToImage(exp_));
             diffImage = diff.getMarkedImage(); // comparison result with marked differences
         } catch (Exception e) {
-            System.out.println("Compare failed. Images might not exist");
-            assertFalse( "Compare function failed for some reasons. Images location might not exist: " + act_ + " Expected: " + exp_,true);
+            File file = new java.io.File("");   //Dummy file
+            String  abspath=file.getAbsolutePath();
+            addFailDetails(getHTMLWhenTestFail(resultLocation));
+            assertFalse( "Compare function failed for some reasons. One of the images on location does not exist. Please check if the actual or expected image exist.\n Actual image:  " +abspath+"/"+ act_ + " Expected image: "+abspath+"/" + exp_,true);
         }
         try {
             File dir = new File(resultLocation);
@@ -160,21 +159,23 @@ public class SnapshotPage extends BasePage{
             }
             ImageIO.write(diffImage, "PNG",
                     new File(dif_));
-            addSnapshotNameAndLocationPathInInLinkedList(dif_);
         } catch (IOException e) {
             e.printStackTrace();
         }
         String dif__ = "- Compare failed because of dif" +
                 "ferent marge which is: " + diff.getDiffSize() + " and it should be les than: " + compareMarge + " Snapshotname of failed test is: " + snapshotName;
         System.out.println("DIFF SIZE CHECK: " + diff.getDiffSize());
+        actualAttachment(act_);
+        expectedAttachment(exp_);
+        diffAttachment(dif_);
         if (diff.getDiffSize() > compareMarge) {
             compareMarge = 0;
-
         }
 
         if (diff.getDiffSize() < compareMarge && compareMarge != 0) {
             System.out.println("Compare result is within the marge and will not fail");
         } else {
+            addFailDetails(getHTMLWhenTestFail(resultLocation));
             assertFalse( dif__,diff.hasDiff());
         }
 
@@ -196,45 +197,59 @@ public class SnapshotPage extends BasePage{
     }
 
     @Attachment(value = "diff", type = "image/png")
-    public byte[] diffAttachment(byte[] screenShot) {
-        return screenShot;
+    public byte[] diffAttachment(String _path) {
+        return  convertImageToByte(_path);
     }
     @Attachment(value = "actual", type = "image/png")
-    public byte[] actualAttachment(byte[] screenShot) {
-        return screenShot;
+    public byte[] actualAttachment(String _path) {
+        return  convertImageToByte(_path);
     }
     @Attachment(value = "expected", type = "image/png")
-    public byte[] expectedAttachment(byte[] screenShot) {
-        return screenShot;
+    public byte[] expectedAttachment(String _path) {
+      return  convertImageToByte(_path);
+    }
+
+    @Attachment(value = "Fail details")
+    public String addFailDetails(String details){
+
+        return details;
+    }
+
+    public byte[] convertImageToByte(String _path){
+        Path path = Paths.get(_path);
+        byte[] image = new byte[0];
+        try {
+            image = Files.readAllBytes(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+
     }
 
 
-    @Attachment(value = "Compare result")
-    public String createCompareResultOnScreenshot(String screenShot) {
-        return screenShot;
+    @Attachment(value = "Error Snapshot", type = "image/png")
+    public byte[] createErrorAttachmentt(String _path) throws URISyntaxException, IOException {
+        Path path = Paths.get(_path);
+        byte[] image = Files.readAllBytes(path);
+
+        return image;
     }
-    /*Example input variable
-    exp_ =snapshotname_dif-attachment.PNG
-    act_=snapshotname_baseline-attachment.PNG
-    diff_ = snapshotname_diff-attachment.PNG
-    */
-    public String createHTMLWithImages(String exp_,String act_, String diff_){
+
+    public String getHTMLWhenTestFail(String locationOfScreen){
+        File file = new java.io.File("");   //Dummy file
+        String  abspath=file.getAbsolutePath();
+        abspath = abspath+ "//" + locationOfScreen;
+        String currentURL = driver.getCurrentUrl() ;
         return "<!DOCTYPE html>"+
                 "<html>"+
-                "<head>"+
-                "<style>"+
-                "img { width:100%;}"+
-                "</style>"+
-                "</head>"+
                 "<body>"+
-                "<h1>Differences</h1>"+
-                "<img src=\"" +diff_ +"\"alt=\"HTML5 Icon\" style=\"width:50%;height:30%;\">"+
-                "<h1>Expected</h1>"+
-                "<img src=\""+exp_+"\"alt=\"HTML5 Icon\" style=\"width:50%;height:30%;\">"+
-                "<h1>Actual</h1>"+
-                "<img src=\""+act_+"\"alt=\"HTML5 Icon\" style=\"width:50%;height:30%;\">"+
+                "<h1>CurrentURL<h1>"+
+                "<p><a href=\"" + currentURL   + "\"target=\"_blank\">"+currentURL+"</a></p>"+
+                "<p>Location of screenshots: <br><a href=\"file://"+abspath+"\">"+abspath+"</a></p>"+
                 "</body>"+
                 "</html>";
+
     }
 
 
