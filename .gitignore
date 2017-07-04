@@ -6,3 +6,5 @@ target/
 .idea/*
 *.iml
 local.properties.yml
+allure-results/
+allure-report/
