@@ -18,11 +18,11 @@
         <spring.version>4.3.9.RELEASE</spring.version>
         <java.version>1.8</java.version>
         <selenide.version>4.5</selenide.version>
-        <allure-cucumber-jvm.version>2.0-BETA11</allure-cucumber-jvm.version>
+        <allure-cucumber-jvm.version>2.0-BETA12</allure-cucumber-jvm.version>
         <maven.surefire.version>2.20</maven.surefire.version>
         <webdrivermanager.version>1.7.0</webdrivermanager.version>
         <aspectj.version>1.8.4</aspectj.version>
-        <number.of.threads>1</number.of.threads>
+        <number.of.threads>2</number.of.threads>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>

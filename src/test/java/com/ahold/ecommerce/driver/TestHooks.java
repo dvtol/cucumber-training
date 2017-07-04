@@ -47,6 +47,7 @@ public class TestHooks extends CukeConfigurator {
                     log.error("** Console log entry: [{}] {}", logEntry.getLevel().getName(), logEntry.getMessage());
                 }
             }
+            failedSnapshot();
         }
     }
 
@@ -63,7 +64,6 @@ public class TestHooks extends CukeConfigurator {
             scenario.write("Current Page Title: " + webDriver.getTitle());
             try {
                 final byte[] screenshot = webDriver.getScreenshotAs(OutputType.BYTES);
-                failedSnapshot(screenshot);
                 scenario.embed(screenshot, "image/png");
             } catch (final WebDriverException somePlatformsDontSupportScreenshots) {
                 somePlatformsDontSupportScreenshots.printStackTrace();
@@ -75,7 +75,8 @@ public class TestHooks extends CukeConfigurator {
     }
 
     @Attachment(value = "Snapshot of failed test", type = "image/png")
-    public byte[] failedSnapshot(byte[] screen) {
-        return  screen;
+    public byte[] failedSnapshot() {
+        final byte[] screenshot = webDriver.getScreenshotAs(OutputType.BYTES);
+        return screenshot;
     }
 }
