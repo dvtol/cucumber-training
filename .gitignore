@@ -8,3 +8,4 @@ target/
 local.properties.yml
 allure-results/
 allure-report/
+build/
