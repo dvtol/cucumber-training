@@ -97,8 +97,6 @@ public class SnapshotPage extends BasePage{
 
 
     public void takeSnapshotAndCompare(String snapshotName, String element) {
-        //-attachment
-        
         Screenshot screenshot = null;
         if (element.length() < 2) {//check if snapshot is full page or a snapshot of an element
             screenshot = new AShot()
@@ -164,17 +162,11 @@ public class SnapshotPage extends BasePage{
         }
         String dif__ = "- Compare failed because of dif" +
                 "ferent marge which is: " + diff.getDiffSize() + " and it should be les than: " + compareMarge + " Snapshotname of failed test is: " + snapshotName;
-        System.out.println("DIFF SIZE CHECK: " + diff.getDiffSize());
         actualAttachment(act_);
         expectedAttachment(exp_);
         diffAttachment(dif_);
-        if (diff.getDiffSize() > compareMarge) {
-            compareMarge = 0;
-        }
 
-        if (diff.getDiffSize() < compareMarge && compareMarge != 0) {
-            System.out.println("Compare result is within the marge and will not fail");
-        } else {
+        if (!(diff.getDiffSize() < compareMarge && compareMarge != 0)) {
             addFailDetails(getHTMLWhenTestFail(resultLocation));
             assertFalse( dif__,diff.hasDiff());
         }
