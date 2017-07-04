@@ -1,6 +1,6 @@
 package com.ahold.ecommerce.driver;
 
-import com.ahold.ecommerce.definitions.BasePage;
+import com.ahold.ecommerce.definitions._generics.BasePage;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;

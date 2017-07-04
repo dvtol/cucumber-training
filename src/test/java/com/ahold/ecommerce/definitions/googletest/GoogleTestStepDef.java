@@ -4,7 +4,7 @@ import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Dan;
 import cucumber.api.java.nl.Gegeven;
 import org.openqa.selenium.support.PageFactory;
-import com.ahold.ecommerce.definitions.BaseStepDef;
+import com.ahold.ecommerce.definitions._generics.BaseStepDef;
 
 import javax.annotation.PostConstruct;
 
@@ -30,6 +30,11 @@ public class GoogleTestStepDef extends BaseStepDef {
 	@Dan("^I should get result as \"([^\"]*)\"$")
 	public void I_should_get_correct_result(final String verwachteResultaat) {
         googleTestPage.controleerVerwachteWaarde(verwachteResultaat);
+	}
+
+	@Als("^enter testdata in searchbox$")
+	public void enter_testdata_in_searchbox() {
+		googleTestPage.enterTestdataInSearchBox();
 	}
 
 }

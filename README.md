@@ -33,11 +33,11 @@ Maven (local via chrome, remote via selenium grid) run cmds
 Selenium grid has the 'default' spring profile and runs will be executed via remote. 
 
 ```
-remote: mvn clean test
+local: mvn clean test
 ```
 
 ```
-local: mvn clean test -Dspring.profiles.active=chrome-local
+remote: mvn clean test -Dspring.profiles.active=remote
 ```
 
 ### Break down into end to end tests

@@ -1,4 +1,4 @@
-package com.ahold.ecommerce.definitions;
+package com.ahold.ecommerce.definitions._generics;
 
 import static java.lang.String.format;
 import static org.openqa.selenium.support.ui.ExpectedConditions.or;
@@ -47,15 +47,13 @@ import org.springframework.stereotype.Component;
 @SuppressWarnings("unused")
 @Component
 public class BasePage extends CukeConfigurator {
+
     private WebDriver webDriver;
-    //    private static final long SECONDS_TIMEOUT_INTERVAL= 15;
     private static final long SECONDS_PAGELOAD_REFRESH = 5;
 
     public BasePage(final WebDriver webdriver) {
         this.webDriver = webdriver;
     }
-
-
 
     /* Selectors */
 

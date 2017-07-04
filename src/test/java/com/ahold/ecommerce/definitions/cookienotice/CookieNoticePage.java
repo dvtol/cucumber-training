@@ -1,7 +1,7 @@
 package com.ahold.ecommerce.definitions.cookienotice;
 
 
-import com.ahold.ecommerce.definitions.BasePage;
+import com.ahold.ecommerce.definitions._generics.BasePage;
 import org.openqa.selenium.WebDriver;
 
 
