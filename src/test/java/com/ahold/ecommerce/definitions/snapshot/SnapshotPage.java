@@ -1,29 +1,20 @@
 package com.ahold.ecommerce.definitions.snapshot;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 import static org.junit.Assert.assertFalse;
-
-import com.ahold.ecommerce.definitions.BasePage;
+import com.ahold.ecommerce.definitions._generics.BasePage;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java.After;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.LinkedList;
 import javax.imageio.ImageIO;
-import lombok.Getter;
 import lombok.Setter;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,7 +27,7 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 /**
  * Created by sherwin on 2-7-2017.
  */
-public class SnapshotPage extends BasePage{
+public class SnapshotPage extends BasePage {
     private WebDriver driver;
     @Setter
     private String resultLocation = "", baselineLocation = "", runType = "";
@@ -52,25 +43,11 @@ public class SnapshotPage extends BasePage{
         navigateToPage("https://tst8.ah.nl/");
     }
 
-   /* public SnapshotPage(WebDriver driver) {
-        this.driver = driver;
-
-    }*/
-
     @After("@Snapshot")
     public void afterSnapshotTest(){
         if(runType.equals("actual")){
 
         }
-    }
-    @Test
-    public void checkIfSnapshotIsCreated(){
-        Configuration.browser = "chrome";
-        ChromeDriverManager.getInstance().setup();
-        open("https://www.ah.nl");
-        this.driver = WebDriverRunner.getWebDriver();
-
-        takeSnapshotAndCompare("googlepagina",".article-group.edc-article-group.edc-article-group--inline-headings.small-6");
     }
 
 
@@ -175,9 +152,7 @@ public class SnapshotPage extends BasePage{
     }
 
     public BufferedImage stringToImage(String imageString) {
-        //string to ByteArrayInputStream
         BufferedImage bImage = null;
-
         try {
             bImage = ImageIO.read(new File(imageString));
         } catch (IOException e) {
@@ -219,14 +194,6 @@ public class SnapshotPage extends BasePage{
 
     }
 
-
-    @Attachment(value = "Error Snapshot", type = "image/png")
-    public byte[] createErrorAttachmentt(String _path) throws URISyntaxException, IOException {
-        Path path = Paths.get(_path);
-        byte[] image = Files.readAllBytes(path);
-
-        return image;
-    }
 
     public String getHTMLWhenTestFail(String locationOfScreen){
         File file = new java.io.File("");   //Dummy file

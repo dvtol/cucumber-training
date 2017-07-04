@@ -1,8 +1,7 @@
 package com.ahold.ecommerce.definitions.snapshot;
 
-import com.ahold.ecommerce.definitions.BaseStepDef;
+import com.ahold.ecommerce.definitions._generics.BaseStepDef;
 import cucumber.api.java.nl.Als;
-import cucumber.api.java.nl.Dan;
 import cucumber.api.java.nl.Gegeven;
 import io.qameta.allure.Step;
 import javax.annotation.PostConstruct;
