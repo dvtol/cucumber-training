@@ -40,7 +40,7 @@ public class SnapshotPage extends BasePage {
     }
     public void navigateToAH() {
 
-        navigateToPage("https://tst8.ah.nl/");
+        navigateToPage(targetHostName);
     }
 
     @After("@Snapshot")
