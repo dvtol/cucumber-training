@@ -43,21 +43,13 @@ public class SnapshotPage extends BasePage {
         navigateToPage(targetHostName);
     }
 
-    @After("@Snapshot")
-    public void afterSnapshotTest(){
-        if(runType.equals("actual")){
-
-        }
-    }
-
-
     public String getRunTypeNameExtension() {
         if (runType.toLowerCase().equals("baseline")) {
             return "_baseline-attachment.PNG";
         } else if (runType.toLowerCase().equals("actual")) {
             return "_actual-attachment.PNG";
         }
-        return "";
+        return null;
     }
 
     public String getRunTypeNameExtension(String runType) {
@@ -69,7 +61,7 @@ public class SnapshotPage extends BasePage {
             return "_dif-attachment.PNG";
 
         }
-        return "";
+        return null;
     }
 
 
