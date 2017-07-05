@@ -3,8 +3,6 @@ package com.ahold.ecommerce.definitions.snapshot;
 import com.ahold.ecommerce.definitions._generics.BaseStepDef;
 import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Gegeven;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import javax.annotation.PostConstruct;
 import org.openqa.selenium.support.PageFactory;
