@@ -119,11 +119,15 @@ public class CukeConfigurator {
         if (remoteBrowserName.toLowerCase().contains("chrome")) {
             capabilities = DesiredCapabilities.chrome();
             capabilities.setBrowserName("chrome");
+            capabilities.setCapability("recordVideo", false);
+            capabilities.setCapability("idleTimeout", 60);
             capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
         if (remoteBrowserName.toLowerCase().contains("firefox")) {
             capabilities = DesiredCapabilities.firefox();
             capabilities.setBrowserName("firefox");
+            capabilities.setCapability("recordVideo", false);
+            capabilities.setCapability("idleTimeout", 60);
             capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
         // request node to the hub
