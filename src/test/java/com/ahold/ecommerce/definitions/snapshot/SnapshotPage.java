@@ -30,7 +30,7 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 public class SnapshotPage extends BasePage {
     private WebDriver driver;
     @Setter
-    private String resultLocation = "", baselineLocation = "", runType = "";
+    private String resultLocation = "", baselineLocation = "", runType = "",baseline = "baseline", actual = "actual", dif = "dif";
     @Setter
     private int compareMarge = 0;
     public SnapshotPage(WebDriver webdriver) {
@@ -40,24 +40,24 @@ public class SnapshotPage extends BasePage {
     }
     public void navigateToAH() {
 
-        navigateToPage(targetHostName);
+        navigateToPage("https://"+targetHostName);
     }
 
     public String getRunTypeNameExtension() {
-        if (runType.toLowerCase().equals("baseline")) {
+        if (runType.toLowerCase().equals(baseline)) {
             return "_baseline-attachment.PNG";
-        } else if (runType.toLowerCase().equals("actual")) {
+        } else if (runType.toLowerCase().equals(actual)) {
             return "_actual-attachment.PNG";
         }
         return null;
     }
 
     public String getRunTypeNameExtension(String runType) {
-        if (runType.toLowerCase().equals("baseline")) {
+        if (runType.toLowerCase().equals(baseline)) {
             return "_baseline-attachment.PNG";
-        } else if (runType.toLowerCase().equals("actual")) {
+        } else if (runType.toLowerCase().equals(actual)) {
             return "_actual-attachment.PNG";
-        } else if (runType.toLowerCase().equals("dif")) {
+        } else if (runType.toLowerCase().equals(dif)) {
             return "_dif-attachment.PNG";
 
         }
@@ -66,36 +66,38 @@ public class SnapshotPage extends BasePage {
 
 
     public void takeSnapshotAndCompare(String snapshotName, String element) {
-        Screenshot screenshot = null;
-        if (element.length() < 2) {//check if snapshot is full page or a snapshot of an element
-            screenshot = new AShot()
-                    .shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
-        } else {
-            $(element).shouldBe(Condition.visible).scrollTo();
-            WebElement webElement = driver.findElement(By.cssSelector(element));
-            screenshot = new AShot()
-                    .shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver, webElement);
-        }
-
-        BufferedImage image = screenshot.getImage();
-
-        String pathToScreen = resultLocation + snapshotName + getRunTypeNameExtension();
-        try {
-            File dir = new File(resultLocation);
-            if (dir.exists()) {
-
+        if(runType.equals(baseline)||runType.equals(actual)) {
+            Screenshot screenshot = null;
+            if (element.length() < 2) {//check if snapshot is full page or a snapshot of an element
+                screenshot = new AShot()
+                        .shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
             } else {
-                dir.mkdirs();
+                $(element).shouldBe(Condition.visible).scrollTo();
+                WebElement webElement = driver.findElement(By.cssSelector(element));
+                screenshot = new AShot()
+                        .shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver, webElement);
             }
-            ImageIO.write(image, "PNG",
-                    new File(pathToScreen));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        if (runType.equals("actual")) {
-            compareAshot(snapshotName);
+            BufferedImage image = screenshot.getImage();
 
+            String pathToScreen = resultLocation + snapshotName + getRunTypeNameExtension();
+            try {
+                File dir = new File(resultLocation);
+                if (dir.exists()) {
+
+                } else {
+                    dir.mkdirs();
+                }
+                ImageIO.write(image, "PNG",
+                        new File(pathToScreen));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (runType.equals(actual)) {
+                compareAshot(snapshotName);
+
+            }
         }
 
     }
@@ -105,8 +107,8 @@ public class SnapshotPage extends BasePage {
         ImageDiff diff = null;
         BufferedImage diffImage = null;
         String act_ = resultLocation + snapshotName + getRunTypeNameExtension();
-        String exp_ = baselineLocation + snapshotName + getRunTypeNameExtension("baseline");
-        String dif_ = resultLocation + snapshotName + getRunTypeNameExtension("dif");
+        String exp_ = baselineLocation + snapshotName + getRunTypeNameExtension(baseline);
+        String dif_ = resultLocation + snapshotName + getRunTypeNameExtension(dif);
 
         try {
             diff = new ImageDiffer().makeDiff(stringToImage(act_), stringToImage(exp_));

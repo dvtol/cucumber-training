@@ -3,6 +3,8 @@ package com.ahold.ecommerce.definitions.snapshot;
 import com.ahold.ecommerce.definitions._generics.BaseStepDef;
 import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Gegeven;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import javax.annotation.PostConstruct;
 import org.openqa.selenium.support.PageFactory;
@@ -32,7 +34,6 @@ public class SnapshotStepDef extends BaseStepDef {
     }
 
 
-    @Step("Make a snapshot of the complete page")
     @Als("^ik een snapshot \"([^\"]*)\" maak en vergelijk$")
     public void ikEenSnapshotMaakEnVergelijk(String naam)  {
         snapshotPage.takeSnapshotAndCompare(naam,"");
