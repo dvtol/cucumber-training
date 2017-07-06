@@ -25,9 +25,6 @@ import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
-/**
- * Created by sherwin on 2-7-2017.
- */
 public class SnapshotPage extends BasePage {
     private WebDriver driver;
     @Setter

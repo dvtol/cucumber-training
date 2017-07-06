@@ -7,9 +7,6 @@ import io.qameta.allure.Step;
 import javax.annotation.PostConstruct;
 import org.openqa.selenium.support.PageFactory;
 
-/**
- * Created by sherwin on 2-7-2017.
- */
 public class SnapshotStepDef extends BaseStepDef {
     private SnapshotPage snapshotPage;
 
