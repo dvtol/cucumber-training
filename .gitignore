@@ -9,5 +9,5 @@ local.properties.yml
 allure-results/
 allure-report/
 build/
-src/test/java/com/ahold/ecommerce/data/img/
+src/test/java/com/ahold/ecommerce/data/allure_compare_images/
 
