@@ -4,8 +4,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static org.junit.Assert.assertFalse;
 import com.ahold.ecommerce.definitions._generics.BasePage;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import cucumber.api.java.After;
 import io.qameta.allure.Attachment;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -59,11 +59,9 @@ public class SnapshotPage extends BasePage {
             return "_actual-attachment.PNG";
         } else if (runType.toLowerCase().equals(dif)) {
             return "_dif-attachment.PNG";
-
         }
         return null;
     }
-
 
     public void takeSnapshotAndCompare(String snapshotName, String element) {
         if(runType.equals(baseline)||runType.equals(actual)) {
@@ -72,6 +70,7 @@ public class SnapshotPage extends BasePage {
                 screenshot = new AShot()
                         .shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
             } else {
+                Configuration.timeout = 8000;
                 $(element).shouldBe(Condition.visible).scrollTo();
                 WebElement webElement = driver.findElement(By.cssSelector(element));
                 screenshot = new AShot()
@@ -83,9 +82,7 @@ public class SnapshotPage extends BasePage {
             String pathToScreen = resultLocation + snapshotName + getRunTypeNameExtension();
             try {
                 File dir = new File(resultLocation);
-                if (dir.exists()) {
-
-                } else {
+                if (!dir.exists()) {
                     dir.mkdirs();
                 }
                 ImageIO.write(image, "PNG",
@@ -96,7 +93,6 @@ public class SnapshotPage extends BasePage {
 
             if (runType.equals(actual)) {
                 compareAshot(snapshotName);
-
             }
         }
 
