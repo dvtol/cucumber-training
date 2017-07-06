@@ -2,6 +2,7 @@ package com.ahold.ecommerce.definitions.snapshot;
 
 import static com.codeborne.selenide.Selenide.$;
 import static org.junit.Assert.assertFalse;
+
 import com.ahold.ecommerce.definitions._generics.BasePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
@@ -30,17 +31,19 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 public class SnapshotPage extends BasePage {
     private WebDriver driver;
     @Setter
-    private String resultLocation = "", baselineLocation = "", runType = "",baseline = "baseline", actual = "actual", dif = "dif";
+    private String resultLocation = "", baselineLocation = "", runType = "", baseline = "baseline", actual = "actual", dif = "dif";
     @Setter
     private int compareMarge = 0;
+
     public SnapshotPage(WebDriver webdriver) {
         super(webdriver);
         this.driver = webdriver;
         WebDriverRunner.setWebDriver(this.driver);
     }
+
     public void navigateToAH() {
 
-        navigateToPage("https://"+targetHostName);
+        navigateToPage("https://" + targetHostName);
     }
 
     public String getRunTypeNameExtension() {
@@ -49,7 +52,7 @@ public class SnapshotPage extends BasePage {
         } else if (runType.toLowerCase().equals(actual)) {
             return "_actual-attachment.PNG";
         }
-        throw new IllegalArgumentException("runType that is currently used:' "+runType +" ' is not implemented");
+        throw new IllegalArgumentException("runType that is currently used:' " + runType + " ' is not implemented");
     }
 
     public String getRunTypeNameExtension(String runType) {
@@ -60,11 +63,11 @@ public class SnapshotPage extends BasePage {
         } else if (runType.toLowerCase().equals(dif)) {
             return "_dif-attachment.PNG";
         }
-        throw new IllegalArgumentException("runType that is currently used:' "+runType +" ' is not implemented");
+        throw new IllegalArgumentException("runType that is currently used:' " + runType + " ' is not implemented");
     }
 
     public void takeSnapshotAndCompare(String snapshotName, String element) {
-        if(runType.equals(baseline)||runType.equals(actual)) {
+        if (runType.equals(baseline) || runType.equals(actual)) {
             Screenshot screenshot = null;
             if (element.length() < 2) {//check if snapshot is full page or a snapshot of an element
                 screenshot = new AShot()
@@ -111,9 +114,9 @@ public class SnapshotPage extends BasePage {
             diffImage = diff.getMarkedImage(); // comparison result with marked differences
         } catch (Exception e) {
             File file = new java.io.File("");   //Dummy file
-            String  abspath=file.getAbsolutePath();
+            String abspath = file.getAbsolutePath();
             addFailDetails(getHTMLWhenTestFail(resultLocation));
-            assertFalse( "Compare function failed for some reasons. One of the images on location does not exist. Please check if the actual or expected image exist.\n Actual image:  " +abspath+"/"+ act_ + " Expected image: "+abspath+"/" + exp_,true);
+            assertFalse("Compare function failed for some reasons. One of the images on location does not exist. Please check if the actual or expected image exist.\n Actual image:  " + abspath + "/" + act_ + " Expected image: " + abspath + "/" + exp_, true);
         }
         try {
             File dir = new File(resultLocation);
@@ -135,7 +138,7 @@ public class SnapshotPage extends BasePage {
 
         if (!(diff.getDiffSize() < compareMarge && compareMarge != 0)) {
             addFailDetails(getHTMLWhenTestFail(resultLocation));
-            assertFalse( dif__,diff.hasDiff());
+            assertFalse(dif__, diff.hasDiff());
         }
 
 
@@ -155,24 +158,26 @@ public class SnapshotPage extends BasePage {
 
     @Attachment(value = "diff", type = "image/png")
     public byte[] diffAttachment(String _path) {
-        return  convertImageToByte(_path);
+        return convertImageToByte(_path);
     }
+
     @Attachment(value = "actual", type = "image/png")
     public byte[] actualAttachment(String _path) {
-        return  convertImageToByte(_path);
+        return convertImageToByte(_path);
     }
+
     @Attachment(value = "expected", type = "image/png")
     public byte[] expectedAttachment(String _path) {
-      return  convertImageToByte(_path);
+        return convertImageToByte(_path);
     }
 
     @Attachment(value = "Fail details")
-    public String addFailDetails(String details){
+    public String addFailDetails(String details) {
 
         return details;
     }
 
-    public byte[] convertImageToByte(String _path){
+    public byte[] convertImageToByte(String _path) {
         Path path = Paths.get(_path);
         byte[] image = new byte[0];
         try {
@@ -185,21 +190,19 @@ public class SnapshotPage extends BasePage {
     }
 
 
-    public String getHTMLWhenTestFail(String locationOfScreen){
+    public String getHTMLWhenTestFail(String locationOfScreen) {
         File file = new java.io.File("");   //Dummy file
-        String  abspath=file.getAbsolutePath();
-        abspath = abspath+ "//" + locationOfScreen;
-        String currentURL = driver.getCurrentUrl() ;
-        return "<!DOCTYPE html>"+
-                "<html>"+
-                "<body>"+
-                "<h1>CurrentURL<h1>"+
-                "<p><a href=\"" + currentURL   + "\"target=\"_blank\">"+currentURL+"</a></p>"+
-                "<p>Location of screenshots: <br><a href=\"file://"+abspath+"\">"+abspath+"</a></p>"+
-                "</body>"+
+        String abspath = file.getAbsolutePath();
+        abspath = abspath + "//" + locationOfScreen;
+        String currentURL = driver.getCurrentUrl();
+        return "<!DOCTYPE html>" +
+                "<html>" +
+                "<body>" +
+                "<h1>CurrentURL<h1>" +
+                "<p><a href=\"" + currentURL + "\"target=\"_blank\">" + currentURL + "</a></p>" +
+                "<p>Location of screenshots: <br><a href=\"file://" + abspath + "\">" + abspath + "</a></p>" +
+                "</body>" +
                 "</html>";
 
     }
-
-
 }
