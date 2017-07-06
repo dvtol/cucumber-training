@@ -49,7 +49,7 @@ public class SnapshotPage extends BasePage {
         } else if (runType.toLowerCase().equals(actual)) {
             return "_actual-attachment.PNG";
         }
-        return null;
+        throw new IllegalArgumentException("runType that is currently used:' "+runType +" ' is not implemented");
     }
 
     public String getRunTypeNameExtension(String runType) {
@@ -60,7 +60,7 @@ public class SnapshotPage extends BasePage {
         } else if (runType.toLowerCase().equals(dif)) {
             return "_dif-attachment.PNG";
         }
-        return null;
+        throw new IllegalArgumentException("runType that is currently used:' "+runType +" ' is not implemented");
     }
 
     public void takeSnapshotAndCompare(String snapshotName, String element) {

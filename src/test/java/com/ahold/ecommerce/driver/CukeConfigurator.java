@@ -53,6 +53,8 @@ public class CukeConfigurator {
     @Value("${implicit.wait.timeout.seconds}")
     protected int impWaitTimeout;
 
+    @Value("${browser.screen.size}")
+    private String browserScreenSize;
     /**
      * screenshot value links to class/method:
      * {@link com.ahold.ecommerce.driver.TestHooks#embedScreenshot}
@@ -121,6 +123,13 @@ public class CukeConfigurator {
             capabilities.setBrowserName("chrome");
             capabilities.setCapability("recordVideo", false);
             capabilities.setCapability("idleTimeout", 60);
+            if (browserScreenSize.toLowerCase().equals("default")) {
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--start-maximized");
+                capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+            } else {
+                capabilities.setCapability("screenResolution", browserScreenSize);
+            }
             capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
         if (remoteBrowserName.toLowerCase().contains("firefox")) {

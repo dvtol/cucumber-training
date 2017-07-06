@@ -29,3 +29,7 @@ chrome.driver.version: latest
 
 # test dir for JSON data
 test.data.dir: src/test/java/com/ahold/ecommerce/data/testdata
+
+# screensize
+browser.screen.size: default
+# e.g.: 1280x700 or default which is the maximum screensize
