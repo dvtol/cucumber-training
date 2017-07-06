@@ -1,6 +1,9 @@
 # set environment of choice
 target.host.name: tst8.ah.nl
 
+# set browser screen size
+browser.screen.size: default
+
 # set local browser
 browser.name.local: chrome
 #firefox

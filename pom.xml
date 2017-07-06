@@ -11,14 +11,15 @@
     <name>Ahws Keten</name>
 
     <properties>
-        <selenium.version>3.3.0</selenium.version>
+        <selenium.version>3.4.0</selenium.version>
         <slf4j.version>1.7.25</slf4j.version>
         <info.cukes.version>1.2.5</info.cukes.version>
         <junit.version>4.12</junit.version>
         <spring.version>4.3.9.RELEASE</spring.version>
         <java.version>1.8</java.version>
         <selenide.version>4.5</selenide.version>
-        <allure-cucumber-jvm.version>2.0-BETA11</allure-cucumber-jvm.version>
+        <allure-cucumber-jvm.version>2.0-BETA14</allure-cucumber-jvm.version>
+        <ashot.version>1.5.4</ashot.version>
         <maven.surefire.version>2.20</maven.surefire.version>
         <webdrivermanager.version>1.7.0</webdrivermanager.version>
         <aspectj.version>1.8.4</aspectj.version>
@@ -59,7 +60,12 @@
                 <artifactId>aspectjweaver</artifactId>
                 <version>${aspectj.version}</version>
             </dependency>
-
+        <dependency>
+            <groupId>ru.yandex.qatools.ashot</groupId>
+            <artifactId>ashot</artifactId>
+            <version>${ashot.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- REST -->
         <dependency>

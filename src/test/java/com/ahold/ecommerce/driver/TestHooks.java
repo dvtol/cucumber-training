@@ -4,6 +4,8 @@ import com.ahold.ecommerce.definitions._generics.BasePage;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriverException;
@@ -45,7 +47,13 @@ public class TestHooks extends CukeConfigurator {
                     log.error("** Console log entry: [{}] {}", logEntry.getLevel().getName(), logEntry.getMessage());
                 }
             }
+            failedSnapshot();
         }
+    }
+
+    @Attachment
+    public String attachmentOfTheLog(String actionSequence) {
+        return actionSequence.toString();
     }
 
     @After
@@ -64,5 +72,11 @@ public class TestHooks extends CukeConfigurator {
                 log.info("creating screenshot done");
             }
         }
+    }
+
+    @Attachment(value = "Snapshot of failed test", type = "image/png")
+    public byte[] failedSnapshot() {
+        final byte[] screenshot = webDriver.getScreenshotAs(OutputType.BYTES);
+        return screenshot;
     }
 }
