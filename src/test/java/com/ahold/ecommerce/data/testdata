@@ -12,7 +12,9 @@
       "naam": "Dhr test",
       "adres": "teststraat 151",
       "woonplaats": "Zaandam",
-      "telefoon": "075 12312312"
+      "telefoon": "075 12312312",
+      "email": "danny.tol.van@ah.nl",
+      "password": "ahtest.123"
     }
   ]
 }

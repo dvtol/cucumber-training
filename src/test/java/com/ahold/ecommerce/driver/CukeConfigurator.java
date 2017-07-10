@@ -90,7 +90,7 @@ public class CukeConfigurator {
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
             } else {
-                options.addArguments("--start-maximized");
+                options.addArguments("--start-fullscreen");
             }
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }
@@ -125,7 +125,7 @@ public class CukeConfigurator {
             capabilities.setCapability("idleTimeout", 60);
             if (browserScreenSize.toLowerCase().equals("default")) {
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--start-maximized");
+                options.addArguments("--start-fullscreen");
                 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
             } else {
                 capabilities.setCapability("screenResolution", browserScreenSize);

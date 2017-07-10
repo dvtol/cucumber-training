@@ -1,31 +1,24 @@
 package com.ahold.ecommerce.definitions._generics;
 
-import com.ahold.ecommerce.definitions.cookienotice.CookieNoticePage;
+import com.ahold.ecommerce.definitions.ah.inloggen.LoginPage;
+import cucumber.api.java.nl.Gegeven;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.annotation.PostConstruct;
 
 public class CommonStepDef extends BaseStepDef {
 
-    private CookieNoticePage cookieNoticePage;
+    private LoginPage loginPage;
 
     @PostConstruct
     public void setUp() {
-        cookieNoticePage = PageFactory.initElements(webDriver, CookieNoticePage.class);
+        loginPage = PageFactory.initElements(webDriver, LoginPage.class);
     }
 
-    /* Sample for ah.nl
-    @Gegeven("^gebruiker is op de ah.nl web-omgeving \"([^\"]*)\"$")
-    public void open_appie_today_website(String environment) {
-        basePage.navigateToEnvironment(environment);
+    //test for ah.nl test environment tst9
+    @Gegeven("^dat gebruiker is ingelogd op AH test omgeving \"([^\"]*)\"$")
+    public void login_ah_testomgeving(String targetHostName) {
+        loginPage.navigateToEnvironment(targetHostName);
+        loginPage.loginAhEnvironment();
     }
-
-    @Gegeven("^de gebruiker heeft de cookies geaccepteert")
-    public void accepteren_cookie_melding() {
-        basePage.addCookie("cookie_agreed", "true");
-        basePage.refreshPage();
-        basePage.isCookieNoticeVisible();
-        basePage.buttonClick("accept-cookies");
-    }
-    */
 }
