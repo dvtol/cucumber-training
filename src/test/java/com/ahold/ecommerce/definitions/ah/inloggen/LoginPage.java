@@ -16,14 +16,14 @@ public class LoginPage extends BasePage {
         WebDriverRunner.setWebDriver(webDriver);
     }
 
-    JsonData testdata = new JsonData();
+    private JsonData testdata = new JsonData();
 
     @Step("Inloggen AH test-omgeving")
     public void loginAhEnvironment() {
 
         $("[data-testhookid=\"navigation-login\"]").click();
-        $("[data-testhookid=\"userNameTextField\"]").setValue(testdata.JsonData("ah_customers", "email"));
-        $("[data-testhookid=\"passwordTextField\"]").setValue(testdata.JsonData("ah_customers", "password"));
+        $("[data-testhookid=\"userNameTextField\"]").setValue(testdata.JsonData("ah_customer_tst2", "email"));
+        $("[data-testhookid=\"passwordTextField\"]").setValue(testdata.JsonData("ah_customer_tst2", "password"));
         $("[data-testhookid=\"submitButton\"]").click();
     }
 }
