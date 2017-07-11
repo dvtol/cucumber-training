@@ -32,6 +32,6 @@ public class CheckoutPage extends BasePage {
         $(byXpath(testdata.JsonData("webelements_checkout", "Volgende"))).shouldBe(visible).click();
 
         // confirm order
-        //$(byXpath(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).shouldBe(visible).click();
+        $(byXpath(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).shouldBe(visible).click();
     }
 }

@@ -21,7 +21,7 @@ public class LoginPage extends BasePage {
     public void loginAhEnvironment() {
 
         // login AH home
-        $(testDataHook("navigation-login")).click();
+        $(testDataHook(testdata.JsonData("webelements_login", "Inloggen Home"))).click();
 
         // login with username and password
         $(testDataHook(testdata.JsonData("webelements_login", "email_element")))

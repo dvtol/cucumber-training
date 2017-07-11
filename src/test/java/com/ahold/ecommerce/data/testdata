@@ -25,6 +25,16 @@
     }
   ],
 
+  "webelements_order": [
+    {
+      "Producten Home": "navigation-products",
+      "Bakkerij": "link-2861",
+      "AG Goois zonnepittenbrood wit": "add_product_wi56046",
+      "AH Ciabatta brood": "add_product_wi31584",
+      "Mijn lijst Home": "navigation-shoppinglist"
+    }
+  ],
+
   "webelements_checkout": [
     {
       "Online bestellen": "link-guidance-to-channel",
