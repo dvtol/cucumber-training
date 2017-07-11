@@ -1,5 +1,7 @@
 package com.ahold.ecommerce.definitions.ah.checkout;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import com.ahold.ecommerce.definitions._generics.BasePage;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
@@ -15,7 +17,6 @@ public class CheckoutPage extends BasePage {
     @Step("Checkout selected product(s) on AH web and finish order")
     public void orderProduct() {
 
-        // TODO - script
-
+        $(testDataHook("link-guidance-to-channel")).click();
     }
 }

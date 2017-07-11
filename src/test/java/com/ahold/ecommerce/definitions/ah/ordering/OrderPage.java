@@ -1,8 +1,10 @@
 package com.ahold.ecommerce.definitions.ah.ordering;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import com.ahold.ecommerce.definitions._generics.BasePage;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +24,8 @@ public class OrderPage extends BasePage {
         $(testDataHook("add_product_wi56046")).shouldBe(Condition.visible).click();
         $(testDataHook("add_product_wi31584")).shouldBe(Condition.visible).click();
         $(testDataHook("add_product_wi55686")).shouldBe(Condition.visible).click();
-        $(testDataHook("navigation-shoppinglist")).click();
+        final SelenideElement shoppingbasket = $(testDataHook("navigation-shoppinglist")).shouldHave(text("3"));
+        shoppingbasket.click();
+
     }
 }
