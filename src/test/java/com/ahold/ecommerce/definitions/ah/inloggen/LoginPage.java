@@ -21,9 +21,9 @@ public class LoginPage extends BasePage {
     @Step("Inloggen AH test-omgeving")
     public void loginAhEnvironment() {
 
-        $("[data-testhookid=\"navigation-login\"]").click();
-        $("[data-testhookid=\"userNameTextField\"]").setValue(testdata.JsonData("ah_customer_tst2", "email"));
-        $("[data-testhookid=\"passwordTextField\"]").setValue(testdata.JsonData("ah_customer_tst2", "password"));
-        $("[data-testhookid=\"submitButton\"]").click();
+        $(testDataHook("navigation-login")).click();
+        $(testDataHook("userNameTextField")).setValue(testdata.JsonData("ah_customer_tst2", "email"));
+        $(testDataHook("passwordTextField")).setValue(testdata.JsonData("ah_customer_tst2", "password"));
+        $(testDataHook("submitButton")).click();
     }
 }

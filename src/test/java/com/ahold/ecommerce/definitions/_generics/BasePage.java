@@ -9,7 +9,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 import com.ahold.ecommerce.driver.CukeConfigurator;
-import com.codeborne.selenide.WebDriverRunner;
 import com.google.common.base.Function;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -106,6 +105,10 @@ public class BasePage extends CukeConfigurator {
     //Used to find elements with the specified testhook plus the extraCSS
     public static By cssCombinedWithTestHook(String testHookId, String extraCSS) {
         return css("[data-testhookid='%s']%s", testHookId, extraCSS);
+    }
+
+    public static By testDataHook(final String element) {
+        return css("[data-testhookid='%s']", element);
     }
 
     /* Webdriver & Browser commands */
