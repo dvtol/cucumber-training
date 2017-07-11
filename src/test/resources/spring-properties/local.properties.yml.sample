@@ -1,0 +1,37 @@
+# sets boolean value for screenshots
+webdriver.screenshots: true
+
+# default remote node address
+remote.url.address: http://zalenium.tools.ecom.ahold.nl/wd/hub
+
+# set environment of choice
+target.host.name: tst2
+
+# login for the dev-page
+dev.login: admin
+dev.password: uzGcALbMUXaWJzWQ
+
+# implicit wait timeout for element(s) search
+implicit.wait.timeout.seconds: 15
+
+# webdriver wait
+timeout.interval.seconds: 15
+
+# set local or remote browser
+browser.name.local: chrome
+browser.name.remote: chrome
+
+# set local browser driver version. latest is the latest version
+firefox.driver.version: latest
+# e.g.: 0.17.0
+chrome.driver.version: latest
+# e.g.: 2.30
+
+# test dir for JSON data
+test.data.dir: src/test/java/com/ahold/ecommerce/data/testdata
+
+# screensize
+browser.screen.size: default
+# e.g.: 1280x700 or default which is the maximum screensize
+
+
