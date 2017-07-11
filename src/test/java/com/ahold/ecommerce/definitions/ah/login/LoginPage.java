@@ -2,7 +2,6 @@ package com.ahold.ecommerce.definitions.ah.login;
 
 
 import static com.codeborne.selenide.Selenide.$;
-
 import com.ahold.ecommerce.data.JsonData;
 import com.ahold.ecommerce.definitions._generics.BasePage;
 import com.codeborne.selenide.WebDriverRunner;
@@ -22,8 +21,8 @@ public class LoginPage extends BasePage {
     public void loginAhEnvironment() {
 
         $(testDataHook("navigation-login")).click();
-        $(testDataHook("userNameTextField")).setValue(testdata.JsonData("ah_customer_tst2", "email"));
-        $(testDataHook("passwordTextField")).setValue(testdata.JsonData("ah_customer_tst2", "password"));
+        $(testDataHook("userNameTextField")).setValue(testdata.JsonData("ah_customer_elcheapo", "email"));
+        $(testDataHook("passwordTextField")).setValue(testdata.JsonData("ah_customer_elcheapo", "password"));
         $(testDataHook("submitButton")).click();
     }
 }
