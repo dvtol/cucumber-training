@@ -1,4 +1,4 @@
-package com.ahold.ecommerce.definitions.ah.inloggen;
+package com.ahold.ecommerce.definitions.ah.login;
 
 
 import static com.codeborne.selenide.Selenide.$;

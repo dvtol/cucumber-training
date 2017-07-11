@@ -70,7 +70,7 @@ public class CukeConfigurator {
     protected int timeOutInterval;
     protected String dev_login;
     protected String dev_password;
-    protected String targetHostName;
+    public String targetHostName;
     protected String testdata_dir;
 
 
@@ -162,10 +162,13 @@ public class CukeConfigurator {
             timeOutInterval = Integer.parseInt(propDefault.getProperty("timeout.interval.seconds"));
             testdata_dir = propDefault.getProperty("test.data.dir");
             Path path = Paths.get("src/test/resources/spring-properties/local.properties.yml");
-            if (Files.exists(path)) {
+            if (!Files.exists(path)) {
+                propDefault.load(inputDefault);
+                targetHostName = propDefault.getProperty("target.host.name");
+            } else {
                 inputLocal = new FileInputStream("src/test/resources/spring-properties/local.properties.yml");
                 propLocal.load(inputLocal);
-                targetHostName = propDefault.getProperty("target.host.name");
+                targetHostName = propLocal.getProperty("target.host.name");
             }
         } catch (IOException io) {
             io.printStackTrace();
