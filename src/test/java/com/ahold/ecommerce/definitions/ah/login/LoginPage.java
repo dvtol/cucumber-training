@@ -2,7 +2,7 @@ package com.ahold.ecommerce.definitions.ah.login;
 
 
 import static com.codeborne.selenide.Selenide.$;
-import com.ahold.ecommerce.data.JsonData;
+import com.ahold.ecommerce.data._JsonData;
 import com.ahold.ecommerce.definitions._generics.BasePage;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
@@ -15,14 +15,21 @@ public class LoginPage extends BasePage {
         WebDriverRunner.setWebDriver(webDriver);
     }
 
-    private JsonData testdata = new JsonData();
+    private _JsonData testdata = new _JsonData();
 
     @Step("Inloggen AH test-omgeving")
     public void loginAhEnvironment() {
 
+        // login AH home
         $(testDataHook("navigation-login")).click();
-        $(testDataHook("userNameTextField")).setValue(testdata.JsonData("ah_customer_elcheapo", "email"));
-        $(testDataHook("passwordTextField")).setValue(testdata.JsonData("ah_customer_elcheapo", "password"));
-        $(testDataHook("submitButton")).click();
+
+        // login with username and password
+        $(testDataHook(testdata.JsonData("webelements_login", "email_element")))
+                .setValue(testdata.JsonData("ah_customer_elcheapo", "email"));
+        $(testDataHook(testdata.JsonData("webelements_login", "wachtwoord_element")))
+                .setValue(testdata.JsonData("ah_customer_elcheapo", "wachtwoord"));
+
+        // click button to login
+        $(testDataHook(testdata.JsonData("webelements_login", "Inloggen"))).click();
     }
 }
