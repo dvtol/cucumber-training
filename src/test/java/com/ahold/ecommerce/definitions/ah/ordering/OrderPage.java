@@ -23,8 +23,7 @@ public class OrderPage extends BasePage {
         $(testDataHook("link-2861")).shouldBe(Condition.visible).click();
         $(testDataHook("add_product_wi56046")).shouldBe(Condition.visible).click();
         $(testDataHook("add_product_wi31584")).shouldBe(Condition.visible).click();
-        $(testDataHook("add_product_wi55686")).shouldBe(Condition.visible).click();
-        final SelenideElement shoppingbasket = $(testDataHook("navigation-shoppinglist")).shouldHave(text("3"));
+        final SelenideElement shoppingbasket = $(testDataHook("navigation-shoppinglist")).shouldHave(text("2"));
         shoppingbasket.click();
 
     }
