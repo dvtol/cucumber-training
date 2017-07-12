@@ -38,11 +38,11 @@
   "webelements_checkout": [
     {
       "Online bestellen": "link-guidance-to-channel",
-      "AH Pick Up Point": "//*[@id=\"change\"]/label[2]/span[2]",
+      "AH Pick Up Point": "AH Pick Up Point",
       "Timeslot 6": "timeslot-6-selectable",
       "Afronden": "link-checkout-flow",
-      "Volgende": "//*[@id=\"index_1\"]/article/a[2]",
-      "Bevestig bestelling": "//*[@id=\"index_1\"]/article/a[2]"
+      "Volgende": "Volgende",
+      "Bevestig bestelling": "Bevestig bestelling"
     }
   ]
 }
