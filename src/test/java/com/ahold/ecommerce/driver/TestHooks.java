@@ -60,8 +60,8 @@ public class TestHooks extends CukeConfigurator {
     public void embedScreenshot(final Scenario scenario) {
         if (screenshots) {
             log.info("creating screenshot");
-            scenario.write("Current Page URL: " + webDriver.getCurrentUrl());
-            scenario.write("Current Page Title: " + webDriver.getTitle());
+            scenario.write("\n" + "[ Current Page URL: " + webDriver.getCurrentUrl() + " ]");
+            scenario.write("\n" + "[ Current Page Title: " + webDriver.getTitle() + " ]");
             try {
                 final byte[] screenshot = webDriver.getScreenshotAs(OutputType.BYTES);
                 scenario.embed(screenshot, "image/png");
