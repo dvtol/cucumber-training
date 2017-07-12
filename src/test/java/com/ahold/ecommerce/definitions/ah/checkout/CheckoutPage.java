@@ -8,6 +8,7 @@ import com.ahold.ecommerce.data._JsonData;
 import com.ahold.ecommerce.definitions._generics.BasePage;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutPage extends BasePage {
@@ -26,12 +27,12 @@ public class CheckoutPage extends BasePage {
 
         // getting through checkout flow
         $(testDataHook(testdata.JsonData("webelements_checkout", "Online bestellen"))).click();
-        $$(testDataHook(testdata.JsonData("webelements_checkout", "AH Pick Up Point"))).filterBy(visible); // click(); ?
+        $$(By.xpath(testdata.JsonData("webelements_checkout", "AH Pick Up Point"))).filterBy(visible).get(0).click();
         $(testDataHook(testdata.JsonData("webelements_checkout", "Timeslot 6"))).click();
         $(testDataHook(testdata.JsonData("webelements_checkout", "Afronden"))).click();
-        $$(testDataHook(testdata.JsonData("webelements_checkout", "Volgende"))).filterBy(visible); // click(); ?
+        $$(By.xpath(testdata.JsonData("webelements_checkout", "Volgende"))).filterBy(visible);
 
         // confirm order
-        $$(testDataHook(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).filterBy(visible); // click(); ?
+        $$(By.xpath(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).filterBy(visible);
     }
 }
