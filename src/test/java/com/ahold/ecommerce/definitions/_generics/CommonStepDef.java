@@ -34,18 +34,18 @@ public class CommonStepDef extends BaseStepDef {
     }
 
     // navigate and login AH test environment
-    @Gegeven("^dat gebruiker is ingelogd op een AH test omgeving")
+    @Gegeven("^dat gebruiker is ingelogd op de homepage van AH")
     public void login_ah_testomgeving() {
         loginPage.navigateToEnvironment(cukeconfig.targetHostName);
         loginPage.loginAhEnvironment();
     }
 
-    @En("^de gebruiker producten besteld")
+    @En("^de gebruiker zijn benodigde producten besteld")
     public void select_products() {
         orderPage.productSelection();
     }
 
-    @Dan("rond de gebruiker af met een pup order")
+    @Dan("^rond de gebruiker zijn bestelling af met een pup order")
     public void pup_checkout() {
         checkoutPage.orderProduct();
     }
