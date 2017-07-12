@@ -1,31 +1,52 @@
 package com.ahold.ecommerce.definitions._generics;
 
-import com.ahold.ecommerce.definitions.cookienotice.CookieNoticePage;
+import com.ahold.ecommerce.definitions.ah.checkout.CheckoutPage;
+import com.ahold.ecommerce.definitions.ah.login.LoginPage;
+import com.ahold.ecommerce.definitions.ah.ordering.OrderPage;
+import com.ahold.ecommerce.driver.CukeConfigurator;
+import cucumber.api.java.nl.Dan;
+import cucumber.api.java.nl.En;
+import cucumber.api.java.nl.Gegeven;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.annotation.PostConstruct;
 
 public class CommonStepDef extends BaseStepDef {
 
-    private CookieNoticePage cookieNoticePage;
+    private LoginPage loginPage;
+    private OrderPage orderPage;
+    private CheckoutPage checkoutPage;
+    CukeConfigurator cukeconfig = new CukeConfigurator();
 
     @PostConstruct
-    public void setUp() {
-        cookieNoticePage = PageFactory.initElements(webDriver, CookieNoticePage.class);
+    public void setUpLogin() {
+        loginPage = PageFactory.initElements(webDriver, LoginPage.class);
     }
 
-    /* Sample for ah.nl
-    @Gegeven("^gebruiker is op de ah.nl web-omgeving \"([^\"]*)\"$")
-    public void open_appie_today_website(String environment) {
-        basePage.navigateToEnvironment(environment);
+    @PostConstruct
+    public void setUpOrder() {
+        orderPage = PageFactory.initElements(webDriver, OrderPage.class);
     }
 
-    @Gegeven("^de gebruiker heeft de cookies geaccepteert")
-    public void accepteren_cookie_melding() {
-        basePage.addCookie("cookie_agreed", "true");
-        basePage.refreshPage();
-        basePage.isCookieNoticeVisible();
-        basePage.buttonClick("accept-cookies");
+    @PostConstruct
+    public void setUpCheckout() {
+        checkoutPage = PageFactory.initElements(webDriver, CheckoutPage.class);
     }
-    */
+
+    // navigate and login AH test environment
+    @Gegeven("^dat gebruiker is ingelogd op een AH test omgeving")
+    public void login_ah_testomgeving() {
+        loginPage.navigateToEnvironment(cukeconfig.targetHostName);
+        loginPage.loginAhEnvironment();
+    }
+
+    @En("^de gebruiker producten besteld")
+    public void select_products() {
+        orderPage.productSelection();
+    }
+
+    @Dan("rond de gebruiker af met een pup order")
+    public void pup_checkout() {
+        checkoutPage.orderProduct();
+    }
 }

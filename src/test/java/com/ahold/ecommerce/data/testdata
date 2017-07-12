@@ -7,12 +7,42 @@
     }
   ],
 
-  "ah_customers": [
+  "ah_customer_elcheapo": [
     {
       "naam": "Dhr test",
       "adres": "teststraat 151",
-      "woonplaats": "Zaandam",
-      "telefoon": "075 12312312"
+      "email": "danny.tol.van@ah.nl",
+      "wachtwoord": "ahtest.123"
+    }
+  ],
+
+  "webelements_login": [
+    {
+      "Inloggen Home": "navigation-login",
+      "email_element": "userNameTextField",
+      "wachtwoord_element": "passwordTextField",
+      "Inloggen": "submitButton"
+    }
+  ],
+
+  "webelements_order": [
+    {
+      "Producten Home": "navigation-products",
+      "Bakkerij": "link-2861",
+      "AG Goois zonnepittenbrood wit": "add_product_wi56046",
+      "AH Ciabatta brood": "add_product_wi31584",
+      "Mijn lijst Home": "navigation-shoppinglist"
+    }
+  ],
+
+  "webelements_checkout": [
+    {
+      "Online bestellen": "link-guidance-to-channel",
+      "AH Pick Up Point": "//*[@id=\"change\"]/label[2]/span[2]",
+      "Timeslot 6": "timeslot-6-selectable",
+      "Afronden": "link-checkout-flow",
+      "Volgende": "//*[@id=\"index_1\"]/article/a[2]",
+      "Bevestig bestelling": "//*[@id=\"index_1\"]/article/a[2]"
     }
   ]
 }

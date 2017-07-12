@@ -1,6 +1,6 @@
 package com.ahold.ecommerce.definitions.googletest;
 
-import com.ahold.ecommerce.data.JsonData;
+import com.ahold.ecommerce.data._JsonData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ import com.ahold.ecommerce.definitions._generics.BasePage;
 
 public class GoogleTestPage extends BasePage {
 
-    JsonData testdata = new JsonData();
+    _JsonData testdata = new _JsonData();
 
     public GoogleTestPage(final WebDriver webdriver) {
         super(webdriver);

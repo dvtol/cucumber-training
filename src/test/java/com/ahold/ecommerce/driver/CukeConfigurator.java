@@ -70,7 +70,7 @@ public class CukeConfigurator {
     protected int timeOutInterval;
     protected String dev_login;
     protected String dev_password;
-    protected String targetHostName;
+    public String targetHostName;
     protected String testdata_dir;
 
 
@@ -90,7 +90,7 @@ public class CukeConfigurator {
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
             } else {
-                options.addArguments("--start-maximized");
+                options.addArguments("--start-fullscreen");
             }
             return new EventFiringWebDriver(new org.openqa.selenium.chrome.ChromeDriver(options));
         }
@@ -125,7 +125,7 @@ public class CukeConfigurator {
             capabilities.setCapability("idleTimeout", 60);
             if (browserScreenSize.toLowerCase().equals("default")) {
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--start-maximized");
+                options.addArguments("--start-fullscreen");
                 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
             } else {
                 capabilities.setCapability("screenResolution", browserScreenSize);
@@ -162,10 +162,13 @@ public class CukeConfigurator {
             timeOutInterval = Integer.parseInt(propDefault.getProperty("timeout.interval.seconds"));
             testdata_dir = propDefault.getProperty("test.data.dir");
             Path path = Paths.get("src/test/resources/spring-properties/local.properties.yml");
-            if (Files.exists(path)) {
+            if (!Files.exists(path)) {
+                propDefault.load(inputDefault);
+                targetHostName = propDefault.getProperty("target.host.name");
+            } else {
                 inputLocal = new FileInputStream("src/test/resources/spring-properties/local.properties.yml");
                 propLocal.load(inputLocal);
-                targetHostName = propDefault.getProperty("target.host.name");
+                targetHostName = propLocal.getProperty("target.host.name");
             }
         } catch (IOException io) {
             io.printStackTrace();

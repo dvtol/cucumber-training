@@ -48,7 +48,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BasePage extends CukeConfigurator {
 
-    private WebDriver webDriver;
+    protected WebDriver webDriver;
     private static final long SECONDS_PAGELOAD_REFRESH = 5;
 
     public BasePage(final WebDriver webdriver) {
@@ -105,6 +105,10 @@ public class BasePage extends CukeConfigurator {
     //Used to find elements with the specified testhook plus the extraCSS
     public static By cssCombinedWithTestHook(String testHookId, String extraCSS) {
         return css("[data-testhookid='%s']%s", testHookId, extraCSS);
+    }
+
+    public static By testDataHook(final String element) {
+        return css("[data-testhookid='%s']", element);
     }
 
     /* Webdriver & Browser commands */
@@ -546,11 +550,11 @@ public class BasePage extends CukeConfigurator {
     /**
      * Navigate to the given ah.nl page of an environment
      *
-     * @param environment subdomain of the environment, eg 'tst'
+     //* @param environment subdomain of the environment, eg 'tst'
      * @param path        path to navigate to, should start with a '/'
      */
     public void navigateToEnvironment(final String environment, final String path) {
-        navigateToPage("http://" + environment + ".ah.nl" + path);
+        navigateToPage("https://" + environment + ".ah.nl");
     }
 
     public void navigateForward() {
