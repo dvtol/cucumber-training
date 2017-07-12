@@ -30,9 +30,9 @@ public class CheckoutPage extends BasePage {
         $$(By.xpath(testdata.JsonData("webelements_checkout", "AH Pick Up Point"))).filterBy(visible).get(0).click();
         $(testDataHook(testdata.JsonData("webelements_checkout", "Timeslot 6"))).click();
         $(testDataHook(testdata.JsonData("webelements_checkout", "Afronden"))).click();
-        $$(By.xpath(testdata.JsonData("webelements_checkout", "Volgende"))).filterBy(visible);
+        $$(By.xpath(testdata.JsonData("webelements_checkout", "Volgende"))).filterBy(visible).get(0).click();;
 
         // confirm order
-        $$(By.xpath(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).filterBy(visible);
+        $$(By.xpath(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).filterBy(visible).get(0).click();;
     }
 }
