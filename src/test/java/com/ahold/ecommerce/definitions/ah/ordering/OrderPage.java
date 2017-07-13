@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.ahold.ecommerce.data._JsonData;
 import com.ahold.ecommerce.definitions._generics.BasePage;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
@@ -22,6 +23,8 @@ public class OrderPage extends BasePage {
 
     @Step("Ordering product(s) on AH web")
     public void productSelection() {
+
+        Configuration.timeout = 8000;
 
         // product selection flow
         $(testDataHook(testdata.JsonData("webelements_order", "Producten Home"))).click();

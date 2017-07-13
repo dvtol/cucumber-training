@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.ahold.ecommerce.data._JsonData;
 import com.ahold.ecommerce.definitions._generics.BasePage;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -23,7 +24,7 @@ public class CheckoutPage extends BasePage {
     @Step("Checkout selected product(s) on AH web and finish order")
     public void orderProduct() {
 
-        //TODO - replace xpath with Selenide filterBy option!
+        Configuration.timeout = 8000;
 
         // getting through checkout flow
         $(testDataHook(testdata.JsonData("webelements_checkout", "Online bestellen"))).click();
