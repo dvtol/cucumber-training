@@ -554,7 +554,7 @@ public class BasePage extends CukeConfigurator {
      * @param path        path to navigate to, should start with a '/'
      */
     public void navigateToEnvironment(final String environment, final String path) {
-        navigateToPage("https://" + environment + ".ah.nl");
+        navigateToPage("https://" + environment);
     }
 
     public void navigateForward() {
