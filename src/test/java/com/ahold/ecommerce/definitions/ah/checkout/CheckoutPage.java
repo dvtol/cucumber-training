@@ -33,6 +33,6 @@ public class CheckoutPage extends BasePage {
         $$(By.xpath(testdata.JsonData("webelements_checkout", "Volgende"))).filterBy(visible).get(0).click();;
 
         // confirm order
-        $$(By.xpath(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).filterBy(visible).get(0).click();;
+        //$$(By.xpath(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).filterBy(visible).get(0).click();
     }
 }
