@@ -24,7 +24,7 @@ public class OrderPage extends BasePage {
     @Step("Ordering product(s) on AH web")
     public void productSelection() {
 
-        Configuration.timeout = 8000;
+        Configuration.timeout = 15000;
 
         // product selection flow
         $(testDataHook(testdata.JsonData("webelements_order", "Producten Home"))).click();

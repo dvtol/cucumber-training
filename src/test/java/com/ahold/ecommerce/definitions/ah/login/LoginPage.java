@@ -21,7 +21,7 @@ public class LoginPage extends BasePage {
     @Step("Inloggen AH test-omgeving")
     public void loginAhEnvironment() {
 
-        Configuration.timeout = 8000;
+        Configuration.timeout = 15000;
 
         // login AH home
         $(testDataHook(testdata.JsonData("webelements_login", "Inloggen Home"))).click();

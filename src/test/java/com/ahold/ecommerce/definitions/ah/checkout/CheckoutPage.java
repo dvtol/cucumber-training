@@ -1,5 +1,6 @@
 package com.ahold.ecommerce.definitions.ah.checkout;
 
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -24,7 +25,7 @@ public class CheckoutPage extends BasePage {
     @Step("Checkout selected product(s) on AH web and finish order")
     public void orderProduct() {
 
-        Configuration.timeout = 8000;
+        Configuration.timeout = 15000;
 
         // getting through checkout flow
         $(testDataHook(testdata.JsonData("webelements_checkout", "Online bestellen"))).click();
@@ -32,7 +33,6 @@ public class CheckoutPage extends BasePage {
         $(testDataHook(testdata.JsonData("webelements_checkout", "Timeslot 6"))).click();
         $(testDataHook(testdata.JsonData("webelements_checkout", "Afronden"))).click();
         $$(By.xpath(testdata.JsonData("webelements_checkout", "Volgende"))).filterBy(visible).get(0).click();;
-
         // confirm order
         $$(By.xpath(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).filterBy(visible).get(0).click();
     }

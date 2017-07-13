@@ -11,7 +11,6 @@ import org.json.simple.parser.ParseException;
 
 public class _JsonData extends CukeConfigurator {
 
-    @Step("Retreive required JSON data:")
     public String JsonData(String category, String data) {
         JSONParser parser = new JSONParser();
         Object obj = null;
@@ -30,6 +29,10 @@ public class _JsonData extends CukeConfigurator {
             JSONObject jsonNumber = (JSONObject) ahobjects;
             ah_data = (String) jsonNumber.get(data);
         }
+        dataRetrieve(category, data, ah_data);
         return ah_data;
     }
+
+    @Step("Retreive required JSON data:")
+    public void dataRetrieve(String category, String data, String retrievedData) {}
 }
