@@ -1,6 +1,7 @@
 package com.ahold.ecommerce.data;
 
 import com.ahold.ecommerce.driver.CukeConfigurator;
+import io.qameta.allure.Step;
 import java.io.FileReader;
 import java.io.IOException;
 import org.json.simple.JSONArray;
@@ -28,6 +29,10 @@ public class _JsonData extends CukeConfigurator {
             JSONObject jsonNumber = (JSONObject) ahobjects;
             ah_data = (String) jsonNumber.get(data);
         }
+        dataRetrieve(category, data, ah_data);
         return ah_data;
     }
+
+    @Step("Retreive required JSON data:")
+    public void dataRetrieve(String category, String data, String retrievedData) {}
 }

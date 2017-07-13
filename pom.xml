@@ -23,7 +23,7 @@
         <maven.surefire.version>2.20</maven.surefire.version>
         <webdrivermanager.version>1.7.0</webdrivermanager.version>
         <aspectj.version>1.8.4</aspectj.version>
-        <number.of.threads>4</number.of.threads>
+        <number.of.threads>3</number.of.threads>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>

@@ -7,10 +7,16 @@
     }
   ],
 
-  "ah_customer_elcheapo": [
+  "ah_customer_test": [
     {
       "naam": "Dhr test",
-      "adres": "teststraat 151",
+      "adres": "teststraat 151"
+    }
+  ],
+
+
+  "ah_customer_elcheapo": [
+    {
       "email": "danny.tol.van@ah.nl",
       "wachtwoord": "ahtest.123"
     }
