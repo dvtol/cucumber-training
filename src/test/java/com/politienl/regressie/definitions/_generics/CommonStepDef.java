@@ -1,8 +1,8 @@
 package com.ahold.ecommerce.definitions._generics;
 
-import com.ahold.ecommerce.definitions.ah.checkout.CheckoutPage;
-import com.ahold.ecommerce.definitions.ah.login.LoginPage;
-import com.ahold.ecommerce.definitions.ah.ordering.OrderPage;
+import com.ahold.ecommerce.definitions.politie.nl.checkout.CheckoutPage;
+import com.ahold.ecommerce.definitions.politie.nl.login.LoginPage;
+import com.ahold.ecommerce.definitions.politie.nl.ordering.OrderPage;
 import com.ahold.ecommerce.driver.CukeConfigurator;
 import cucumber.api.java.nl.Dan;
 import cucumber.api.java.nl.En;

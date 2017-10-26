@@ -1,12 +1,11 @@
-package com.ahold.ecommerce.definitions.ah.checkout;
+package com.politienl.regressie.definitions.politie.nl.checkout;
 
-import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.ahold.ecommerce.data._JsonData;
-import com.ahold.ecommerce.definitions._generics.BasePage;
+import com.politienl.regressie.data._JsonData;
+import com.politienl.regressie.definitions._generics.BasePage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
