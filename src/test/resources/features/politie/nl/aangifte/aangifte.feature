@@ -6,4 +6,5 @@ Functionaliteit: regressie aangifte
     Gegeven dat gebruiker is ingelogd op de homepage van politie.nl
 
 
-  Scenario: aangifte middels digid
+  Scenario: aangifte met behulp van digid
+    Als ik via de home op de link aangifte of melding doen klik

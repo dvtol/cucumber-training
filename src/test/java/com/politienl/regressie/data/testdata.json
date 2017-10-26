@@ -31,24 +31,16 @@
     }
   ],
 
-  "webelements_order": [
+  "webelements_search": [
     {
-      "Producten Home": "navigation-products",
-      "Bakkerij": "link-2861",
-      "AG Goois zonnepittenbrood wit": "add_product_wi56046",
-      "AH Ciabatta brood": "add_product_wi31584",
-      "Mijn lijst Home": "navigation-shoppinglist"
+      "Search keywords": "Hoe doe ik aangifte?"
     }
   ],
 
-  "webelements_checkout": [
+  "webelements_contact": [
     {
-      "Online bestellen": "link-guidance-to-channel",
-      "AH Pick Up Point": "//*[@id=\"change\"]/label[2]/span[2]",
-      "Timeslot 6": "timeslot-6-selectable",
-      "Afronden": "link-checkout-flow",
-      "Volgende": "//*[@id=\"index_1\"]/article/a[2]",
-      "Bevestig bestelling": "//*[@id=\"index_1\"]/article/a[2]"
+      "Plaatsnaam Voorval": "Zeist",
+      "Emailadres": "test@politie.nl"
     }
   ]
 }

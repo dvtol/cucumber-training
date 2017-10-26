@@ -1,8 +1,9 @@
-package com.ahold.ecommerce.driver;
+package com.politienl.regressie.driver;
 
-import com.ahold.ecommerce.definitions._generics.BasePage;
+import com.politienl.regressie.definitions._generics.BasePage;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -11,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
 import lombok.Setter;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
@@ -33,7 +35,7 @@ public class CukeConfigurator {
     }
 
     private static RemoteWebDriver driver;
-    private String Proxy = "http://newproxypac.ah.nl:8000";
+    private String Proxy = "http://newproxypac.politie.nl:8000";
 
     @Value("${browser.name.local}")
     private String localBrowserName;
@@ -57,7 +59,7 @@ public class CukeConfigurator {
     private String browserScreenSize;
     /**
      * screenshot value links to class/method:
-     * {@link com.ahold.ecommerce.driver.TestHooks#embedScreenshot}
+     * {@link com.politienl.regressie.driver.TestHooks#embedScreenshot}
      */
     @Value("${webdriver.screenshots:false}")
     protected boolean screenshots;
@@ -114,9 +116,9 @@ public class CukeConfigurator {
     // remote spring profile. runs via selenium grid
     public WebDriver getRemoteDriver() throws MalformedURLException {
 
-        // set ah proxy
-        org.openqa.selenium.Proxy proxy = new Proxy().setHttpProxy(Proxy).setFtpProxy(Proxy).setSslProxy(Proxy)
-                .setSocksProxy(Proxy);
+        // set politie.nl proxy server
+        //org.openqa.selenium.Proxy proxy = new Proxy().setHttpProxy(Proxy).setFtpProxy(Proxy).setSslProxy(Proxy)
+                //.setSocksProxy(Proxy);
         DesiredCapabilities capabilities = null;
         if (remoteBrowserName.toLowerCase().contains("chrome")) {
             capabilities = DesiredCapabilities.chrome();
@@ -130,14 +132,14 @@ public class CukeConfigurator {
             } else {
                 capabilities.setCapability("screenResolution", browserScreenSize);
             }
-            capabilities.setCapability(CapabilityType.PROXY, proxy);
+            //capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
         if (remoteBrowserName.toLowerCase().contains("firefox")) {
             capabilities = DesiredCapabilities.firefox();
             capabilities.setBrowserName("firefox");
             capabilities.setCapability("recordVideo", false);
             capabilities.setCapability("idleTimeout", 60);
-            capabilities.setCapability(CapabilityType.PROXY, proxy);
+            //capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
         // request node to the hub
         driver = new RemoteWebDriver(new URL(remoteUrl), capabilities);
@@ -148,7 +150,7 @@ public class CukeConfigurator {
         return new EventFiringWebDriver(driver);
     }
 
-    public void setProp() {
+    private void setProp() {
         Properties propDefault = new Properties();
         Properties propLocal = new Properties();
         InputStream inputDefault = null;
@@ -156,7 +158,7 @@ public class CukeConfigurator {
         try {
             inputDefault = new FileInputStream("src/test/resources/spring-properties/config-default.properties.yml");
             propDefault.load(inputDefault);
-            dev_login = propDefault.getProperty("dev.login");
+            dev_login = propDefault.getProperty("dev.zoeken");
             dev_password = propDefault.getProperty("dev.password");
             targetHostName = propDefault.getProperty("target.host.name");
             timeOutInterval = Integer.parseInt(propDefault.getProperty("timeout.interval.seconds"));

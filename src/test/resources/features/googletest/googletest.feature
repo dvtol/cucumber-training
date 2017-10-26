@@ -1,6 +1,6 @@
 #language: nl
 @Googletest
-Functionaliteit: extra t.b.v. test buiten het AH netwerk met Google
+Functionaliteit: extra t.b.v. test buiten het politie netwerk met Google
 
 Achtergrond: Feature: Google calculator
   Gegeven open google
@@ -15,4 +15,3 @@ Scenario: 2 tweede berekening met google
 
 Scenario: 3 search testdata met google
    Als enter testdata in searchbox
-   #Dan I should search based on input data

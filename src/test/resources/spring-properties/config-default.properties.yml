@@ -2,12 +2,12 @@
 webdriver.screenshots: true
 
 # default remote node address
-remote.url.address: http://zalenium.tools.ecom.ahold.nl/wd/hub
+remote.url.address: http://zalenium.tools.ecom.politienl.nl/wd/hub
 
 # set environment of choice
-target.host.name: tst2.ah.nl
+target.host.name: www.acceptatie.politie.nl
 
-# login for the dev-page
+# zoeken for the dev-page
 dev.login: admin
 dev.password: uzGcALbMUXaWJzWQ
 
@@ -28,7 +28,7 @@ chrome.driver.version: latest
 # e.g.: 2.30
 
 # test dir for JSON data
-test.data.dir: src/test/java/com/ahold/ecommerce/data/testdata
+test.data.dir: src/test/java/com/politienl/regressie/data/testdata.json
 
 # screensize
 browser.screen.size: default

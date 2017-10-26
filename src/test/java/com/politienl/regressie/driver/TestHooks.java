@@ -1,11 +1,10 @@
-package com.ahold.ecommerce.driver;
+package com.politienl.regressie.driver;
 
-import com.ahold.ecommerce.definitions._generics.BasePage;
+import com.politienl.regressie.definitions._generics.BasePage;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriverException;
@@ -13,18 +12,22 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.logging.Level;
 
 @Slf4j
-public class TestHooks extends CukeConfigurator {
+public class TestHooks {
 
     private final EventFiringWebDriver webDriver;
     private final BasePage basePage;
+    private CukeConfigurator cukeConfigurator;
 
-
-    public TestHooks(EventFiringWebDriver webDriver, BasePage basePage) {
+    @Autowired
+    public TestHooks(EventFiringWebDriver webDriver, BasePage basePage, CukeConfigurator cukeConfigurator) {
         this.webDriver = webDriver;
         this.basePage = basePage;
+        this.cukeConfigurator = cukeConfigurator;
     }
 
     @Before
@@ -58,7 +61,7 @@ public class TestHooks extends CukeConfigurator {
 
     @After
     public void embedScreenshot(final Scenario scenario) {
-        if (screenshots) {
+        if (cukeConfigurator.screenshots) {
             log.info("creating screenshot");
             scenario.write("\n" + "[ Current Page URL: " + webDriver.getCurrentUrl() + " ]");
             scenario.write("\n" + "[ Current Page Title: " + webDriver.getTitle() + " ]");
@@ -75,7 +78,7 @@ public class TestHooks extends CukeConfigurator {
     }
 
     @Attachment(value = "Snapshot of failed test", type = "image/png")
-    public byte[] failedSnapshot() {
+    private byte[] failedSnapshot() {
         final byte[] screenshot = webDriver.getScreenshotAs(OutputType.BYTES);
         return screenshot;
     }

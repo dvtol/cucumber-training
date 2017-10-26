@@ -1,4 +1,4 @@
-package com.ahold.ecommerce;
+package com.politienl.regressie;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;

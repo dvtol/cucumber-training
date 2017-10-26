@@ -1,5 +1,23 @@
-package com.politienl.regressie.definitions.politie.nl.login;
+package com.politienl.regressie.definitions.politie.nl.meldmisbruik;
+
+import com.politienl.regressie.definitions._generics.BaseStepDef;
+import cucumber.api.java.nl.Als;
+import org.openqa.selenium.support.PageFactory;
+
+import javax.annotation.PostConstruct;
 
 
-public class LoginStepDef {
+public class MeldmisbruikStepDef extends BaseStepDef {
+
+    private MeldmisbruikPage meldmisbruikPage;
+
+    @PostConstruct
+    public void setUp() {
+        meldmisbruikPage = PageFactory.initElements(webDriver, MeldmisbruikPage.class);
+    }
+
+    @Als("^ik via de home een melding inschiet via een contactformulier")
+    public void enter_aanfigte_homelink() {
+        meldmisbruikPage.meldMisbruikContactForm();
+    }
 }

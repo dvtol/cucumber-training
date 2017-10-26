@@ -1,4 +1,4 @@
-package com.ahold.ecommerce.definitions._generics;
+package com.politienl.regressie.definitions._generics;
 
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;

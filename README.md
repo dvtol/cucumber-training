@@ -1,6 +1,6 @@
-# Ah.nl (ahws) - Keten
+# politie.nl - Regressie
 
-Ah.nl keten test set. 
+politie.nl regressie test set. 
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ A step by step series of examples that tell you have to get a development env ru
 Say what the step will be
 
 ```
-(1) https://<own-user>@scm.ecom.ahold.nl/stash/scm/core/ecommerce-ahws-keten.git
+(1) https://<own-user>@politie.nl/stash/scm/core/regressie.git
 (2) insert lombok plugin
 ```
 
@@ -74,15 +74,10 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 We use [Git](https://git-scm.com//) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
-## Authors - AH Web Testers
+## Authors - politie.nl (web) Testers
 
-* **Danny van Tol** danny.tol.van@ahold.com
-* **Sherwin Angelo** sherwin.angelo@ahold.com
-* **Gerwin Vaatstra** gerwin.vaatstra@ahold.com
-* **Jeroen Tuitjer** jeroen.tuitjer@ahold.com
-* **Reint-Jan Panman** reint-jan.panman@ahold.com
-* **Maaike Vos** maaike.j.vos@ahold.com
-* **Fred Steenbergen** fred.steenbergen@ahold.com
+* **Danny van Tol** danny.tol.van@ordina.nl
+* **Yassin Khachabi** yassin.khachabi@capgemini.com
 
 ## License
 

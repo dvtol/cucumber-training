@@ -1,38 +1,38 @@
-package com.politienl.regressie.definitions.politie.nl.login;
+package com.politienl.regressie.definitions.politie.nl.meldmisbruik;
 
-
-import static com.codeborne.selenide.Selenide.$;
-import com.politienl.regressie.data._JsonData;
-import com.politienl.regressie.definitions._generics.BasePage;
 import com.codeborne.selenide.Configuration;
+import com.politienl.regressie.definitions._generics.BasePage;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import com.politienl.regressie.data._JsonData;
 
-public class LoginPage extends BasePage {
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
 
-    public LoginPage(WebDriver webDriver) {
+
+public class MeldmisbruikPage extends BasePage {
+
+    public MeldmisbruikPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
 
     private _JsonData testdata = new _JsonData();
 
-    @Step("Inloggen politie.nl test-omgeving")
-    public void loginAhEnvironment() {
+    @Step("Meldmisbruik via contactformulier")
+    protected void meldMisbruikContactForm() {
 
         Configuration.timeout = 15000;
 
-        // login AH home
-        $(testDataHook(testdata.JsonData("webelements_login", "Inloggen Home"))).click();
-
-        // login with username and password
-        $(testDataHook(testdata.JsonData("webelements_login", "email_element")))
-                .setValue(testdata.JsonData("nl_customer_politie", "email"));
-        $(testDataHook(testdata.JsonData("webelements_login", "wachtwoord_element")))
-                .setValue(testdata.JsonData("nl_customer_politie", "wachtwoord"));
-
-        // click button to login
-        $(testDataHook(testdata.JsonData("webelements_login", "Inloggen"))).click();
+        $(By.id("aangifte-melding")).click();
+        $(By.xpath("//*[@id=\"linkspagina\"]/dl/dd[7]/a")).click();
+        $(By.xpath("//*[@id=\"link-anders\"]/ul/li[5]/a")).click();
+        $(By.id("field-1-2")).setValue(testdata.JsonData("webelements_contact", "Plaatsnaam Voorval")).submit();
+        $(By.id("field-1-14")).setValue(testdata.JsonData("webelements_contact", "Emailadres")).submit();
+        $(By.id("submit_button")).click();
+        $(By.id("submit_button")).click();
+        $("#formulier-container > div > div > h3").shouldHave(text("Het formulier is verzonden"));
     }
 }

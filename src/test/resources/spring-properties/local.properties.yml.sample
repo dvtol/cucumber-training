@@ -28,7 +28,7 @@ chrome.driver.version: latest
 # e.g.: 2.30
 
 # test dir for JSON data
-test.data.dir: src/test/java/com/ahold/ecommerce/data/testdata
+test.data.dir: src/test/java/com/ahold/ecommerce/data/testdata.json
 
 # screensize
 browser.screen.size: default

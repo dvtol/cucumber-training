@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ahold.ecommerce.ahws</groupId>
-    <artifactId>ecommerce-ahws-keten</artifactId>
+    <groupId>com.politie.regressie</groupId>
+    <artifactId>politie.regressie</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Ahws Keten</name>
+    <name>Regressie politie.nl</name>
 
     <properties>
         <selenium.version>3.4.0</selenium.version>
@@ -23,7 +23,7 @@
         <maven.surefire.version>2.20</maven.surefire.version>
         <webdrivermanager.version>1.7.0</webdrivermanager.version>
         <aspectj.version>1.8.4</aspectj.version>
-        <number.of.threads>3</number.of.threads>
+        <number.of.threads>4</number.of.threads>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -192,7 +192,7 @@
                             <!-- Mandatory -->
                             <!-- List of package names to scan for glue code. -->
                             <glue>
-                                <package>com.ahold.ecommerce</package>
+                                <package>com.politienl.regressie</package>
                             </glue>
                             <!-- These are optional, with the default values -->
                             <!-- Where to output the generated tests -->
@@ -271,7 +271,7 @@
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
                 <artifactId>allure-maven-plugin</artifactId>
-                <version>2.5</version>
+                <version>2.6</version>
             </plugin>
         </plugins>
     </reporting>

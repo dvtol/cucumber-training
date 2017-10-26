@@ -1,10 +1,5 @@
-package com.politienl.regressie.definitions.politie.nl.checkout;
+package com.politienl.regressie.definitions.politie.nl.aangifte;
 
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
-import com.politienl.regressie.data._JsonData;
 import com.politienl.regressie.definitions._generics.BasePage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
@@ -12,27 +7,32 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPage extends BasePage {
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
 
-    public CheckoutPage(WebDriver webDriver) {
+public class AangiftePage extends BasePage {
+
+    public AangiftePage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
 
-    private _JsonData testdata = new _JsonData();
+    //private _JsonData testdata = new _JsonData();
 
-    @Step("Checkout selected product(s) on AH web and finish order")
-    public void orderProduct() {
+
+    @Step("Angifte melding doen middels digid")
+    protected void aangifteProcesDigid() {
 
         Configuration.timeout = 15000;
-
-        // getting through checkout flow
-        $(testDataHook(testdata.JsonData("webelements_checkout", "Online bestellen"))).click();
-        $$(By.xpath(testdata.JsonData("webelements_checkout", "AH Pick Up Point"))).filterBy(visible).get(0).click();
-        $(testDataHook(testdata.JsonData("webelements_checkout", "Timeslot 6"))).click();
-        $(testDataHook(testdata.JsonData("webelements_checkout", "Afronden"))).click();
-        $$(By.xpath(testdata.JsonData("webelements_checkout", "Volgende"))).filterBy(visible).get(0).click();;
-        // confirm order
-        $$(By.xpath(testdata.JsonData("webelements_checkout", "Bevestig bestelling"))).filterBy(visible).get(0).click();
+        $(By.id("aangifte-melding")).click();
+        $(By.xpath("//*[@id=\"linkspagina\"]/dl/dd[2]/a")).click();
+        $(By.xpath("//*[@id=\"link-diefstal-zakkenrollerij-of-inbraak\"]/ul/li[1]/a")).click();
+        $(By.xpath("//*[@id=\"main-content\"]/article/div/div/ul[1]/li/a")).click();
+        $(By.id("antwoord-1-false")).click();
+        $(By.id("antwoord-2-false")).click();
+        $(By.id("antwoord-3-false")).click();
+        $(By.id("antwoord-4-false")).click();
+        $(By.xpath("//*[@id=\"ia-dialog-footer-goed\"]/button[2]/span[1]")).click();
+        $(".main-content").shouldHave(text("Inloggen bij Politie - Burgerportaal"));
     }
 }

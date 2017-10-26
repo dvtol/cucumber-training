@@ -1,10 +1,10 @@
-package com.ahold.ecommerce.definitions.googletest;
+package com.politienl.regressie.definitions.googletest;
 
 import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Dan;
 import cucumber.api.java.nl.Gegeven;
 import org.openqa.selenium.support.PageFactory;
-import com.ahold.ecommerce.definitions._generics.BaseStepDef;
+import com.politienl.regressie.definitions._generics.BaseStepDef;
 
 import javax.annotation.PostConstruct;
 

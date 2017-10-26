@@ -1,6 +1,6 @@
-package com.ahold.ecommerce.data;
+package com.politienl.regressie.data;
 
-import com.ahold.ecommerce.driver.CukeConfigurator;
+import com.politienl.regressie.driver.CukeConfigurator;
 import io.qameta.allure.Step;
 import java.io.FileReader;
 import java.io.IOException;

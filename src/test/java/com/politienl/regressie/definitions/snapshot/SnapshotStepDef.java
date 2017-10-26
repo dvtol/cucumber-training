@@ -1,6 +1,6 @@
-package com.ahold.ecommerce.definitions.snapshot;
+package com.politienl.regressie.definitions.snapshot;
 
-import com.ahold.ecommerce.definitions._generics.BaseStepDef;
+import com.politienl.regressie.definitions._generics.BaseStepDef;
 import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Gegeven;
 import io.qameta.allure.Step;

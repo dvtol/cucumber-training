@@ -1,11 +1,11 @@
-package com.ahold.ecommerce.definitions.googletest;
+package com.politienl.regressie.definitions.googletest;
 
-import com.ahold.ecommerce.data._JsonData;
+import com.politienl.regressie.data._JsonData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.ahold.ecommerce.definitions._generics.BasePage;
+import com.politienl.regressie.definitions._generics.BasePage;
 
 public class GoogleTestPage extends BasePage {
 

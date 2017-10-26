@@ -1,9 +1,9 @@
-package com.ahold.ecommerce.definitions.snapshot;
+package com.politienl.regressie.definitions.snapshot;
 
 import static com.codeborne.selenide.Selenide.$;
 import static org.junit.Assert.assertFalse;
 
-import com.ahold.ecommerce.definitions._generics.BasePage;
+import com.politienl.regressie.definitions._generics.BasePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;

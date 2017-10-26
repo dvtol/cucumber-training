@@ -1,4 +1,4 @@
-package com.ahold.ecommerce.definitions._generics;
+package com.politienl.regressie.definitions._generics;
 
 import static java.lang.String.format;
 import static org.openqa.selenium.support.ui.ExpectedConditions.or;
@@ -8,7 +8,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentI
 import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-import com.ahold.ecommerce.driver.CukeConfigurator;
+import com.politienl.regressie.driver.CukeConfigurator;
 import com.google.common.base.Function;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,7 +48,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BasePage extends CukeConfigurator {
 
-    protected WebDriver webDriver;
+    private WebDriver webDriver;
     private static final long SECONDS_PAGELOAD_REFRESH = 5;
 
     public BasePage(final WebDriver webdriver) {
@@ -539,7 +539,7 @@ public class BasePage extends CukeConfigurator {
     }
 
     /**
-     * Navigate to the ah.nl home page of the given environment
+     * Navigate to the politie.nl meldmisbruik page of the given environment
      *
      * @param environment subdomain of the environment, eg 'tst'
      */
@@ -548,7 +548,7 @@ public class BasePage extends CukeConfigurator {
     }
 
     /**
-     * Navigate to the given ah.nl page of an environment
+     * Navigate to the given politie.nl page of an environment
      *
      //* @param environment subdomain of the environment, eg 'tst'
      * @param path        path to navigate to, should start with a '/'
