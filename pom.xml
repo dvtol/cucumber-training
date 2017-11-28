@@ -197,7 +197,7 @@
                             <!-- Mandatory -->
                             <!-- List of package names to scan for glue code. -->
                             <glue>
-                                <package>com.politienl.regressie</package>
+                                <package>com.kvknl.regressie</package>
                             </glue>
                             <!-- These are optional, with the default values -->
                             <!-- Where to output the generated tests -->

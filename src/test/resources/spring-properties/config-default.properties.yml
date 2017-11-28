@@ -2,10 +2,10 @@
 webdriver.screenshots: true
 
 # default remote node address
-remote.url.address: http://zalenium.tools.ecom.politienl.nl/wd/hub
+remote.url.address: http://zalenium.tools.ecom.kvknl.nl/wd/hub
 
 # set environment of choice
-target.host.name: www.acceptatie.politie.nl
+target.host.name: www.acceptatie.kvk.nl
 
 # zoeken for the dev-page
 dev.login: admin
@@ -28,7 +28,7 @@ chrome.driver.version: latest
 # e.g.: 2.30
 
 # test dir for JSON data
-test.data.dir: src/test/java/com/politienl/regressie/data/testdata.json
+test.data.dir: src/test/java/com/kvknl/regressie/data/testdata.json
 
 # screensize
 browser.screen.size: default
