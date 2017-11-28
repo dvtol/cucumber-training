@@ -1,0 +1,12 @@
+# database user name
+database.Username = admin123
+
+# database password
+database.Password = admin123
+
+# default host address
+database.Host = localhost
+
+# default host port number
+database.PortNumber = 27017
+

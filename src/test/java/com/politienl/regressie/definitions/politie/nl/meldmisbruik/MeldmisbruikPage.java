@@ -30,7 +30,7 @@ public class MeldmisbruikPage extends BasePage {
         $(By.xpath("//*[@id=\"linkspagina\"]/dl/dd[7]/a")).click();
         $(By.xpath("//*[@id=\"link-anders\"]/ul/li[5]/a")).click();
         $(By.id("field-1-2")).setValue(testdata.JsonData("webelements_contact", "Plaatsnaam Voorval")).submit();
-        $(By.id("field-1-14")).setValue(testdata.JsonData("webelements_contact", "Emailadres")).submit();
+        $(By.id("field-1-12")).setValue(testdata.JsonData("webelements_contact", "Emailadres")).submit();
         $(By.id("submit_button")).click();
         $(By.id("submit_button")).click();
         $("#formulier-container > div > div > h3").shouldHave(text("Het formulier is verzonden"));

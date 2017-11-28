@@ -157,6 +157,11 @@
             <version>${webdrivermanager.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.5.0</version>
+        </dependency>
     </dependencies>
     <build>
         <pluginManagement>
