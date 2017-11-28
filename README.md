@@ -1,6 +1,6 @@
-# politie.nl - Regressie
+# kvk-or.nl - Regressie
 
-politie.nl regressie test set. 
+kvk OR regressie test set. 
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ A step by step series of examples that tell you have to get a development env ru
 Say what the step will be
 
 ```
-(1) https://<own-user>@politie.nl/stash/scm/core/regressie.git
+(1) git@git.k94.kvk.nl:<YOUR_USER>/kvk-or-regressie.git
 (2) insert lombok plugin
 ```
 
@@ -74,10 +74,12 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 We use [Git](https://git-scm.com//) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
-## Authors - politie.nl (web) Testers
+## Authors - kvk.nl OR Team
 
-* **Danny van Tol** danny.tol.van@ordina.nl
-* **Yassin Khachabi** yassin.khachabi@capgemini.com
+* **Danny van Tol** danny.tol.van@kvk.nl
+* **Glenn Dasai** glenn.dasai@kvk.nl
+* **Salomo Petrus** salomo.petrus@kvk.nl
+* **Sybren Boland** sybren.boland@kvk.nl
 
 ## License
 
