@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvk.nl.zoeken;
+package com.kvknl.regressie.definitions.kvkor.voortzettenregistratie;
 
 import com.kvknl.regressie.definitions._generics.BasePage;
 import com.codeborne.selenide.Configuration;
@@ -13,9 +13,9 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class ZoekenPage extends BasePage {
+public class VoortzettenRegistratiePage extends BasePage {
 
-    public ZoekenPage(WebDriver webDriver) {
+    public VoortzettenRegistratiePage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }

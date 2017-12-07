@@ -4,8 +4,8 @@ webdriver.screenshots: true
 # default remote node address
 remote.url.address: http://zalenium.tools.ecom.kvknl.nl/wd/hub
 
-# set environment of choice
-target.host.name: www.acceptatie.kvk.nl
+# set environment of choice - SAMPLE!
+target.host.name: or-notarissen-frontoffice.acp.k94.kvk.nl/zb/secureL2/kvkonlineregistreren/
 
 # zoeken for the dev-page
 dev.login: admin

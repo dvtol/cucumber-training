@@ -10,6 +10,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 
 import com.kvknl.regressie.driver.CukeConfigurator;
 import com.google.common.base.Function;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -17,23 +20,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import lombok.experimental.var;
 import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -543,7 +539,7 @@ public class BasePage extends CukeConfigurator {
      *
      * @param environment subdomain of the environment, eg 'tst'
      */
-    public void navigateToEnvironment(final String environment) {
+    public void navigateToEnvironment(final String environment) throws AWTException {
         navigateToEnvironment(environment, "/");
     }
 
@@ -554,7 +550,7 @@ public class BasePage extends CukeConfigurator {
      * @param path        path to navigate to, should start with a '/'
      */
     public void navigateToEnvironment(final String environment, final String path) {
-        navigateToPage("https://" + environment);
+        navigateToPage("http://" + environment);
     }
 
     public void navigateForward() {

@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvk.nl.meldmisbruik;
+package com.kvknl.regressie.definitions.kvkor.wijzigregistratie;
 
 import com.codeborne.selenide.Configuration;
 import com.kvknl.regressie.definitions._generics.BasePage;
@@ -12,9 +12,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class MeldmisbruikPage extends BasePage {
+public class WijzigRegistratiePage extends BasePage {
 
-    public MeldmisbruikPage(WebDriver webDriver) {
+    public WijzigRegistratiePage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }

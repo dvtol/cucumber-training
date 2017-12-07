@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.politie.regressie</groupId>
-    <artifactId>politie.regressie</artifactId>
+    <groupId>com.kvknl.regressie</groupId>
+    <artifactId>kvknl.regressie</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Regressie politie.nl</name>
+    <name>Regressie KvK OR</name>
 
     <properties>
         <selenium.version>3.4.0</selenium.version>

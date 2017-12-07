@@ -18,6 +18,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -33,7 +34,7 @@ public class CukeConfigurator {
     }
 
     private static RemoteWebDriver driver;
-    private String Proxy = "http://newproxypac.kvk.nl:8000";
+    private String Proxy = "proxy1.kvk.nl:8080";
 
     @Value("${browser.name.local}")
     private String localBrowserName;
@@ -98,6 +99,7 @@ public class CukeConfigurator {
 
             if (firefoxDriverVersion.equals("latest")) {
                 FirefoxDriverManager.getInstance().proxy(Proxy).setup();
+
             } else {
                 FirefoxDriverManager.getInstance().version(firefoxDriverVersion).proxy(Proxy).setup();
             }

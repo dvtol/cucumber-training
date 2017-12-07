@@ -1,0 +1,10 @@
+#language: nl
+@NieuweInschrijving
+Functionaliteit: OR frontoffice inlog
+
+  Achtergrond: Feature: OR frontoffice inlog
+    Gegeven dat gebruiker is ingelogd op de OR pagina van de KvK
+
+  Scenario: Inschrijving Besloten Venootschap
+    Als de gebruiker voor een nieuwe inschrijving met als rechtsvorm BV
+    En de benodigde en verplichte gegevens opvoerd
