@@ -6,7 +6,15 @@
       "datum_akte_van_oprichting": "01-01-2016",
       "datum_ingang": "02-12-2017",
       "geplaatst_kapitaal": "100",
-      "gestort_kapitaal": "100"
+      "gestort_kapitaal": "100",
+      "datum_intreden_functionaris": "01-11-2017",
+      "achternaam_bestuurder": "van Dongen",
+      "voornamen_voluit_bestuurder": "Test Tester Getest",
+      "tussenvoegsels_bestuuder": "van",
+      "geboortedatum_bestuuder": "06-03-1983",
+      "geboorteplaats_bestuurder": "Delft",
+      "postcode_prive_bestuurder": "1111AA",
+      "huisnummer_prive_bestuurder": "151"
     }
   ],
 

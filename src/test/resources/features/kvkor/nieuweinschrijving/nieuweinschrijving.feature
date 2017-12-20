@@ -7,4 +7,10 @@ Functionaliteit: OR frontoffice inlog
 
   Scenario: Inschrijving Besloten Venootschap
     Als de gebruiker voor een nieuwe inschrijving met als rechtsvorm BV
-    En de benodigde en verplichte gegevens opvoerd
+    En de benodigde en verplichte gegevens zijn opvoerd
+
+
+  #Scenario: Inschrijving Eenmanszaak
+  #Scenario: Inschrijving VOF
+  #Scenario: Inschrijving Naamloze Venootschap
+

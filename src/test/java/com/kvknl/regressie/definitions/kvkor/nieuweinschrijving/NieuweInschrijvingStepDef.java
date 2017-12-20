@@ -28,7 +28,7 @@ public class NieuweInschrijvingStepDef extends BaseStepDef {
         samenstellenOpgavePage.keuzeRechtsvorm();
     }
 
-    @En("^de benodigde en verplichte gegevens opvoerd")
+    @En("^de benodigde en verplichte gegevens zijn opvoerd")
     public void vullen_gegevens_inschrijving() {
         basisgegevensRechtspersoonPage.BasisgegevensRechtspersoon();
         bestuurderDataPage.GegevensBestuurder();
