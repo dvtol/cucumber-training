@@ -14,7 +14,16 @@
       "geboortedatum_bestuuder": "06-03-1983",
       "geboorteplaats_bestuurder": "Delft",
       "postcode_prive_bestuurder": "1111AA",
-      "huisnummer_prive_bestuurder": "151"
+      "huisnummer_prive_bestuurder": "151",
+      "datum_ingang_vestiging": "01-11-2017",
+      "postcode_vestiging": "8233GT",
+      "huisnummer_vestiging": "273",
+      "activiteitomschrijving_vestiging": "Voor testdoeleinden",
+      "handelsnaam_vestiging": "Testdata inzake Handel",
+      "werkzame_pers_fulltime_vestiging": "3",
+      "werkzame_pers_parttime_vestiging": "3",
+      "naam_referent_contactpersoon": "Tester",
+      "email_referent_contactpersoon": "test@tester.nl"
     }
   ],
 
