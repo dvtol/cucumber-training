@@ -18,7 +18,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -103,8 +103,8 @@ public class CukeConfigurator {
             } else {
                 FirefoxDriverManager.getInstance().version(firefoxDriverVersion).proxy(Proxy).setup();
             }
-            final FirefoxProfile firefoxProfile = new FirefoxProfile();
-            firefoxProfile.setPreference("browser.helperApps.alwaysAsk.force", false);
+            ProfilesIni profile = new ProfilesIni();
+            final FirefoxProfile firefoxProfile = profile.getProfile("CucumberFirefoxProfiel");
             return new EventFiringWebDriver(new FirefoxDriver(firefoxProfile));
         }
         throw new IllegalArgumentException(String.format("Illegal value for browser parameter: %s", localBrowserName));
