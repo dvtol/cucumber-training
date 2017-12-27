@@ -7,7 +7,7 @@
       "datum_ingang": "02-12-2017",
       "geplaatst_kapitaal": "100",
       "gestort_kapitaal": "100",
-      "datum_intreden_functionaris": "01-11-2017",
+      "datum_intreden_functionaris": "02-12-2017",
       "achternaam_bestuurder": "van Dongen",
       "voornamen_voluit_bestuurder": "Test Tester Getest",
       "tussenvoegsels_bestuuder": "van",
@@ -15,33 +15,32 @@
       "geboorteplaats_bestuurder": "Delft",
       "postcode_prive_bestuurder": "1111AA",
       "huisnummer_prive_bestuurder": "151",
-      "datum_ingang_vestiging": "01-11-2017",
+      "datum_ingang_vestiging": "02-12-2017",
       "postcode_vestiging": "8233GT",
       "huisnummer_vestiging": "273",
       "activiteitomschrijving_vestiging": "Voor testdoeleinden",
       "handelsnaam_vestiging": "Testdata inzake Handel",
       "werkzame_pers_fulltime_vestiging": "3",
       "werkzame_pers_parttime_vestiging": "3",
-      "naam_referent_contactpersoon": "Tester",
-      "email_referent_contactpersoon": "test@tester.nl"
+      "naam_contactpersoon_referent": "Tester",
+      "email_contactpersoon_referent": "no-reply@kvk.nl",
+      "telefoonnummer_contactpersoon_referent": "02012345678",
+      "uwreferentie_contactpersoon_referent": "team hodor",
+      "aanvullende_contactpersoon_referent": "aanvullende informatie"
     }
   ],
-
   "kvk_customer_test": [
     {
       "naam": "Dhr test",
       "adres": "teststraat 151"
     }
   ],
-
-
   "nl_customer_politie": [
     {
       "email": "test@email.nl",
       "wachtwoord": "test.123"
     }
   ],
-
   "webelements_login": [
     {
       "Inloggen Home": "navigation-login",
@@ -50,13 +49,11 @@
       "Inloggen": "submitButton"
     }
   ],
-
   "webelements_search": [
     {
       "Search keywords": "Hoe doe ik aangifte?"
     }
   ],
-
   "webelements_contact": [
     {
       "Plaatsnaam Voorval": "Zeist",

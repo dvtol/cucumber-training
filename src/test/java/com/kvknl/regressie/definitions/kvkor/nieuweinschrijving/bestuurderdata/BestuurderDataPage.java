@@ -29,6 +29,7 @@ public class BestuurderDataPage extends BasePage {
         $(By.xpath("//*[@id=\"Geboortedatum\"]/input")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "geboortedatum_bestuuder"));
         $(By.id("Postcode")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "postcode_prive_bestuurder"));
         $(By.id("Huisnummer")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "huisnummer_prive_bestuurder"));
+        $(By.id("Opslaan")).click();
         $(By.id("Volgende")).click();
     }
 }

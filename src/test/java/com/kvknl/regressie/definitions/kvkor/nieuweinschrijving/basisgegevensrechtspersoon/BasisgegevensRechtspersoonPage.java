@@ -35,6 +35,7 @@ public class BasisgegevensRechtspersoonPage extends BasePage {
         $(By.id("Datum_ingang")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "datum_ingang"));
         $(By.xpath("//*[@id=\"Zetel\"]")).click();
         $(By.xpath("//*[@id=\"Bestuursmodel\"]/option[2]")).click();
+        $(By.id("Opslaan")).click();
         $(By.id("Volgende")).click();
 
         // vullen verplichte kapitaalgegevens
