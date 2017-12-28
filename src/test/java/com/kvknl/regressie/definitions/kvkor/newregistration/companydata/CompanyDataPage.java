@@ -37,7 +37,5 @@ public class CompanyDataPage extends BasePage {
         $(By.id("Volgende")).click();
         // geen gemachtigden aanwezig
         $(By.id("Volgende")).click();
-        // geen bijlage(n)
-        $(By.id("Volgende")).click();
     }
 }

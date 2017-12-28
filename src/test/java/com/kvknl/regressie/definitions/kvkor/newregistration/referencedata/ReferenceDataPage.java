@@ -24,11 +24,11 @@ public class ReferenceDataPage extends BasePage {
 
         $(By.id("Naam_contactpersoon")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_contactpersoon_referent"));
         $(By.id("E-mailadres_contactpersoon")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "email_contactpersoon_referent"));
+        $(By.id("Telefoonnummer_contactpersoon")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "telefoonnummer_contactpersoon_referent"));
+        $(By.id("Uw_referentie")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "uwreferentie_contactpersoon_referent"));
+        $(By.id("Aanvullende_informatie")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "aanvullende_contactpersoon_referent"));
+        $(By.id("Opslaan")).click();
+        $(By.id("Volgende")).click();
 
-        try {
-            Thread.sleep(12000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

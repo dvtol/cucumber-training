@@ -12,7 +12,6 @@ import com.kvknl.regressie.driver.CukeConfigurator;
 import com.google.common.base.Function;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -23,7 +22,6 @@ import java.util.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import lombok.experimental.var;
 import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
