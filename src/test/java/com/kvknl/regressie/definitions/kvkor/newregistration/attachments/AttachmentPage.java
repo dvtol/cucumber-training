@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvkor.nieuweinschrijving.Bijlagen;
+package com.kvknl.regressie.definitions.kvkor.newregistration.attachments;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.kvknl.regressie.data._JsonData;
@@ -13,9 +13,9 @@ import java.net.URL;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class BijlagenPage extends BasePage {
+public class AttachmentPage extends BasePage {
 
-    public BijlagenPage(WebDriver webDriver) {
+    public AttachmentPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
