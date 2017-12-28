@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvkor.nieuweinschrijving.referentiedata;
+package com.kvknl.regressie.definitions.kvkor.newregistration.referencedata;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.kvknl.regressie.data._JsonData;
@@ -9,9 +9,9 @@ import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class ReferentieDataPage extends BasePage {
+public class ReferenceDataPage extends BasePage {
 
-    public ReferentieDataPage(WebDriver webDriver) {
+    public ReferenceDataPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
@@ -20,7 +20,7 @@ public class ReferentieDataPage extends BasePage {
     private _JsonData testdata = new _JsonData();
 
     @Step("het invullen van de referentie informatie wat betreft de onderneming")
-    public void VulReferentieInformatie() {
+    public void fillReferenceInformation() {
 
         $(By.id("Naam_contactpersoon")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_contactpersoon_referent"));
         $(By.id("E-mailadres_contactpersoon")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "email_contactpersoon_referent"));

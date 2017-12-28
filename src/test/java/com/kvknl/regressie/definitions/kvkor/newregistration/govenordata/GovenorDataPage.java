@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvkor.nieuweinschrijving.bestuurderdata;
+package com.kvknl.regressie.definitions.kvkor.newregistration.govenordata;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.kvknl.regressie.data._JsonData;
@@ -9,9 +9,9 @@ import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class BestuurderDataPage extends BasePage {
+public class GovenorDataPage extends BasePage {
 
-    public BestuurderDataPage(WebDriver webDriver) {
+    public GovenorDataPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
@@ -20,7 +20,7 @@ public class BestuurderDataPage extends BasePage {
     private _JsonData testdata = new _JsonData();
 
     @Step("het invullen van de gegevens van één of meerdere bestuurders")
-    public void GegevensBestuurder() {
+    public void govenorData() {
 
         $(By.id("Datum_waarop_de_functionaris_in_functie_is_getreden")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "datum_intreden_functionaris"));
         $(By.id("Achternaam")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "achternaam_bestuurder"));

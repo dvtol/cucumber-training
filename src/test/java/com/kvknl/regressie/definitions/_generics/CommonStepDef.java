@@ -29,10 +29,7 @@ public class CommonStepDef extends BaseStepDef {
 
     // navigate and zoeken KvK OR test environment
     @Gegeven("^dat gebruiker is ingelogd op de OR pagina van de KvK")
-    public void login_kvkor_testomgeving() throws AWTException, IOException {
+    public void login_kvkor_testenvironment() throws AWTException, IOException {
         commonObjPage.navigateToEnvironment(cukeconfig.targetHostName);
-
-        // using AutoIT to omit the chrome certification dialog
-        //Runtime.getRuntime().exec("C:\\Tools\\ChromeCertDialog\\authenticationChromeCert.exe");
     }
 }

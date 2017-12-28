@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvkor.voortzettenregistratie;
+package com.kvknl.regressie.definitions.kvkor.continueregistration;
 
 
 import com.kvknl.regressie.definitions._generics.BaseStepDef;
@@ -7,13 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.annotation.PostConstruct;
 
-public class VoortzettenRegistratieStepDef extends BaseStepDef {
+public class ContinueRegistrationStepDef extends BaseStepDef {
 
-    private VoortzettenRegistratiePage voortzettenRegistratiePage;
+    private ContinueRegistrationPage voortzettenRegistratiePage;
 
     @PostConstruct
     public void setUp() {
-        voortzettenRegistratiePage = PageFactory.initElements(webDriver, VoortzettenRegistratiePage.class);
+        voortzettenRegistratiePage = PageFactory.initElements(webDriver, ContinueRegistrationPage.class);
     }
 
     @Als("^ik op een searchterm ga zoeken")

@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvkor.nieuweinschrijving.samenstellenopgave;
+package com.kvknl.regressie.definitions.kvkor.newregistration.composeassignment;
 
 import com.kvknl.regressie.data._JsonData;
 import com.kvknl.regressie.definitions._generics.BasePage;
@@ -10,9 +10,9 @@ import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class SamenstellenOpgavePage extends BasePage {
+public class ComposeAssignmentPage extends BasePage {
 
-    public SamenstellenOpgavePage(WebDriver webDriver) {
+    public ComposeAssignmentPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
@@ -21,7 +21,7 @@ public class SamenstellenOpgavePage extends BasePage {
     private _JsonData testdata = new _JsonData();
 
     @Step("het selecteren van een rechtsvorm")
-    public void keuzeRechtsvorm() {
+    public void choiceLegalForm() {
 
         // samenstellen opgave
         Configuration.timeout = 15000;
