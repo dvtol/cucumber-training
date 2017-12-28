@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvkor.wijzigregistratie;
+package com.kvknl.regressie.definitions.kvkor.modifyregistration;
 
 import com.codeborne.selenide.Configuration;
 import com.kvknl.regressie.definitions._generics.BasePage;
@@ -12,9 +12,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class WijzigRegistratiePage extends BasePage {
+public class ModifyRegistrationPage extends BasePage {
 
-    public WijzigRegistratiePage(WebDriver webDriver) {
+    public ModifyRegistrationPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }

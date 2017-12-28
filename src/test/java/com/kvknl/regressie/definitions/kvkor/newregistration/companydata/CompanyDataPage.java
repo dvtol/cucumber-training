@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvkor.nieuweinschrijving.ondernemingdata;
+package com.kvknl.regressie.definitions.kvkor.newregistration.companydata;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
@@ -10,9 +10,9 @@ import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class OndernemingDataPage extends BasePage {
+public class CompanyDataPage extends BasePage {
 
-    public OndernemingDataPage(WebDriver webDriver) {
+    public CompanyDataPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
@@ -21,7 +21,7 @@ public class OndernemingDataPage extends BasePage {
     private _JsonData testdata = new _JsonData();
 
     @Step("het invoeren van de gegevens van de orderneming waaronder de vestiging(en)")
-    public void OpvoerenVestiging() {
+    public void setUpCompanyBranch() {
 
         $(By.id("Datum_ingang")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "datum_ingang_vestiging"));
         $(By.id("Postcode")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "postcode_vestiging"));

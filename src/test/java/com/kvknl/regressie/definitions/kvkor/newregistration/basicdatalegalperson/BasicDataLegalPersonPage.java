@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvkor.nieuweinschrijving.basisgegevensrechtspersoon;
+package com.kvknl.regressie.definitions.kvkor.newregistration.basicdatalegalperson;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.kvknl.regressie.data._JsonData;
@@ -9,9 +9,9 @@ import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class BasisgegevensRechtspersoonPage extends BasePage {
+public class BasicDataLegalPersonPage extends BasePage {
 
-    public BasisgegevensRechtspersoonPage(WebDriver webDriver) {
+    public BasicDataLegalPersonPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
@@ -20,7 +20,7 @@ public class BasisgegevensRechtspersoonPage extends BasePage {
     private _JsonData testdata = new _JsonData();
 
     @Step("het vullen van de basis en kapitaalgegevens van de rechtspersoon")
-    public void BasisgegevensRechtspersoon() {
+    public void basicDataLegalPerson() {
 
         // vullen verplichte basisgegevens
         $(By.id("Naam_rechtspersoon")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_rechtspersoon"));
