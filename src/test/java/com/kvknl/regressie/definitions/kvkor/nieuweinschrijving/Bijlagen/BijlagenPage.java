@@ -7,6 +7,10 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class BijlagenPage extends BasePage {
@@ -23,7 +27,7 @@ public class BijlagenPage extends BasePage {
     public void ToevoegenBijlagen() {
 
         dropdownSelectByValue((By.id("Type_bijlage")), "Datacard Test Tester Getest van van Dongen (verplicht)");
-        findElement(By.xpath("//*[@id='Bijlage_1']/input")).sendKeys("C:\\work\\GIT\\kvk-or-regressie\\src\\test\\resources\\bijlagen\\Datacard.pdf");
+        findElement(By.xpath("//*[@id='Bijlage_1']/input")).sendKeys(LoadBijlage("bijlagen/Datacard.pdf"));
         buttonClick(By.xpath("/html/body/div[2]/div[4]/div/div[2]/div/div[5]/button"));
         try {
             Thread.sleep(1000);
@@ -31,7 +35,7 @@ public class BijlagenPage extends BasePage {
             e.printStackTrace();
         }
         dropdownSelectByValue((By.id("Type_bijlage")), "Akte van oprichting (verplicht)");
-        findElement(By.xpath("//*[@id='Bijlage_1']/input")).sendKeys("C:\\work\\GIT\\kvk-or-regressie\\src\\test\\resources\\bijlagen\\Akte van oprichting.pdf");
+        findElement(By.xpath("//*[@id='Bijlage_1']/input")).sendKeys(LoadBijlage("bijlagen/Akte van oprichting.pdf"));
         buttonClick(By.xpath("/html/body/div[2]/div[4]/div/div[2]/div/div[5]/button"));
         try {
             Thread.sleep(1000);
@@ -40,5 +44,15 @@ public class BijlagenPage extends BasePage {
         }
         $(By.id("Opslaan")).click();
         $(By.id("Volgende")).click();
+    }
+
+    public String LoadBijlage(String filePath) {
+        URL fileUrl = ClassLoader.getSystemResource(filePath);
+        try {
+            filePath = new File(fileUrl.toURI()).getAbsolutePath();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return filePath;
     }
 }

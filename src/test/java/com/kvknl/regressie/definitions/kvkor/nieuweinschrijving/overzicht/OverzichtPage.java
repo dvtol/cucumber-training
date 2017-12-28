@@ -24,6 +24,12 @@ public class OverzichtPage extends BasePage {
 
         $(By.id("valideren")).click();
         $(By.id("Opslaan")).click();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
 
