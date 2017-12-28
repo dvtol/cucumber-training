@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions.kvkor.nieuweinschrijving.overzicht;
+package com.kvknl.regressie.definitions.kvkor.newregistration.overview;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.kvknl.regressie.data._JsonData;
@@ -9,9 +9,9 @@ import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class OverzichtPage extends BasePage {
+public class OverviewPage extends BasePage {
 
-    public OverzichtPage(WebDriver webDriver) {
+    public OverviewPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }

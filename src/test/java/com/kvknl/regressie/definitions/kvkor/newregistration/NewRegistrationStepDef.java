@@ -6,8 +6,8 @@ import com.kvknl.regressie.definitions.kvkor.newregistration.basicdatalegalperso
 import com.kvknl.regressie.definitions.kvkor.newregistration.companydata.CompanyDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.referencedata.ReferenceDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.composeassignment.ComposeAssignmentPage;
-import com.kvknl.regressie.definitions.kvkor.nieuweinschrijving.Bijlagen.BijlagenPage;
-import com.kvknl.regressie.definitions.kvkor.nieuweinschrijving.overzicht.OverzichtPage;
+import com.kvknl.regressie.definitions.kvkor.newregistration.attachments.AttachmentPage;
+import com.kvknl.regressie.definitions.kvkor.newregistration.overview.OverviewPage;
 import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Dan;
 import cucumber.api.java.nl.En;
@@ -22,8 +22,8 @@ public class NewRegistrationStepDef extends BaseStepDef {
     private GovenorDataPage govenorDataPage;
     private CompanyDataPage companyDataPage;
     private ReferenceDataPage referenceDataPage;
-    private BijlagenPage bijlagenPage;
-    private OverzichtPage overzichtPage;
+    private AttachmentPage attachmentPage;
+    private OverviewPage overviewPage;
 
     @PostConstruct
     public void setUpNewRegistration() {
@@ -31,9 +31,9 @@ public class NewRegistrationStepDef extends BaseStepDef {
         basicDataLegalPersonPage = PageFactory.initElements(webDriver, BasicDataLegalPersonPage.class);
         govenorDataPage = PageFactory.initElements(webDriver, GovenorDataPage.class);
         companyDataPage = PageFactory.initElements(webDriver, CompanyDataPage.class);
-        bijlagenPage = PageFactory.initElements(webDriver, BijlagenPage.class);
+        attachmentPage = PageFactory.initElements(webDriver, AttachmentPage.class);
         referenceDataPage = PageFactory.initElements(webDriver, ReferenceDataPage.class);
-        overzichtPage = PageFactory.initElements(webDriver, OverzichtPage.class);
+        overviewPage = PageFactory.initElements(webDriver, OverviewPage.class);
     }
 
     @Als("^de gebruiker voor een nieuwe inschrijving met als rechtsvorm BV")
@@ -46,12 +46,12 @@ public class NewRegistrationStepDef extends BaseStepDef {
         basicDataLegalPersonPage.basicDataLegalPerson();
         govenorDataPage.govenorData();
         companyDataPage.setUpCompanyBranch();
-        bijlagenPage.addAttachments();
+        attachmentPage.addAttachments();
         referenceDataPage.fillReferenceInformation();
     }
 
     @Dan("^kan de gebruiker de opgave valideren, ondertekenen en indienen")
     public void valideren_ondertekenen_indienen() {
-        overzichtPage.ValiderenOndertekenenIndienen();
+        overviewPage.ValiderenOndertekenenIndienen();
     }
 }
