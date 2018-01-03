@@ -1,6 +1,6 @@
 package com.kvknl.regressie.definitions.kvkor.continueregistration;
 
-import com.kvknl.regressie.definitions._generics.BasePage;
+import com.kvknl.regressie.definitions.generic.BasePage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.kvknl.regressie.driver.DatabaseServices;

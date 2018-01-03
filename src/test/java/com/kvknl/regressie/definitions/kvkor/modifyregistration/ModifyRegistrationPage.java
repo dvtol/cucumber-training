@@ -1,7 +1,7 @@
 package com.kvknl.regressie.definitions.kvkor.modifyregistration;
 
 import com.codeborne.selenide.Configuration;
-import com.kvknl.regressie.definitions._generics.BasePage;
+import com.kvknl.regressie.definitions.generic.BasePage;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;

@@ -1,6 +1,6 @@
 package com.kvknl.regressie.driver;
 
-import com.kvknl.regressie.definitions._generics.BasePage;
+import com.kvknl.regressie.definitions.generic.BasePage;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 

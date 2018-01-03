@@ -1,20 +1,12 @@
-package com.kvknl.regressie.definitions._generics;
+package com.kvknl.regressie.definitions.generic;
 
 import com.kvknl.regressie.driver.CukeConfigurator;
 import cucumber.api.java.nl.Gegeven;
-import lombok.experimental.var;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.annotation.PostConstruct;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
-
-import static java.awt.SystemColor.window;
 
 public class CommonStepDef extends BaseStepDef {
 

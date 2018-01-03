@@ -1,12 +1,12 @@
 package com.kvknl.regressie.definitions.kvkor.newregistration;
 
-import com.kvknl.regressie.definitions._generics.BaseStepDef;
+import com.kvknl.regressie.definitions.generic.BaseStepDef;
 import com.kvknl.regressie.definitions.kvkor.newregistration.govenordata.GovenorDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.basicdatalegalperson.BasicDataLegalPersonPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.companydata.CompanyDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.referencedata.ReferenceDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.composeassignment.ComposeAssignmentPage;
-import com.kvknl.regressie.definitions.kvkor.newregistration.attachments.AttachmentPage;
+import com.kvknl.regressie.definitions.generic.attachments.AttachmentPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.overview.OverviewPage;
 import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Dan;

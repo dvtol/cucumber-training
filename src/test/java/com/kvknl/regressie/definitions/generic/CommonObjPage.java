@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions._generics;
+package com.kvknl.regressie.definitions.generic;
 
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;

@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions._generics;
+package com.kvknl.regressie.definitions.generic;
 
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
