@@ -74,7 +74,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 We use [Git](https://git-scm.com//) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
-## Authors - kvk.nl OR Team
+## Authors - kvk.nl OR(x) Team
 
 * **Danny van Tol** danny.tol.van@kvk.nl
 * **Glenn Dasai** glenn.dasai@kvk.nl
