@@ -13,8 +13,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class FileAttachmentPage extends BasePage {
 
-    private final String requiredfile = "//*[@id='Bijlage_1']/input";
-
     public FileAttachmentPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
@@ -22,6 +20,8 @@ public class FileAttachmentPage extends BasePage {
 
     @Step("het toevoegen van de verplichte bijlagen")
     public void addFileAttachment() {
+
+        final String requiredfile = "//*[@id='Bijlage_1']/input";
 
         // adding required attachments
         dropdownSelectByValue((By.id("Type_bijlage")), "Datacard Test Tester Getest van van Dongen (verplicht)");
