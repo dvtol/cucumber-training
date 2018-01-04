@@ -1,7 +1,6 @@
 package com.kvknl.regressie.definitions.kvkor.newregistration.overview;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.kvknl.regressie.data._JsonData;
 import com.kvknl.regressie.definitions.generic.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -15,9 +14,6 @@ public class OverviewPage extends BasePage {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
-
-    // JSON obj for GUI data
-    private _JsonData testdata = new _JsonData();
 
     @Step("het valideren, ondertekenen en indienen van de opgave")
     public void validateSignAndSumbit() {
