@@ -7,7 +7,6 @@ import com.kvknl.regressie.definitions.kvkor.newregistration.basicdatalegalperso
 import com.kvknl.regressie.definitions.kvkor.newregistration.companydata.CompanyDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.referencedata.ReferenceDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.composeassignment.ComposeAssignmentPage;
-import com.kvknl.regressie.definitions.generic.attachments.AttachmentPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.overview.OverviewPage;
 import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Dan;
