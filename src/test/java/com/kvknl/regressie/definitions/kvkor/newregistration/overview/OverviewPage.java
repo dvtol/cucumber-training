@@ -20,16 +20,10 @@ public class OverviewPage extends BasePage {
     private _JsonData testdata = new _JsonData();
 
     @Step("het valideren, ondertekenen en indienen van de opgave")
-    public void ValiderenOndertekenenIndienen() {
+    public void validateSignAndSumbit() {
 
         $(By.id("valideren")).click();
         $(By.id("Opslaan")).click();
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
 

@@ -51,7 +51,7 @@ public class NewRegistrationStepDef extends BaseStepDef {
     }
 
     @Dan("^kan de gebruiker de opgave valideren, ondertekenen en indienen")
-    public void validateSignAndSumbit() {
-        overviewPage.ValiderenOndertekenenIndienen();
+    public void sumbitRegistration() {
+        overviewPage.validateSignAndSumbit();
     }
 }
