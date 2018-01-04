@@ -1,6 +1,7 @@
 package com.kvknl.regressie.definitions.kvkor.newregistration;
 
 import com.kvknl.regressie.definitions.generic.BaseStepDef;
+import com.kvknl.regressie.definitions.kvkor.newregistration.fileattachment.FileAttachmentPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.govenordata.GovenorDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.basicdatalegalperson.BasicDataLegalPersonPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.companydata.CompanyDataPage;
@@ -22,7 +23,7 @@ public class NewRegistrationStepDef extends BaseStepDef {
     private GovenorDataPage govenorDataPage;
     private CompanyDataPage companyDataPage;
     private ReferenceDataPage referenceDataPage;
-    private AttachmentPage attachmentPage;
+    private FileAttachmentPage attachmentPage;
     private OverviewPage overviewPage;
 
     @PostConstruct
@@ -31,7 +32,7 @@ public class NewRegistrationStepDef extends BaseStepDef {
         basicDataLegalPersonPage = PageFactory.initElements(webDriver, BasicDataLegalPersonPage.class);
         govenorDataPage = PageFactory.initElements(webDriver, GovenorDataPage.class);
         companyDataPage = PageFactory.initElements(webDriver, CompanyDataPage.class);
-        attachmentPage = PageFactory.initElements(webDriver, AttachmentPage.class);
+        attachmentPage = PageFactory.initElements(webDriver, FileAttachmentPage.class);
         referenceDataPage = PageFactory.initElements(webDriver, ReferenceDataPage.class);
         overviewPage = PageFactory.initElements(webDriver, OverviewPage.class);
     }
@@ -46,7 +47,7 @@ public class NewRegistrationStepDef extends BaseStepDef {
         basicDataLegalPersonPage.basicDataLegalPerson();
         govenorDataPage.govenorData();
         companyDataPage.setUpCompanyBranch();
-        attachmentPage.addAttachments();
+        attachmentPage.addFileAttachment();
         referenceDataPage.fillReferenceInformation();
     }
 
