@@ -23,12 +23,11 @@ public class FileAttachmentPage extends BasePage {
     @Step("het toevoegen van de verplichte bijlagen")
     public void addFileAttachment() {
 
+        // adding required attachments
         dropdownSelectByValue((By.id("Type_bijlage")), "Datacard Test Tester Getest van van Dongen (verplicht)");
         findElement(By.xpath(requiredfile)).sendKeys(AttachmentPage.loadAttachment("Datacard.pdf"));
-        buttonClick(By.xpath("/html/body/div[2]/div[4]/div/div[2]/div/div[5]/button"));
         dropdownSelectByValue((By.id("Type_bijlage")), "Akte van oprichting (verplicht)");
         findElement(By.xpath(requiredfile)).sendKeys(AttachmentPage.loadAttachment("Akte van oprichting.pdf"));
-        buttonClick(By.xpath("/html/body/div[2]/div[4]/div/div[2]/div/div[5]/button"));
         $(By.id("Opslaan")).click();
         $(By.id("Volgende")).click();
     }
