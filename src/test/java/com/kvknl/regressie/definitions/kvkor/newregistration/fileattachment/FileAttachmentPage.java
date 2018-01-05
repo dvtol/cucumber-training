@@ -25,8 +25,18 @@ public class FileAttachmentPage extends BasePage {
 
         // adding required attachments
         dropdownSelectByValue((By.id("Type_bijlage")), "Datacard Test Tester Getest van van Dongen (verplicht)");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         findElement(By.xpath(requiredfile)).sendKeys(AttachmentPage.loadAttachment("Datacard.pdf"));
         dropdownSelectByValue((By.id("Type_bijlage")), "Akte van oprichting (verplicht)");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         findElement(By.xpath(requiredfile)).sendKeys(AttachmentPage.loadAttachment("Akte van oprichting.pdf"));
         $(By.id("Opslaan")).click();
         $(By.id("Volgende")).click();
