@@ -36,7 +36,7 @@ public class NewRegistrationStepDef extends BaseStepDef {
         overviewPage = PageFactory.initElements(webDriver, OverviewPage.class);
     }
 
-    @Als("^de gebruiker voor een nieuwe inschrijving met als rechtsvorm BV")
+    @Als("^de gebruiker voor een nieuwe inschrijving kiest met een type rechtsvorm")
     public void selectNewRegistration() {
         composeAssignmentPage.choiceLegalForm();
     }
