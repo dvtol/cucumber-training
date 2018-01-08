@@ -1,6 +1,6 @@
 package com.kvknl.regressie.definitions.kvkor.modifyregistration;
 
-import com.kvknl.regressie.definitions._generics.BaseStepDef;
+import com.kvknl.regressie.definitions.generic.BaseStepDef;
 import cucumber.api.java.nl.Als;
 import org.openqa.selenium.support.PageFactory;
 

@@ -4,7 +4,7 @@ import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Dan;
 import cucumber.api.java.nl.Gegeven;
 import org.openqa.selenium.support.PageFactory;
-import com.kvknl.regressie.definitions._generics.BaseStepDef;
+import com.kvknl.regressie.definitions.generic.BaseStepDef;
 
 import javax.annotation.PostConstruct;
 

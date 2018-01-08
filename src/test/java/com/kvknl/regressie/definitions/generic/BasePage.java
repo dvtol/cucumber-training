@@ -1,4 +1,4 @@
-package com.kvknl.regressie.definitions._generics;
+package com.kvknl.regressie.definitions.generic;
 
 import static java.lang.String.format;
 import static org.openqa.selenium.support.ui.ExpectedConditions.or;

@@ -1,7 +1,7 @@
 package com.kvknl.regressie.definitions.kvkor.newregistration.composeassignment;
 
 import com.kvknl.regressie.data._JsonData;
-import com.kvknl.regressie.definitions._generics.BasePage;
+import com.kvknl.regressie.definitions.generic.BasePage;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;

@@ -3,7 +3,7 @@ package com.kvknl.regressie.definitions.snapshot;
 import static com.codeborne.selenide.Selenide.$;
 import static org.junit.Assert.assertFalse;
 
-import com.kvknl.regressie.definitions._generics.BasePage;
+import com.kvknl.regressie.definitions.generic.BasePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;

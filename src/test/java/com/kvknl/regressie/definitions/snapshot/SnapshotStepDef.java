@@ -1,6 +1,6 @@
 package com.kvknl.regressie.definitions.snapshot;
 
-import com.kvknl.regressie.definitions._generics.BaseStepDef;
+import com.kvknl.regressie.definitions.generic.BaseStepDef;
 import cucumber.api.java.nl.Als;
 import cucumber.api.java.nl.Gegeven;
 import io.qameta.allure.Step;
