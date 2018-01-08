@@ -21,13 +21,13 @@ public class ComposeAssignmentPage extends BasePage {
     private _JsonData testdata = new _JsonData();
 
     @Step("het selecteren van een rechtsvorm")
-    public void choiceLegalForm() {
+    public void choiceLegalForm(String legalForm) {
 
         // samenstellen opgave
         Configuration.timeout = 15000;
         $(By.id("Type_opgave")).click();
         $(By.xpath("//*[@id=\"Type_opgave\"]/option[1]")).click();
-        $(By.xpath("//*[@id=\"Rechtsvorm\"]/option[2]")).click();
+        dropdownSelectByValue(By.id("Rechtsvorm"), legalForm);
         $(By.id("Volgende")).click();
     }
 }
