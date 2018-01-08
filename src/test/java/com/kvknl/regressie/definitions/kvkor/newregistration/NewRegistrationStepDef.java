@@ -42,7 +42,7 @@ public class NewRegistrationStepDef extends BaseStepDef {
     }
 
     @En("^de benodigde en verplichte gegevens zijn opgevoerd")
-    public void fillRegistrationData() {
+    public void fillRegistrationData() throws InterruptedException {
         basicDataLegalPersonPage.basicDataLegalPerson();
         govenorDataPage.govenorData();
         companyDataPage.setUpCompanyBranch();
