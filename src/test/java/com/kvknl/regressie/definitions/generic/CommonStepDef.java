@@ -1,6 +1,7 @@
 package com.kvknl.regressie.definitions.generic;
 
 import com.kvknl.regressie.driver.CukeConfigurator;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -43,14 +44,14 @@ public class CommonStepDef extends BaseStepDef {
         commonObjPage.tab(id);
     }
 
-    @And("^within \"([^\"]*)\" the user chooses for the option \"([^\"]*)\" with \"([^\"]*)\"$")
-    public void chooseOptionFromDropdownlist(String page, String option, String id) {
+    @And("^within \"([^\"]*)\" the user chooses for \"([^\"]*)\" the option \"([^\"]*)\"$")
+    public void chooseOptionFromDropdownlist(String page, String id, String option) {
         commonObjPage.verifyPageTitle(page);
         commonObjPage.chooseOption(id, option);
     }
 
-    @And("^within \"([^\"]*)\" the user chooses for the radiobutton \"([^\"]*)\" with \"([^\"]*)\"$")
-    public void clickOnRadiobutton(String page, String radiobutton, String id) {
+    @And("^within \"([^\"]*)\" the user chooses for \"([^\"]*)\" the radiobutton \"([^\"]*)\"$")
+    public void clickOnRadiobutton(String page, String id, String radiobutton) {
         commonObjPage.verifyPageTitle(page);
         commonObjPage.chooseRadiobutton(id, radiobutton);
     }
