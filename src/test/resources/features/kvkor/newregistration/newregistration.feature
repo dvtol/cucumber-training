@@ -1,14 +1,33 @@
-#language: nl
 @NieuweInschrijving
-Functionaliteit: OR frontoffice inlog
+Feature: OR frontoffice inlog
 
-  Achtergrond: Feature: OR frontoffice inlog
-    Gegeven dat gebruiker is ingelogd op de OR pagina van de KvK
+  Background: Feature: OR frontoffice inlog
 
-  Scenario: Inschrijving Besloten Vennootschap
-    Als de gebruiker voor een nieuwe inschrijving kiest met een type rechtsvorm "Besloten Vennootschap"
-    En de benodigde en verplichte gegevens zijn opgevoerd
-    Dan kan de gebruiker de opgave valideren, ondertekenen en indienen
+  Scenario: Registration Besloten Vennootschap
+    Given the user opens the OR frontoffice application
+    When the user is logged in and starts with a new registration with legal form "Besloten Vennootschap"
+    And the mandatory data is entered
+    Then the user can validate, sign and submit the assignment
 
-  Scenario: Inschrijving Vereniging van Eigenaars
-    Als de gebruiker voor een nieuwe inschrijving kiest met een type rechtsvorm "Vereniging van Eigenaars"
+  Scenario: Registration Vereniging van Eigenaars
+    Given the user opens the OR frontoffice application
+    When the user is logged in and starts with a new registration with legal form "Vereniging van Eigenaars"
+
+  Scenario: Registration Naamloze Vennootschap
+    Given the user opens the OR frontoffice application
+    When the user is logged in and starts with a new registration with legal form "Naamloze Vennootschap"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the unique "Naam_rechtspersoon"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the "Zetel" with "Utrecht"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the "Oprichtingskosten" with "250"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the "Datum_akte_van_oprichting" with "01-01-2018"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the "Datum_ingang" with "01-01-2018"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user chooses for the option "Dualistisch" with "Bestuursmodel"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user chooses for the radiobutton "Ja" with "Beleggingsmaatschappij_met_veranderlijk_kapitaal?"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user chooses for the radiobutton "Nee" with "Is_het_RSIN_bekend?"
+    Then click on the Volgende button
+    And within "Kapitaalgegevens" the user chooses for the radiobutton "Nee" with "hasAandelen"
+    And within "Kapitaalgegevens" the user enters the "Maatschappelijk_kapitaal" with "1000"
+    And within "Kapitaalgegevens" the user enters the "Geplaatst_kapitaal" with "2000"
+    And within "Kapitaalgegevens" the user enters the "Gestort_kapitaal" with "5000"
+    Then click on the Volgende button
+    And within "Bestuurder(s)" the user enters the "Datum_waarop_de_functionaris_in_functie_is_getreden" with "01-01-2018"

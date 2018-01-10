@@ -44,4 +44,10 @@ public class BasicDataLegalPersonPage extends BasePage {
         $(By.id("Opslaan")).click();
         $(By.id("Volgende")).click();
     }
+
+    public void typeValueLegalPerson(String locator) {
+        String nameLegalPerson = testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_rechtspersoon") + new Random().nextInt(end - begin);
+        textInputSetText(By.id(locator), nameLegalPerson);
+    }
+
 }
