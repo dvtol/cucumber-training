@@ -1,6 +1,7 @@
 package com.kvknl.regressie.definitions.kvkor.newregistration;
 
 import com.kvknl.regressie.definitions.generic.BaseStepDef;
+import com.kvknl.regressie.definitions.generic.CommonObjPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.fileattachment.FileAttachmentPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.govenordata.GovenorDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.basicdatalegalperson.BasicDataLegalPersonPage;
@@ -8,9 +9,10 @@ import com.kvknl.regressie.definitions.kvkor.newregistration.companydata.Company
 import com.kvknl.regressie.definitions.kvkor.newregistration.referencedata.ReferenceDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.composeassignment.ComposeAssignmentPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.overview.OverviewPage;
-import cucumber.api.java.nl.Als;
-import cucumber.api.java.nl.Dan;
-import cucumber.api.java.nl.En;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +26,7 @@ public class NewRegistrationStepDef extends BaseStepDef {
     private ReferenceDataPage referenceDataPage;
     private FileAttachmentPage attachmentPage;
     private OverviewPage overviewPage;
+    private CommonObjPage commonObjPage;
 
     @PostConstruct
     public void setUpNewRegistration() {
@@ -34,14 +37,15 @@ public class NewRegistrationStepDef extends BaseStepDef {
         attachmentPage = PageFactory.initElements(webDriver, FileAttachmentPage.class);
         referenceDataPage = PageFactory.initElements(webDriver, ReferenceDataPage.class);
         overviewPage = PageFactory.initElements(webDriver, OverviewPage.class);
+        commonObjPage = PageFactory.initElements(webDriver, CommonObjPage.class);
     }
 
-    @Als("^de gebruiker voor een nieuwe inschrijving kiest met een type rechtsvorm \"([^\"]*)\"$")
+    @Given("^the user is logged in and starts with a new registration with legal form \"([^\"]*)\"$")
     public void selectNewRegistration(String legalForm) {
         composeAssignmentPage.choiceLegalForm(legalForm);
     }
 
-    @En("^de benodigde en verplichte gegevens zijn opgevoerd")
+    @When("^the mandatory data is entered$")
     public void fillRegistrationData() throws InterruptedException {
         basicDataLegalPersonPage.basicDataLegalPerson();
         govenorDataPage.govenorData();
@@ -50,8 +54,14 @@ public class NewRegistrationStepDef extends BaseStepDef {
         referenceDataPage.fillReferenceInformation();
     }
 
-    @Dan("^kan de gebruiker de opgave valideren, ondertekenen en indienen")
+    @Then("^the user can validate, sign and submit the assignment$")
     public void sumbitRegistration() {
         overviewPage.validateSignAndSumbit();
+    }
+
+    @And("^within \"([^\"]*)\" the user enters the unique \"([^\"]*)\"$")
+    public void enterUniqueLegalPerson(String page, String id) {
+        commonObjPage.verifyPageTitle(page);
+        basicDataLegalPersonPage.typeValueLegalPerson(id);
     }
 }
