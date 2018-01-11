@@ -46,7 +46,7 @@ public class GovenorDataPage extends BasePage {
         Thread.sleep(1000);
     }
 
-    public void chooseOption(String option) {
+    public void choosOption(String option) {
         By locator = By.id("RtListBox");
         dropdownSelectByValue(locator, option);
     }
@@ -54,5 +54,10 @@ public class GovenorDataPage extends BasePage {
     public void chooseActivity(String number, String activity) {
         By locator = By.xpath("(//*[@id='RtListBox'])["+number+"]");
         dropdownSelectByValue(locator, activity);
+    }
+
+    public void checkBoxBSN() {
+        By locator = By.id("Vanya Ebben");
+        checkBoxVisibleAndCheck(locator);
     }
 }

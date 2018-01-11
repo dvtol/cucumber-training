@@ -23,7 +23,6 @@ public class NewRegistrationStepDef extends BaseStepDef {
     private ComposeAssignmentPage composeAssignmentPage;
     private BasicDataLegalPersonPage basicDataLegalPersonPage;
     private GovenorDataPage govenorDataPage;
-    private CompanyDataPage companyDataPage;
     private ReferenceDataPage referenceDataPage;
     private FileAttachmentPage attachmentPage;
     private OverviewPage overviewPage;
@@ -34,7 +33,6 @@ public class NewRegistrationStepDef extends BaseStepDef {
         composeAssignmentPage = PageFactory.initElements(webDriver, ComposeAssignmentPage.class);
         basicDataLegalPersonPage = PageFactory.initElements(webDriver, BasicDataLegalPersonPage.class);
         govenorDataPage = PageFactory.initElements(webDriver, GovenorDataPage.class);
-        companyDataPage = PageFactory.initElements(webDriver, CompanyDataPage.class);
         attachmentPage = PageFactory.initElements(webDriver, FileAttachmentPage.class);
         referenceDataPage = PageFactory.initElements(webDriver, ReferenceDataPage.class);
         overviewPage = PageFactory.initElements(webDriver, OverviewPage.class);
@@ -48,8 +46,6 @@ public class NewRegistrationStepDef extends BaseStepDef {
 
     @When("^the mandatory data is entered$")
     public void fillRegistrationData() throws InterruptedException {
-        govenorDataPage.govenorData();
-        companyDataPage.setUpCompanyBranch();
         attachmentPage.addFileAttachment();
         referenceDataPage.fillReferenceInformation();
     }
@@ -87,5 +83,10 @@ public class NewRegistrationStepDef extends BaseStepDef {
     public void chooseActivity(String page, String number, String activity) {
         commonObjPage.verifyPageTitle(page);
         govenorDataPage.chooseActivity(number, activity);
+    }
+
+    @And("^the user clicks checkbox to validate the BSN number$")
+    public void checkBSNValidation() {
+        govenorDataPage.checkBoxBSN();
     }
 }
