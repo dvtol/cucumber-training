@@ -33,7 +33,7 @@ public class CommonStepDef extends BaseStepDef {
     }
 
     @Then("^click on the Opslaan button$")
-    public void clickOnTheOpslaanButton() {
+    public void clickOnTheOpslaanButton() throws InterruptedException {
         commonObjPage.clickOnSaveButton();
     }
 

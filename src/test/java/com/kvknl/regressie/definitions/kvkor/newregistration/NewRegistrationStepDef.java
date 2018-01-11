@@ -59,10 +59,10 @@ public class NewRegistrationStepDef extends BaseStepDef {
         overviewPage.validateSignAndSumbit();
     }
 
-    @And("^within \"([^\"]*)\" the user enters the unique \"([^\"]*)\"$")
-    public void enterUniqueLegalPerson(String page, String id) {
+    @And("^within \"([^\"]*)\" the user enters the unique \"([^\"]*)\" with \"([^\"]*)\"$")
+    public void enterUniqueLegalPerson(String page, String id, String abbreviation) {
         commonObjPage.verifyPageTitle(page);
-        basicDataLegalPersonPage.typeValueLegalPerson(id);
+        basicDataLegalPersonPage.typeValueLegalPerson(id, abbreviation);
     }
 
     @And("^within \"([^\"]*)\" the user chooses for Geboorteland the option \"([^\"]*)\"$")
