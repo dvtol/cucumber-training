@@ -23,11 +23,11 @@ browser.name.remote: firefox
 
 # set local browser driver version. latest is the latest version
 firefox.driver.version: latest
-# e.g.: 0.17.0
+# e.g.: 0.19.x
 chrome.driver.version: latest
-# e.g.: 2.30
+# e.g.: 2.35
 
-# test dir for JSON data
+# directory for JSON data
 test.data.dir: src/test/java/com/kvknl/regressie/data/testdata.json
 
 # screensize
