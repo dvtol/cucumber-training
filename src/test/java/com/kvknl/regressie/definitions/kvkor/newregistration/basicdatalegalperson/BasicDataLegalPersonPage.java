@@ -1,15 +1,12 @@
 package com.kvknl.regressie.definitions.kvkor.newregistration.basicdatalegalperson;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.kvknl.regressie.data._JsonData;
 import com.kvknl.regressie.definitions.generic.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Random;
-
-import static com.codeborne.selenide.Selenide.$;
 
 public class BasicDataLegalPersonPage extends BasePage {
 
