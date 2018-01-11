@@ -32,4 +32,22 @@ public class GovenorDataPage extends BasePage {
         $(By.id("Opslaan")).click();
         $(By.id("Volgende")).click();
     }
+
+    public void typeValuePlaceOfBirth(String input) throws InterruptedException {
+        By locator = By.id("Geboorteland");
+        Thread.sleep(1000);
+        dropdownSelectByValue(locator, input);
+    }
+
+    public void typeValueHousenumber(String text) throws InterruptedException {
+        By locator = By.id("Huisnummer");
+        textInputSetText(locator, text);
+        sendTab(locator);
+        Thread.sleep(1000);
+    }
+
+    public void choosOption(String option) {
+        By locator = By.id("RtListBox");
+        dropdownSelectByValue(locator, option);
+    }
 }

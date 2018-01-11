@@ -64,4 +64,22 @@ public class NewRegistrationStepDef extends BaseStepDef {
         commonObjPage.verifyPageTitle(page);
         basicDataLegalPersonPage.typeValueLegalPerson(id);
     }
+
+    @And("^within \"([^\"]*)\" the user chooses for Geboorteland the option \"([^\"]*)\"$")
+    public void enterPlaceOfBirth(String page, String input) throws InterruptedException {
+        commonObjPage.verifyPageTitle(page);
+        govenorDataPage.typeValuePlaceOfBirth(input);
+    }
+
+    @And("^within \"([^\"]*)\" the user enters the Huisnummer with \"([^\"]*)\"$")
+    public void enterHousenumber(String page, String input) throws InterruptedException {
+        commonObjPage.verifyPageTitle(page);
+        govenorDataPage.typeValueHousenumber(input);
+    }
+
+    @And("^within \"([^\"]*)\" the user chooses for Functietitel the option \"([^\"]*)\"$")
+    public void chooseFunctionTitle(String page, String option) {
+        commonObjPage.verifyPageTitle(page);
+        govenorDataPage.choosOption(option);
+    }
 }

@@ -48,6 +48,7 @@ public class BasicDataLegalPersonPage extends BasePage {
     public void typeValueLegalPerson(String locator) {
         String nameLegalPerson = testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_rechtspersoon") + new Random().nextInt(end - begin);
         textInputSetText(By.id(locator), nameLegalPerson);
+        System.out.println("Naam Rechtspersoon = "+nameLegalPerson);
     }
 
 }

@@ -1,0 +1,54 @@
+@NieuweInschrijvingNV
+Feature: OR frontoffice login
+
+  Background: Feature: OR frontoffice login
+
+  Scenario: Registration Naamloze Vennootschap
+    Given the user opens the OR frontoffice application
+    When the user is logged in and starts with a new registration with legal form "Naamloze Vennootschap"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the unique "Naam_rechtspersoon"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the "Zetel" with "Utrecht"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the "Oprichtingskosten" with "250"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the "Datum_akte_van_oprichting" with "01-01-2018"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user enters the "Datum_ingang" with "01-01-2018"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user chooses for "Bestuursmodel" the option "Dualistisch"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user chooses for "Beleggingsmaatschappij_met_veranderlijk_kapitaal?" the radiobutton "Ja"
+    And within "Basisgegevens van de Naamloze Vennootschap" the user chooses for "Is_het_RSIN_bekend?" the radiobutton "Nee"
+    Then click on the Volgende button
+    And within "Kapitaalgegevens" the user chooses for "hasAandelen" the radiobutton "Nee"
+    And within "Kapitaalgegevens" the user enters the "Maatschappelijk_kapitaal" with "1000"
+    And within "Kapitaalgegevens" the user enters the "Geplaatst_kapitaal" with "2000"
+    And within "Kapitaalgegevens" the user enters the "Gestort_kapitaal" with "5000"
+    Then click on the Volgende button
+    And within "Bestuurder(s)" the user enters the "Datum_waarop_de_functionaris_in_functie_is_getreden" with "01-01-2018"
+    And within "Bestuurder(s)" the user chooses for "Type_bestuurder" the option "Bestuurder"
+    And within "Bestuurder(s)" the user chooses for "isEnigAandeelhouder" the radiobutton "Nee"
+    And within "Bestuurder(s)" the user chooses for "isNatuurlijkPersoon" the radiobutton "Ja"
+    And within "Bestuurder(s)" the user chooses for "hasBsn" the radiobutton "Nee"
+    And within "Bestuurder(s)" the user enters the "Achternaam" with "Koekenbakker"
+    And within "Bestuurder(s)" the user enters the "Voorna(a)m(en)_(voluit)" with "Johannes Cornelis Jacob"
+    And within "Bestuurder(s)" the user enters the "Tussenvoegsel(s)" with "van der"
+    And within "Bestuurder(s)" the user enters the Geboortedatum with "24-11-1987"
+    And within "Bestuurder(s)" the user chooses for Geboorteland the option "Christmaseiland"
+    And within "Bestuurder(s)" the user enters the "Geboorteplaats" with "Amsterdam"
+    And within "Bestuurder(s)" the user chooses for "Geslacht" the option "Mannelijk"
+    And within "Bestuurder(s)" the user chooses for "isBuitenlandsAdres" the radiobutton "Nee"
+    And within "Bestuurder(s)" the user enters the "Postcode" with "1061tl"
+    And within "Bestuurder(s)" the user enters the Huisnummer with "17"
+    And within "Bestuurder(s)" the user enters the "Toevoeging_adres" with "AB"
+    And within "Bestuurder(s)" the user chooses for "isFunctieTitelStatutairBepaald" the radiobutton "Nee"
+    And within "Bestuurder(s)" the user chooses for "standaardFunctieTitel" the radiobutton "Ja"
+    And within "Bestuurder(s)" the user chooses for Functietitel the option "Directeur"
+    And within "Bestuurder(s)" the user chooses for "Bevoegdheid_van_de_bestuurder" the option "Alleen/zelfstandig bevoegd"
+    Then click on the Volgende button
+    And within "Vestiging(en)" the user enters the "Datum_ingang" with "01-01-2018"
+    And within "Vestiging(en)" the user chooses for "isBezoekAdresBuitenlandsAdres" the radiobutton "Nee"
+    And within "Vestiging(en)" the user enters the "Postcode" with "1061tl"
+    And within "Vestiging(en)" the user enters the Huisnummer with "17"
+    And within "Vestiging(en)" the user enters the "Toevoeging_adres" with "AB"
+    And within "Vestiging(en)" the user chooses for "isPostAdresGelijkAanBezoekAdres" the radiobutton "Ja"
+    And within "Vestiging(en)" the user enters the "Activiteitomschrijving" with "Dit is een activiteitomschrijving"
+    And within "Vestiging(en)" the user enters the "Indien_meerdere_activiteiten,_wat_is_dan_de_belangrijkste?" with "Dit is belangrijk"
+    And within "Vestiging(en)" the user chooses for "importeer" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "exporteer" the radiobutton "Nee"
+    Then click on the Opslaan button
