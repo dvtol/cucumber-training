@@ -16,8 +16,9 @@ public class CommonObjPage extends BasePage {
         buttonClick(By.id("Volgende"));
     }
 
-    public void clickOnSaveButton() {
+    public void clickOnSaveButton() throws InterruptedException {
         buttonClick(By.id("Opslaan"));
+        Thread.sleep(1000);
     }
 
     public void verifyPageTitle(String page) {

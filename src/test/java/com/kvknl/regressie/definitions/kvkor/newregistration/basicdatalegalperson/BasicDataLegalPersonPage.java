@@ -45,8 +45,8 @@ public class BasicDataLegalPersonPage extends BasePage {
         $(By.id("Volgende")).click();
     }
 
-    public void typeValueLegalPerson(String locator) {
-        String nameLegalPerson = testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_rechtspersoon") + new Random().nextInt(end - begin);
+    public void typeValueLegalPerson(String locator, String abbreviation) {
+        String nameLegalPerson = testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_rechtspersoon") + " "+ new Random().nextInt(end - begin)+" "+abbreviation;
         textInputSetText(By.id(locator), nameLegalPerson);
         System.out.println("Naam Rechtspersoon = "+nameLegalPerson);
     }
