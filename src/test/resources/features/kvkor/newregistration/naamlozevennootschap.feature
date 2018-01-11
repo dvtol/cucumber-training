@@ -1,4 +1,4 @@
-@NieuweInschrijvingNV
+@NewRegistrationNV
 Feature: OR frontoffice login
 
   Background: Feature: OR frontoffice login
@@ -53,4 +53,20 @@ Feature: OR frontoffice login
     And within "Vestiging(en)" the user enters the "Indien_meerdere_activiteiten,_wat_is_dan_de_belangrijkste?" with "Dit is belangrijk"
     And within "Vestiging(en)" the user chooses for "importeer" the radiobutton "Nee"
     And within "Vestiging(en)" the user chooses for "exporteer" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for Activiteit "1" the option "01134 - Teelt van aardappels en overige wortel- en knolgewassen"
+    And within "Vestiging(en)" the user chooses for Activiteit "2" the option "4615 - Handelsbemiddeling in meubels, huishoudelijke artikelen en ijzerwaren"
+    And within "Vestiging(en)" the user chooses for "Wat_is_de_hoofdactiviteit?" the option "01134 - Teelt van aardappels en overige wortel- en knolgewassen"
+    And within "Vestiging(en)" the user chooses for "inEenWinkelOfKiosk" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "opDeMarkt" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "viaStraathandel" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "viaInternet" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "vanuitHuis" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "perPostorder" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "andersNamelijk" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "verkoopAanGroothandel" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "hasDomeinnamen" the radiobutton "Nee"
+    And within "Vestiging(en)" the user chooses for "hasEmailadressen" the radiobutton "Nee"
+    And within "Vestiging(en)" the user enters the "Hoeveel_personen_werken_er_fulltime_(15_uur_of_meer_per_week)_in_de_onderneming?" with "2"
+    And within "Vestiging(en)" the user enters the "Hoeveel_personen_werken_er_parttime_(minder_dan_15_uur_per_week)_in_de_onderneming?" with "2"
     Then click on the Opslaan button
+    Then click on the Volgende button

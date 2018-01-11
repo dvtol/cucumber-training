@@ -18,7 +18,7 @@ implicit.wait.timeout.seconds: 15
 timeout.interval.seconds: 15
 
 # set local or remote browser
-browser.name.local: firefox
+browser.name.local: chrome
 browser.name.remote: firefox
 
 # set local browser driver version. latest is the latest version

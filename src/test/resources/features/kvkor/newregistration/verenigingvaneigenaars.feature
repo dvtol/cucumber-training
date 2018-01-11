@@ -1,4 +1,4 @@
-@NieuweInschrijvingVvE
+@NewRegistrationVvE
 Feature: OR frontoffice login
 
   Background: Feature: OR frontoffice login

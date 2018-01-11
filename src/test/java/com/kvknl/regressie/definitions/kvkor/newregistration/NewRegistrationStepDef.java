@@ -9,6 +9,7 @@ import com.kvknl.regressie.definitions.kvkor.newregistration.companydata.Company
 import com.kvknl.regressie.definitions.kvkor.newregistration.referencedata.ReferenceDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.composeassignment.ComposeAssignmentPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.overview.OverviewPage;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -79,6 +80,12 @@ public class NewRegistrationStepDef extends BaseStepDef {
     @And("^within \"([^\"]*)\" the user chooses for Functietitel the option \"([^\"]*)\"$")
     public void chooseFunctionTitle(String page, String option) {
         commonObjPage.verifyPageTitle(page);
-        govenorDataPage.choosOption(option);
+        govenorDataPage.chooseOption(option);
+    }
+
+    @And("^within \"([^\"]*)\" the user chooses for Activiteit \"([^\"]*)\" the option \"([^\"]*)\"$")
+    public void chooseActivity(String page, String number, String activity) {
+        commonObjPage.verifyPageTitle(page);
+        govenorDataPage.chooseActivity(number, activity);
     }
 }

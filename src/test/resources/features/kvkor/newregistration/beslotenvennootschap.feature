@@ -1,4 +1,4 @@
-@NieuweInschrijvingBV
+@NewRegistrationBV
 Feature: OR frontoffice inlog
 
   Background: Feature: OR frontoffice inlog
