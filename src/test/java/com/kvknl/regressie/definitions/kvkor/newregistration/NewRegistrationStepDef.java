@@ -47,7 +47,6 @@ public class NewRegistrationStepDef extends BaseStepDef {
 
     @When("^the mandatory data is entered$")
     public void fillRegistrationData() throws InterruptedException {
-        basicDataLegalPersonPage.basicDataLegalPerson();
         govenorDataPage.govenorData();
         companyDataPage.setUpCompanyBranch();
         attachmentPage.addFileAttachment();

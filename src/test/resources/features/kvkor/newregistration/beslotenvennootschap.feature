@@ -11,8 +11,8 @@ Feature: OR frontoffice inlog
     And within "Besloten Vennootschap" the user enters the "Datum_akte_van_oprichting" with "01-01-2018"
     And within "Besloten Vennootschap" the user enters the "Datum_ingang" with "01-01-2018"
     Then click on the Volgende button
-    And within "Besloten Vennootschap" the user enters the "Geplaatst_kapitaal" with "2000"
-    And within "Besloten Vennootschap" the user enters the "Gestort_kapitaal" with "1000"
+    And within "Kapitaalgegevens" the user enters the "Geplaatst_kapitaal" with "2000"
+    And within "Kapitaalgegevens" the user enters the "Gestort_kapitaal" with "1000"
     Then click on the Volgende button
 
     #And the mandatory data is entered
