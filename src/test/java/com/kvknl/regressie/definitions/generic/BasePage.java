@@ -42,7 +42,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BasePage extends CukeConfigurator {
 
-    private WebDriver webDriver;
+    protected WebDriver webDriver;
     private static final long SECONDS_PAGELOAD_REFRESH = 5;
 
     public BasePage(final WebDriver webdriver) {
