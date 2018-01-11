@@ -12,37 +12,37 @@ public class CommonObjPage extends BasePage {
         WebDriverRunner.setWebDriver(webDriver);
     }
 
-    public void clickOnNextButton() {
+    protected void clickOnNextButton() {
         buttonClick(By.id("Volgende"));
     }
 
-    public void clickOnSaveButton() throws InterruptedException {
+    protected void clickOnSaveButton() throws InterruptedException {
         buttonClick(By.id("Opslaan"));
         Thread.sleep(1000);
     }
 
-    public void verifyPageTitle(String page) {
+    protected void verifyPageTitle(String page) {
         By pageTitle = By.xpath("/html/body/div[2]/div[4]/div/h2");
         assertTextInputContainsText(pageTitle, page);
     }
 
-    public void typeValue(String locator, String text) {
+    protected void typeValue(String locator, String text) {
         textInputSetText(By.id(locator), text);
     }
 
-    public void chooseOption(String id, String option) {
+    protected void chooseOption(String id, String option) {
         dropdownSelectByValue(By.id(id), option);
     }
 
-    public void chooseRadiobutton(String id, String radiobutton) {
+    protected void chooseRadiobutton(String id, String radiobutton) {
         radioButtonVisibleAndSelect(By.id(id+radiobutton));
     }
 
-    public void tab(String id) {
+    protected void tab(String id) {
         sendTab(By.id(id));
     }
 
-    public void typeValueDateOfBirth(String input) {
+    protected void typeValueDateOfBirth(String input) {
         By locator = By.xpath("//*[@id='Geboortedatum']/input");
         textInputSetText(locator, input);
         sendTab(locator);
