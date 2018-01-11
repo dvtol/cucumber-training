@@ -24,31 +24,10 @@ public class BasicDataLegalPersonPage extends BasePage {
     private static final int begin = 100000;
     private static final int end = 999999;
 
-    @Step("het vullen van de basis en kapitaalgegevens van de rechtspersoon")
-    public void basicDataLegalPerson() {
-
-        // vullen verplichte basisgegevens
-        $(By.id("Naam_rechtspersoon")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_rechtspersoon") + new Random().nextInt(end - begin));
-        $(By.id("Zetel")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "zetel"));
-        $(By.id("Datum_akte_van_oprichting")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "datum_akte_van_oprichting"));
-        $(By.xpath("//*[@id=\"Zetel\"]")).click();
-        $(By.id("Datum_ingang")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "datum_ingang"));
-        $(By.xpath("//*[@id=\"Zetel\"]")).click();
-        $(By.xpath("//*[@id=\"Bestuursmodel\"]/option[2]")).click();
-        $(By.id("Opslaan")).click();
-        $(By.id("Volgende")).click();
-
-        // vullen verplichte kapitaalgegevens
-        $(By.id("Geplaatst_kapitaal")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "geplaatst_kapitaal"));
-        $(By.id("Gestort_kapitaal")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "gestort_kapitaal"));
-        $(By.id("Opslaan")).click();
-        $(By.id("Volgende")).click();
-    }
-
+    @Step("fill basic data en kapitaalgegevens van de rechtspersoon")
     public void typeValueLegalPerson(String locator, String abbreviation) {
         String nameLegalPerson = testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_rechtspersoon") + " "+ new Random().nextInt(end - begin)+" "+abbreviation;
         textInputSetText(By.id(locator), nameLegalPerson);
         System.out.println("Naam Rechtspersoon = "+nameLegalPerson);
     }
-
 }
