@@ -40,4 +40,10 @@ public class CommonObjPage extends BasePage {
     public void tab(String id) {
         sendTab(By.id(id));
     }
+
+    public void typeValueDateOfBirth(String input) {
+        By locator = By.xpath("//*[@id='Geboortedatum']/input");
+        textInputSetText(locator, input);
+        sendTab(locator);
+    }
 }

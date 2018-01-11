@@ -55,4 +55,10 @@ public class CommonStepDef extends BaseStepDef {
         commonObjPage.verifyPageTitle(page);
         commonObjPage.chooseRadiobutton(id, radiobutton);
     }
+
+    @And("^within \"([^\"]*)\" the user enters the Geboortedatum with \"([^\"]*)\"$")
+    public void enterDateOfBirth(String page, String input){
+        commonObjPage.verifyPageTitle(page);
+        commonObjPage.typeValueDateOfBirth(input);
+    }
 }
