@@ -21,7 +21,7 @@ public class CommonObjPage extends BasePage {
         Thread.sleep(1000);
     }
 
-    protected void verifyPageTitle(String page) {
+    public void verifyPageTitle(String page) {
         By pageTitle = By.xpath("/html/body/div[2]/div[4]/div/h2");
         assertTextInputContainsText(pageTitle, page);
     }
