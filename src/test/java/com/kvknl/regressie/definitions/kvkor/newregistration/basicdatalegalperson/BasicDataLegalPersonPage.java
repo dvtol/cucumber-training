@@ -27,8 +27,8 @@ public class BasicDataLegalPersonPage extends BasePage {
     @Step("fill basic data en kapitaalgegevens van de rechtspersoon")
 
     public void typeValueLegalPerson(String locator, String abbreviation) {
-        String nameLegalPerson = testdata.JsonData("kvk_orn_nieuwe_inschrijving", "naam_rechtspersoon") + " "+ new Random().nextInt(end - begin)+" "+abbreviation;
+        String nameLegalPerson = new Random().nextInt(end - begin)+ " " + abbreviation;
         textInputSetText(By.id(locator), nameLegalPerson);
-        System.out.println("Naam Rechtspersoon = "+nameLegalPerson);
+        System.out.println("Naam Rechtspersoon = " + nameLegalPerson);
     }
 }
