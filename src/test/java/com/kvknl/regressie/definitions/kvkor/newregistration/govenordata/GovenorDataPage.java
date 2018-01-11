@@ -20,18 +20,6 @@ public class GovenorDataPage extends BasePage {
     private _JsonData testdata = new _JsonData();
 
     @Step("het invullen van de gegevens van één of meerdere bestuurders")
-    public void govenorData() {
-
-        $(By.id("Datum_waarop_de_functionaris_in_functie_is_getreden")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "datum_intreden_functionaris"));
-        $(By.id("Achternaam")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "achternaam_bestuurder"));
-        $(By.id("Voorna(a)m(en)_(voluit)")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "voornamen_voluit_bestuurder"));
-        $(By.id("Tussenvoegsel(s)")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "tussenvoegsels_bestuuder"));
-        $(By.xpath("//*[@id=\"Geboortedatum\"]/input")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "geboortedatum_bestuuder"));
-        $(By.id("Postcode")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "postcode_prive_bestuurder"));
-        $(By.id("Huisnummer")).setValue(testdata.JsonData("kvk_orn_nieuwe_inschrijving", "huisnummer_prive_bestuurder"));
-        $(By.id("Opslaan")).click();
-        $(By.id("Volgende")).click();
-    }
 
     public void typeValuePlaceOfBirth(String input) throws InterruptedException {
         By locator = By.id("Geboorteland");
@@ -49,5 +37,10 @@ public class GovenorDataPage extends BasePage {
     public void choosOption(String option) {
         By locator = By.id("RtListBox");
         dropdownSelectByValue(locator, option);
+    }
+
+    public void checkBoxBSN() {
+        By locator = By.id("Vanya Ebben");
+        checkBoxVisibleAndCheck(locator);
     }
 }

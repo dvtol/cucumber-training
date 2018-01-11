@@ -14,6 +14,10 @@ Feature: OR frontoffice inlog
     And within "Kapitaalgegevens" the user enters the "Geplaatst_kapitaal" with "2000"
     And within "Kapitaalgegevens" the user enters the "Gestort_kapitaal" with "1000"
     Then click on the Volgende button
+    And within "Bestuurder(s)" the user enters the "Datum_waarop_de_functionaris_in_functie_is_getreden" with "01-01-2018"
+    And within "Bestuurder(s)" the user enters the "Burgerservicenummer" with "999916464"
+    And the user clicks checkbox to validate the BSN number
+    Then click on the Volgende button
 
     #And the mandatory data is entered
     #Then the user can validate, sign and submit the assignment
