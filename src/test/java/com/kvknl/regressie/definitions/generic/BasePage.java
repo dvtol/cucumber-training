@@ -543,9 +543,10 @@ public class BasePage extends CukeConfigurator {
 
     /**
      * Navigate to the given kvk.nl page of an environment
+     * <p>
+     * //* @param environment subdomain of the environment, eg 'tst'
      *
-     //* @param environment subdomain of the environment, eg 'tst'
-     * @param path        path to navigate to, should start with a '/'
+     * @param path path to navigate to, should start with a '/'
      */
     public void navigateToEnvironment(final String environment, final String path) {
         navigateToPage("http://" + environment);
