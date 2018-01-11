@@ -17,9 +17,6 @@ public class ComposeAssignmentPage extends BasePage {
         WebDriverRunner.setWebDriver(webDriver);
     }
 
-    // JSON obj for GUI data
-    private _JsonData testdata = new _JsonData();
-
     @Step("het selecteren van een rechtsvorm")
     public void choiceLegalForm(String legalForm) {
 

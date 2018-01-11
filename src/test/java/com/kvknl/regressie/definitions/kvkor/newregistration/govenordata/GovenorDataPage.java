@@ -16,9 +16,6 @@ public class GovenorDataPage extends BasePage {
         WebDriverRunner.setWebDriver(webDriver);
     }
 
-    // JSON obj for GUI data
-    private _JsonData testdata = new _JsonData();
-
     @Step("het invullen van de gegevens van één of meerdere bestuurders")
 
     public void typeValuePlaceOfBirth(String input) throws InterruptedException {
