@@ -18,9 +18,6 @@ public class BasicDataLegalPersonPage extends BasePage {
         WebDriverRunner.setWebDriver(webDriver);
     }
 
-    // JSON obj for GUI data
-    private _JsonData testdata = new _JsonData();
-
     private static final int begin = 100000;
     private static final int end = 999999;
 
