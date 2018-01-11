@@ -70,3 +70,14 @@ Feature: OR frontoffice login
     And within "Vestiging(en)" the user enters the "Hoeveel_personen_werken_er_parttime_(minder_dan_15_uur_per_week)_in_de_onderneming?" with "2"
     Then click on the Opslaan button
     Then click on the Volgende button
+    And within "Functionaris(sen)" the user chooses for "question" the radiobutton "Nee"
+    Then click on the Opslaan button
+    Then click on the Volgende button
+    And within "Gemachtigde(n)" the user chooses for "question" the radiobutton "Nee"
+    Then click on the Opslaan button
+    Then click on the Volgende button
+    And within "Bijlage(n)" the user uploads the attachment "Datacard.pdf" for "Datacard Johannes Cornelis Jacob van der Koekenbakker (verplicht)"
+    And within "Bijlage(n)" the user uploads the attachment "Akte van oprichting.pdf" for "Akte van oprichting (verplicht)"
+    Then click on the Opslaan button
+    Then click on the Volgende button
+
