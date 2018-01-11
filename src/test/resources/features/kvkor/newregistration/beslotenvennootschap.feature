@@ -18,6 +18,15 @@ Feature: OR frontoffice inlog
     And within "Bestuurder(s)" the user enters the "Burgerservicenummer" with "999916464"
     And the user clicks checkbox to validate the BSN number
     Then click on the Volgende button
-
+    And within "Vestiging(en)" the user enters the "Datum_ingang" with "01-01-2018"
+    And within "Vestiging(en)" the user enters the "Postcode" with "1111AA"
+    And within "Vestiging(en)" the user enters the Huisnummer with "111"
+    And within "Vestiging(en)" the user enters the "Activiteitomschrijving" with "Dit is een activiteitomschrijving"
+    And within "Vestiging(en)" the user enters the "deletableHandelsnaam_1_*_" with "Dit is een TestHandel"
+    And within "Vestiging(en)" the user enters the "Hoeveel_personen_werken_er_fulltime_(15_uur_of_meer_per_week)_in_de_onderneming?" with "2"
+    And within "Vestiging(en)" the user enters the "Hoeveel_personen_werken_er_parttime_(minder_dan_15_uur_per_week)_in_de_onderneming?" with "2"
+    Then click on the Volgende button
+    Then click on the Volgende button
+    Then click on the Volgende button
     #And the mandatory data is entered
     #Then the user can validate, sign and submit the assignment
