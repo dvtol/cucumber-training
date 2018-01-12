@@ -23,7 +23,7 @@ public class CommonObjPage extends BasePage {
         Thread.sleep(1000);
     }
 
-    public void clickOnValidateButton() throws InterruptedException {
+    protected void clickOnValidateButton() throws InterruptedException {
         buttonClick(By.id("valideren"));
         Thread.sleep(2000);
     }
@@ -59,7 +59,7 @@ public class CommonObjPage extends BasePage {
         sendTab(locator);
     }
 
-    public void verifyText(By locator, String text) {
+    protected void verifyText(By locator, String text) {
         assertEquals(text, textInputGetText(locator));
     }
 }
