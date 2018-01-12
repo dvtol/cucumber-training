@@ -4,6 +4,8 @@ import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static junit.framework.TestCase.assertEquals;
+
 
 public class CommonObjPage extends BasePage {
 
@@ -21,6 +23,11 @@ public class CommonObjPage extends BasePage {
         Thread.sleep(1000);
     }
 
+    protected void clickOnValidateButton() throws InterruptedException {
+        buttonClick(By.id("valideren"));
+        Thread.sleep(2000);
+    }
+
     public void verifyPageTitle(String page) {
         By pageTitle = By.xpath("/html/body/div[2]/div[4]/div/h2");
         assertTextInputContainsText(pageTitle, page);
@@ -28,6 +35,10 @@ public class CommonObjPage extends BasePage {
 
     protected void typeValue(String locator, String text) {
         textInputSetText(By.id(locator), text);
+    }
+
+    protected void typeValueMessageInbox(By locator, String text){
+        textInputSetText(locator, text);
     }
 
     protected void chooseOption(String id, String option) {
@@ -46,5 +57,9 @@ public class CommonObjPage extends BasePage {
         By locator = By.xpath("//*[@id='Geboortedatum']/input");
         textInputSetText(locator, input);
         sendTab(locator);
+    }
+
+    protected void verifyText(By locator, String text) {
+        assertEquals(text, textInputGetText(locator));
     }
 }
