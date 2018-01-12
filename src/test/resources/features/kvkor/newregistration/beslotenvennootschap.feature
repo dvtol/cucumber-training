@@ -28,5 +28,6 @@ Feature: OR frontoffice inlog
     Then click on the Volgende button
     Then click on the Volgende button
     Then click on the Volgende button
-    #And the mandatory data is entered
+    And within "Bijlage(n)" the user enters the "" with ""
+    # And the mandatory data is entered
     #Then the user can validate, sign and submit the assignment
