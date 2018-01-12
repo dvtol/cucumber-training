@@ -5,7 +5,6 @@ import com.kvknl.regressie.definitions.generic.CommonObjPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.fileattachment.FileAttachmentPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.govenordata.GovenorDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.basicdatalegalperson.BasicDataLegalPersonPage;
-import com.kvknl.regressie.definitions.kvkor.newregistration.companydata.CompanyDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.referencedata.ReferenceDataPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.composeassignment.ComposeAssignmentPage;
 import com.kvknl.regressie.definitions.kvkor.newregistration.overview.OverviewPage;
@@ -22,7 +21,6 @@ public class NewRegistrationStepDef extends BaseStepDef {
     private ComposeAssignmentPage composeAssignmentPage;
     private BasicDataLegalPersonPage basicDataLegalPersonPage;
     private GovenorDataPage govenorDataPage;
-    private CompanyDataPage companyDataPage;
     private ReferenceDataPage referenceDataPage;
     private FileAttachmentPage attachmentPage;
     private OverviewPage overviewPage;
@@ -33,7 +31,6 @@ public class NewRegistrationStepDef extends BaseStepDef {
         composeAssignmentPage = PageFactory.initElements(webDriver, ComposeAssignmentPage.class);
         basicDataLegalPersonPage = PageFactory.initElements(webDriver, BasicDataLegalPersonPage.class);
         govenorDataPage = PageFactory.initElements(webDriver, GovenorDataPage.class);
-        companyDataPage = PageFactory.initElements(webDriver, CompanyDataPage.class);
         attachmentPage = PageFactory.initElements(webDriver, FileAttachmentPage.class);
         referenceDataPage = PageFactory.initElements(webDriver, ReferenceDataPage.class);
         overviewPage = PageFactory.initElements(webDriver, OverviewPage.class);
@@ -47,9 +44,6 @@ public class NewRegistrationStepDef extends BaseStepDef {
 
     @When("^the mandatory data is entered$")
     public void fillRegistrationData() throws InterruptedException {
-        basicDataLegalPersonPage.basicDataLegalPerson();
-        govenorDataPage.govenorData();
-        companyDataPage.setUpCompanyBranch();
         attachmentPage.addFileAttachment();
         referenceDataPage.fillReferenceInformation();
     }
@@ -59,9 +53,38 @@ public class NewRegistrationStepDef extends BaseStepDef {
         overviewPage.validateSignAndSumbit();
     }
 
-    @And("^within \"([^\"]*)\" the user enters the unique \"([^\"]*)\"$")
-    public void enterUniqueLegalPerson(String page, String id) {
+    @And("^within \"([^\"]*)\" the user enters the unique \"([^\"]*)\" with \"([^\"]*)\"$")
+    public void enterUniqueLegalPerson(String page, String id, String abbreviation) {
         commonObjPage.verifyPageTitle(page);
-        basicDataLegalPersonPage.typeValueLegalPerson(id);
+        basicDataLegalPersonPage.typeValueLegalPerson(id, abbreviation);
+    }
+
+    @And("^within \"([^\"]*)\" the user chooses for Geboorteland the option \"([^\"]*)\"$")
+    public void enterPlaceOfBirth(String page, String input) throws InterruptedException {
+        commonObjPage.verifyPageTitle(page);
+        govenorDataPage.typeValuePlaceOfBirth(input);
+    }
+
+    @And("^within \"([^\"]*)\" the user enters the Huisnummer with \"([^\"]*)\"$")
+    public void enterHousenumber(String page, String input) throws InterruptedException {
+        commonObjPage.verifyPageTitle(page);
+        govenorDataPage.typeValueHousenumber(input);
+    }
+
+    @And("^within \"([^\"]*)\" the user chooses for Functietitel the option \"([^\"]*)\"$")
+    public void chooseFunctionTitle(String page, String option) {
+        commonObjPage.verifyPageTitle(page);
+        govenorDataPage.chooseOption(option);
+    }
+
+    @And("^within \"([^\"]*)\" the user chooses for Activiteit \"([^\"]*)\" the option \"([^\"]*)\"$")
+    public void chooseActivity(String page, String number, String activity) {
+        commonObjPage.verifyPageTitle(page);
+        govenorDataPage.chooseActivity(number, activity);
+    }
+
+    @And("^the user clicks checkbox to validate the BSN number$")
+    public void checkBSNValidation() {
+        govenorDataPage.checkBoxBSN();
     }
 }
