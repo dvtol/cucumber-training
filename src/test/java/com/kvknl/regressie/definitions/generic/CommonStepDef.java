@@ -1,10 +1,10 @@
 package com.kvknl.regressie.definitions.generic;
 
 import com.kvknl.regressie.driver.CukeConfigurator;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.annotation.PostConstruct;
@@ -37,6 +37,12 @@ public class CommonStepDef extends BaseStepDef {
         commonObjPage.clickOnSaveButton();
     }
 
+    @Then("^click on the Valideren button$")
+    public void clickOnTheValiderenButton() throws InterruptedException {
+        commonObjPage.clickOnValidateButton();
+
+    }
+
     @And("^within \"([^\"]*)\" the user enters the \"([^\"]*)\" with \"([^\"]*)\"$")
     public void enterDataForField(String page, String id, String input) {
         commonObjPage.verifyPageTitle(page);
@@ -60,5 +66,19 @@ public class CommonStepDef extends BaseStepDef {
     public void enterDateOfBirth(String page, String input){
         commonObjPage.verifyPageTitle(page);
         commonObjPage.typeValueDateOfBirth(input);
+    }
+
+    @Then("^the message Validate is succesvol is shown$")
+    public void checkTextValidateMessage() {
+        String text = "Validatie is succesvol";
+        By locater = By.xpath("//div[contains(text(), '"+text+"')]");
+        commonObjPage.verifyText(locater, text);
+    }
+
+    @And("^within \"([^\"]*)\" the user enters the Naam_berichtenbox with \"([^\"]*)\"$")
+    public void enterNaamBerichtenbox(String page, String input) {
+        commonObjPage.verifyPageTitle(page);
+        By locator = By.xpath("//*[@id='Naam_berichtenbox']/input");
+        commonObjPage.typeValueMessageInbox(locator, input);
     }
 }
