@@ -35,17 +35,12 @@ public class NewRegistrationStepDef extends BaseStepDef {
         referenceDataPage = PageFactory.initElements(webDriver, ReferenceDataPage.class);
         overviewPage = PageFactory.initElements(webDriver, OverviewPage.class);
         commonObjPage = PageFactory.initElements(webDriver, CommonObjPage.class);
+
     }
 
     @Given("^the user is logged in and starts with a new registration with legal form \"([^\"]*)\"$")
     public void selectNewRegistration(String legalForm) {
         composeAssignmentPage.choiceLegalForm(legalForm);
-    }
-
-    @When("^the mandatory data is entered$")
-    public void fillRegistrationData() throws InterruptedException {
-        attachmentPage.addFileAttachment();
-        referenceDataPage.fillReferenceInformation();
     }
 
     @Then("^the user can validate, sign and submit the assignment$")
@@ -86,5 +81,11 @@ public class NewRegistrationStepDef extends BaseStepDef {
     @And("^the user clicks checkbox to validate the BSN number$")
     public void checkBSNValidation() {
         govenorDataPage.checkBoxBSN();
+    }
+
+    @And("^within \"([^\"]*)\" the user uploads the attachment \"([^\"]*)\" for \"([^\"]*)\"$")
+    public void uploadAttachment(String page, String attachment, String option) throws InterruptedException {
+        commonObjPage.verifyPageTitle(page);
+        attachmentPage.addFileAttachment(attachment, option);
     }
 }

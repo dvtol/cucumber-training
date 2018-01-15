@@ -16,9 +16,9 @@ Feature: OR frontoffice login
     And within "Basisgegevens van de Naamloze Vennootschap" the user chooses for "Is_het_RSIN_bekend?" the radiobutton "Nee"
     Then click on the Volgende button
     And within "Kapitaalgegevens" the user chooses for "hasAandelen" the radiobutton "Nee"
-    And within "Kapitaalgegevens" the user enters the "Maatschappelijk_kapitaal" with "1000"
+    And within "Kapitaalgegevens" the user enters the "Maatschappelijk_kapitaal" with "3000"
     And within "Kapitaalgegevens" the user enters the "Geplaatst_kapitaal" with "2000"
-    And within "Kapitaalgegevens" the user enters the "Gestort_kapitaal" with "5000"
+    And within "Kapitaalgegevens" the user enters the "Gestort_kapitaal" with "2000"
     Then click on the Opslaan button
     Then click on the Volgende button
     And within "Bestuurder(s)" the user enters the "Datum_waarop_de_functionaris_in_functie_is_getreden" with "01-01-2018"
@@ -70,3 +70,28 @@ Feature: OR frontoffice login
     And within "Vestiging(en)" the user enters the "Hoeveel_personen_werken_er_parttime_(minder_dan_15_uur_per_week)_in_de_onderneming?" with "2"
     Then click on the Opslaan button
     Then click on the Volgende button
+    And within "Functionaris(sen)" the user chooses for "question" the radiobutton "Nee"
+    Then click on the Opslaan button
+    Then click on the Volgende button
+    And within "Gemachtigde(n)" the user chooses for "question" the radiobutton "Nee"
+    Then click on the Opslaan button
+    Then click on the Volgende button
+    And within "Bijlage(n)" the user uploads the attachment "Datacard.pdf" for "Datacard Johannes Cornelis Jacob van der Koekenbakker (verplicht)"
+    And within "Bijlage(n)" the user uploads the attachment "Akte van oprichting.pdf" for "Akte van oprichting (verplicht)"
+    And within "Bijlage(n)" the user uploads the attachment "Akte van oprichting met € teken.pdf" for "Accountantsverklaring (verplicht)"
+    Then click on the Opslaan button
+    Then click on the Volgende button
+    And within "Referentie informatie" the user enters the Naam_berichtenbox with "123"
+    And within "Referentie informatie" the user chooses for "uitsluiten" the radiobutton "Nee"
+    And within "Referentie informatie" the user chooses for "uitlenen" the radiobutton "Nee"
+    And within "Referentie informatie" the user chooses for "uitreksel" the radiobutton "Nee"
+    And within "Referentie informatie" the user chooses for "engelsUittreksel" the radiobutton "Nee"
+    And within "Referentie informatie" the user enters the "Naam_contactpersoon" with "Simon de Tester"
+    And within "Referentie informatie" the user enters the "E-mailadres_contactpersoon" with "noreply@kvk.nl"
+    And within "Referentie informatie" the user enters the "Telefoonnummer_contactpersoon" with "0612345678"
+    And within "Referentie informatie" the user enters the "Uw_referentie" with "referentie"
+    And within "Referentie informatie" the user enters the "Aanvullende_informatie" with "Aanvullende informatie"
+    Then click on the Opslaan button
+    Then click on the Volgende button
+    Then click on the Valideren button
+    Then the message Validate is succesvol is shown
