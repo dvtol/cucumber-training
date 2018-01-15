@@ -59,9 +59,3 @@ Feature: OR frontoffice login
     Then click on the Volgende button
     Then click on the Valideren button
     Then the message Validate is succesvol is shown
-
-
-
-
-
-
