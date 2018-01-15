@@ -6,7 +6,7 @@ Feature: OR frontoffice login
   Scenario: Registration Rechtspersoon in oprichting
     Given the user opens the OR frontoffice application
     When the user is logged in and starts with a new registration with legal form "Rechtspersoon in oprichting"
-    And within "Basisgegevens van de Rechtspersoon in oprichting" the user enters the unique "Datum_ingang" with "01-01-2018"
+    And within "Basisgegevens van de Rechtspersoon in oprichting" the user enters the "Datum_ingang" with "01-01-2018"
     Then click on the Volgende button
     And within "Bevoegd functionarissen" the user enters the "Datum_waarop_de_functionaris_in_functie_is_getreden" with "01-01-2018"
     And within "Bevoegd functionarissen" the user enters the "Burgerservicenummer" with "999916464"
