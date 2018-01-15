@@ -1,4 +1,4 @@
-@NewRegistrationVvE
+@NewRegistrationRio
 Feature: OR frontoffice login
 
   Background: Feature: OR frontoffice login
