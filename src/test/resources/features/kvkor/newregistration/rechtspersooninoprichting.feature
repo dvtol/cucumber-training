@@ -7,6 +7,7 @@ Feature: OR frontoffice login
     Given the user opens the OR frontoffice application
     When the user is logged in and starts with a new registration with legal form "Rechtspersoon in oprichting"
     And within "Basisgegevens van de Rechtspersoon in oprichting" the user enters the "Datum_ingang" with "01-01-2018"
+    And within "Basisgegevens van de Rechtspersoon in oprichting" the user chooses for "Doelrechtsvorm" the option "Naamloze Vennootschap"
     Then click on the Volgende button
     And within "Bevoegd functionarissen" the user enters the "Datum_waarop_de_functionaris_in_functie_is_getreden" with "01-01-2018"
     And within "Bevoegd functionarissen" the user enters the "Burgerservicenummer" with "999916464"
@@ -42,6 +43,7 @@ Feature: OR frontoffice login
     Then click on the Opslaan button
     Then click on the Volgende button
     Then click on the Volgende button
+    And within "Bijlage(n)" the user uploads the attachment "Datacard.pdf" for "Datacard Vanya Ebben (verplicht)"
     Then click on the Volgende button
     And within "Referentie informatie" the user enters the Naam_berichtenbox with "123"
     And within "Referentie informatie" the user chooses for "uitsluiten" the radiobutton "Nee"
@@ -57,6 +59,8 @@ Feature: OR frontoffice login
     Then click on the Volgende button
     Then click on the Valideren button
     Then the message Validate is succesvol is shown
+
+
 
 
 
