@@ -23,4 +23,13 @@ Feature: OR frontoffice login
     And within "Bestuurder(s)" the user chooses for "Geslacht" the option "Vrouwelijk"
     And within "Bestuurder(s)" the user enters the "Postcode" with "1061TL"
     And within "Bestuurder(s)" the user enters the Huisnummer with "17"
+    Then click on the Volgende button
+    Then click on the Volgende button
+    Then click on the Volgende button
+    Then click on the Volgende button
+    And within "Referentie informatie" the user enters the "Naam_contactpersoon" with "Miep de Tester"
+    And within "Referentie informatie" the user enters the "E-mailadres_contactpersoon" with "noreply@kvk.nl"
+    Then click on the Volgende button
+    Then click on the Opslaan button
+    Then click on the Valideren button
 
