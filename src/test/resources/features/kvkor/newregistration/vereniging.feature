@@ -13,3 +13,14 @@ Feature: OR frontoffice login
     Then click on the Volgende button
     And within "Adresgegevens rechtspersoon" the user enters the "Postcode" with "3447GT"
     And within "Adresgegevens rechtspersoon" the user enters the "Huisnummer" with "1"
+    And within "Adresgegevens rechtspersoon" the user enters the "Activiteitomschrijving" with "Dit is een activiteitomschrijving"
+    Then click on the Volgende button
+    And within "Bestuurder(s)" the user enters the "Datum_waarop_de_functionaris_in_functie_is_getreden" with "01-01-2018"
+    And within "Bestuurder(s)" the user chooses for "hasBsn" the radiobutton "Nee"
+    And within "Bestuurder(s)" the user enters the "Achternaam" with "Testmiep"
+    And within "Bestuurder(s)" the user enters the Geboortedatum with "01-01-1980"
+    And within "Bestuurder(s)" the user enters the "Geboorteplaats" with "Delft"
+    And within "Bestuurder(s)" the user chooses for "Geslacht" the option "Vrouwelijk"
+    And within "Bestuurder(s)" the user enters the "Postcode" with "1061TL"
+    And within "Bestuurder(s)" the user enters the Huisnummer with "17"
+
