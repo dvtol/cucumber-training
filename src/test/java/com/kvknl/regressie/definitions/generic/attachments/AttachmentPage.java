@@ -22,6 +22,18 @@ public class AttachmentPage extends BasePage {
         WebDriverRunner.setWebDriver(webDriver);
     }
 
+    // adding attachment to the assignment
+    public void addFileAttachment(String attachment, String option) throws InterruptedException {
+
+        final String requiredfile = "//*[@id='Bijlage_1']/input";
+
+        dropdownSelectByValue((By.id("Type_bijlage")), option);
+        findElement(By.xpath(requiredfile)).sendKeys(AttachmentPage.loadAttachment(attachment));
+        buttonClick(By.xpath("/html/body/div[2]/div[4]/div/div[2]/div/div[5]/button"));
+        Thread.sleep(1000);
+    }
+
+    // attachment selection from folder location
     public static String loadAttachment(String file) {
         URL fileUrl = ClassLoader.getSystemResource(folder + file);
         try {
