@@ -13,15 +13,15 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class NewRegistrationPage extends BasePage {
 
+    private static final int begin = 100000;
+    private static final int end = 999999;
+
     public NewRegistrationPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
     }
 
-    private static final int begin = 100000;
-    private static final int end = 999999;
-
-    @Step("het opvoeren van een nieuwe registratie")
+    @Step("new kvk registration")
 
     // choose legal type
     public void choiceLegalForm(String legalForm) {
@@ -78,3 +78,4 @@ public class NewRegistrationPage extends BasePage {
         checkBoxVisibleAndCheck(locator);
     }
 }
+
