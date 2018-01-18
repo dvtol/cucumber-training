@@ -3,7 +3,6 @@ package com.kvknl.regressie.definitions.kvkor.newregistration;
 import com.kvknl.regressie.definitions.generic.BaseStepDef;
 import com.kvknl.regressie.definitions.generic.CommonObjPage;
 import com.kvknl.regressie.definitions.generic.attachments.AttachmentPage;
-import com.kvknl.regressie.definitions.kvkor.newregistration.fileattachment.FileAttachmentPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
