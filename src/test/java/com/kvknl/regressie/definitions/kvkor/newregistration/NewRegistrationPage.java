@@ -79,15 +79,6 @@ public class NewRegistrationPage extends BasePage {
     }
 
     // TODO
-    public void addMultipleDirector() {
-
-    }
-
-    public void deleteDirector() {
-
-    }
-
-    // TODO
     public void addMultipleofficial() {
 
     }
