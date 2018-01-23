@@ -32,15 +32,24 @@ public class CommonStepDef extends BaseStepDef {
         commonObjPage.clickOnNextButton();
     }
 
-    @Then("^click on the Opslaan button$")
-    public void clickOnTheOpslaanButton() throws InterruptedException {
-        commonObjPage.clickOnSaveButton();
+    @Then("^click on the Add extra director button$")
+    public void clickOnTheExtraDirectorButton() throws InterruptedException {
+        commonObjPage.clickOnExtraDirectorButton();
     }
 
     @Then("^click on the Valideren button$")
     public void clickOnTheValiderenButton() throws InterruptedException {
         commonObjPage.clickOnValidateButton();
+    }
 
+    @Then("^click on the Opslaan button$")
+    public void clickOnTheOpslaanButton() throws InterruptedException {
+        commonObjPage.clickOnSaveButton();
+    }
+
+    @Then("^click on the Delete button$")
+    public void clickOnTheDeleteButton() throws InterruptedException {
+        commonObjPage.clickOnDeleteButton();
     }
 
     @And("^within \"([^\"]*)\" the user enters the \"([^\"]*)\" with \"([^\"]*)\"$")

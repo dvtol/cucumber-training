@@ -23,9 +23,17 @@ public class CommonObjPage extends BasePage {
         Thread.sleep(1000);
     }
 
+    protected void clickOnDeleteButton() throws InterruptedException {
+        buttonClick(By.id("Delete"));
+    }
+
     protected void clickOnValidateButton() throws InterruptedException {
         buttonClick(By.id("valideren"));
         Thread.sleep(2000);
+    }
+
+    protected void clickOnExtraDirectorButton() {
+        buttonClick(By.id("ObjectGroupAdd"));
     }
 
     public void verifyPageTitle(String page) {
