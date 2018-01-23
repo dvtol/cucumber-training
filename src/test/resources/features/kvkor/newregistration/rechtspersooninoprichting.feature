@@ -35,7 +35,7 @@ Feature: OR frontoffice login
     And within "Vestiging(en)" the user chooses for "perPostorder" the radiobutton "Nee"
     And within "Vestiging(en)" the user chooses for "andersNamelijk" the radiobutton "Nee"
     And within "Vestiging(en)" the user chooses for "verkoopAanGroothandel" the radiobutton "Nee"
-    And within "Vestiging(en)" the user enters the "deletableHandelsnaam_1_*_" with "Test123"
+    And within "Vestiging(en)" the user enters the unique "deletableHandelsnaam_1_*_" with "N.V."
     And within "Vestiging(en)" the user chooses for "hasDomeinnamen" the radiobutton "Nee"
     And within "Vestiging(en)" the user chooses for "hasEmailadressen" the radiobutton "Nee"
     And within "Vestiging(en)" the user enters the "Hoeveel_personen_werken_er_fulltime_(15_uur_of_meer_per_week)_in_de_onderneming?" with "2"
