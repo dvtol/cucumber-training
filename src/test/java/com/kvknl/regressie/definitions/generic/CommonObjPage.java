@@ -40,6 +40,19 @@ public class CommonObjPage extends BasePage {
         buttonClick(By.id("ObjectGroupAdd"));
     }
 
+    protected void clickExtraTradeNameButton() {
+        scrollDownTo("Toevoegen_handelsnaam");
+        buttonClick(By.id("Toevoegen_handelsnaam"));
+    }
+
+    protected void clickExtraTelephoneNumberButton() {
+        buttonClick(By.id("Toevoegen_telefoonnummer"));
+    }
+
+    protected void clickExtraFaxNumberButton() {
+        buttonClick(By.id("Toevoegen_faxnummer"));
+    }
+
     public void verifyPageTitle(String page) {
         By pageTitle = By.xpath("/html/body/div[2]/div[4]/div/h2");
         assertTextInputContainsText(pageTitle, page);

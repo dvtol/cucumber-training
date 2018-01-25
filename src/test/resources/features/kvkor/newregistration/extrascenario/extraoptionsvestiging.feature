@@ -1,5 +1,5 @@
-@NewRegistrationExtraOptionsBestuurder
-Feature: Add and remove extra bestuurder scenario - OR frontoffice
+@NewRegistrationExtraOptionsLocatie
+Feature: Add and remove extra location scenario - OR frontoffice
 
   Background: Feature: Extra scenario's OR frontoffice - new registration
 
@@ -13,15 +13,24 @@ Feature: Add and remove extra bestuurder scenario - OR frontoffice
     And within "Kapitaalgegevens" the user enters the "Geplaatst_kapitaal" with "2000"
     And within "Kapitaalgegevens" the user enters the "Gestort_kapitaal" with "1000"
     Then click on the Volgende button
+    Then click on the Volgende button
 
-  Scenario: Add extra director with legal type BV
+  Scenario: Add extra location with legal type BV
     Then click Add extra group button
 
-  Scenario: Delete extra added director with legal type BV
+  Scenario: Delete extra added location with legal type BV
     Then click Add extra group button
     And click on the Delete button
 
-  Scenario: Clear private address fields from director with legal type BV
-    And within "Bestuurder(s)" the user enters the "Postcode" with "1061TL"
-    And within "Bestuurder(s)" the user enters the Huisnummer with "17"
+  Scenario: Clear visit address from location with legal type BV
+    And within "Vestiging(en)" the user enters the "Postcode" with "1061TL"
+    And within "Vestiging(en)" the user enters the Huisnummer with "17"
     Then click on the clear button
+
+  Scenario: Add extra trade name, telephone number, fax number and delete them afterwards
+    Then click add extra trade name button
+    And click on the Delete button
+    Then click add extra telephone number button
+    And click on the Delete button
+    Then click add extra fax number button
+    And click on the Delete button

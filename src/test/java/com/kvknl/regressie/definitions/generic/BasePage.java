@@ -155,8 +155,10 @@ public class BasePage extends CukeConfigurator {
         throw new RuntimeException("Cannot execute JavaScript");
     }
 
-    public void scrollTo(By by) {
-        new Actions(webDriver).moveToElement(expectShortly(presenceOfElementLocated(by))).perform();
+    public void scrollDownTo(String locator) {
+        WebElement element = findElement(By.id(locator));
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) webDriver;
+        javascriptExecutor.executeScript("window.scrollBy(0,500)", "", element);
     }
 
     /**

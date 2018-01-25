@@ -14,6 +14,7 @@ import java.io.IOException;
 public class CommonStepDef extends BaseStepDef {
 
     private CommonObjPage commonObjPage;
+    private BasePage basePage;
     private CukeConfigurator cukeconfig = new CukeConfigurator();
 
 
@@ -48,7 +49,7 @@ public class CommonStepDef extends BaseStepDef {
         commonObjPage.clickOnSaveButton();
     }
 
-    @Then("^click on the Delete button$")
+    @And("^click on the Delete button$")
     public void clickOnTheDeleteButton() throws InterruptedException {
         commonObjPage.clickOnDeleteButton();
     }
@@ -56,6 +57,21 @@ public class CommonStepDef extends BaseStepDef {
     @Then("^click on the clear button$")
     public void clickOnClearButton() throws InterruptedException {
         commonObjPage.clickOnClearButton();
+    }
+
+    @Then("^click add extra trade name button$")
+    public void clickAddExtraTradenameButton() throws InterruptedException {
+        commonObjPage.clickExtraTradeNameButton();
+    }
+
+    @Then("^click add extra telephone number button$")
+    public void clickAddExtraTelephoneNumberButton() throws InterruptedException {
+        commonObjPage.clickExtraTelephoneNumberButton();
+    }
+
+    @Then("^click add extra fax number button$")
+    public void clickAddExtraFaxNumberButton() throws InterruptedException {
+        commonObjPage.clickExtraFaxNumberButton();
     }
 
     @And("^within \"([^\"]*)\" the user enters the \"([^\"]*)\" with \"([^\"]*)\"$")
