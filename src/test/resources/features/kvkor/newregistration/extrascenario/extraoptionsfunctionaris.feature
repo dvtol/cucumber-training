@@ -28,4 +28,4 @@ Feature: Add and remove extra functionaris scenario - OR frontoffice
     And click on the Delete button
 
   Scenario: Take over director
-    #And within "Functionaris(sen)" the user chooses for Activiteit "" the option "Vanya Ebben"
+    #TODO - And within "Functionaris(sen)" the user chooses for Activiteit "" the option "Vanya Ebben"

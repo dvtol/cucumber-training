@@ -77,50 +77,5 @@ public class NewRegistrationPage extends BasePage {
         By locator = By.id("Vanya Ebben");
         checkBoxVisibleAndCheck(locator);
     }
-
-    // TODO
-    public void addMultipleofficial() {
-
-    }
-
-    // TODO
-    public void addMultipleLocation() {
-
-    }
-
-    // TODO
-    public void openLocation() {
-
-    }
-
-    // TODO
-    public void deleteLocation() {
-
-    }
-
-    // TODO
-    public void extraTradenameVisitAddress() {
-
-    }
-
-    // TODO
-    public void extraPhoneNumberVisitAddress() {
-
-    }
-
-    // TODO
-    public void extraFaxNumberVisitAddress() {
-
-    }
-
-    // TODO
-    public void dataAuthorizedRepresentitive() {
-
-    }
-
-    // TODO
-    public void deleteAuthorizedRepresentitive() {
-
-    }
 }
 
