@@ -53,6 +53,11 @@ public class CommonStepDef extends BaseStepDef {
         commonObjPage.clickOnDeleteButton();
     }
 
+    @Then("^click on the clear button$")
+    public void clickOnClearButton() throws InterruptedException {
+        commonObjPage.clickOnClearButton();
+    }
+
     @And("^within \"([^\"]*)\" the user enters the \"([^\"]*)\" with \"([^\"]*)\"$")
     public void enterDataForField(String page, String id, String input) {
         commonObjPage.verifyPageTitle(page);

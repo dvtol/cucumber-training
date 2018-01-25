@@ -27,6 +27,10 @@ public class CommonObjPage extends BasePage {
         buttonClick(By.id("Delete"));
     }
 
+    protected void clickOnClearButton() {
+        buttonClick(By.id("Schonen"));
+    }
+
     protected void clickOnValidateButton() throws InterruptedException {
         buttonClick(By.id("valideren"));
         Thread.sleep(2000);
