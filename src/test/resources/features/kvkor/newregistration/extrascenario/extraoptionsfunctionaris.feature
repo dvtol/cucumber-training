@@ -1,9 +1,9 @@
-@NewRegistrationExtraBestuurder
-Feature: Add and remove extra bestuurder scenario - OR frontoffice
+@NewRegistrationExtraOptionsFunctionaris
+Feature: Add and remove extra functionaris scenario - OR frontoffice
 
   Background: Feature: Extra scenario's OR frontoffice - new registration
 
-  Scenario: Add extra director with legal type BV
+  Scenario: Add extra official with legal type BV
     Given the user opens the OR frontoffice application
     When the user is logged in and starts with a new registration with legal form "Besloten Vennootschap"
     And within "Besloten Vennootschap" the user enters the unique "Naam_rechtspersoon" with "B.V."
@@ -14,9 +14,12 @@ Feature: Add and remove extra bestuurder scenario - OR frontoffice
     And within "Kapitaalgegevens" the user enters the "Geplaatst_kapitaal" with "2000"
     And within "Kapitaalgegevens" the user enters the "Gestort_kapitaal" with "1000"
     Then click on the Volgende button
+    Then click on the Volgende button
+    Then click on the Volgende button
+    And within "Functionaris(sen)" the user chooses for "question" the radiobutton "Ja"
     Then click Add extra group button
 
-  Scenario: Delete extra added director with legal type BV
+  Scenario: Delete extra official with legal type BV
     Given the user opens the OR frontoffice application
     When the user is logged in and starts with a new registration with legal form "Besloten Vennootschap"
     And within "Besloten Vennootschap" the user enters the unique "Naam_rechtspersoon" with "B.V."
@@ -27,5 +30,8 @@ Feature: Add and remove extra bestuurder scenario - OR frontoffice
     And within "Kapitaalgegevens" the user enters the "Geplaatst_kapitaal" with "2000"
     And within "Kapitaalgegevens" the user enters the "Gestort_kapitaal" with "1000"
     Then click on the Volgende button
+    Then click on the Volgende button
+    Then click on the Volgende button
+    And within "Functionaris(sen)" the user chooses for "question" the radiobutton "Ja"
     Then click Add extra group button
     Then click on the Delete button
