@@ -32,9 +32,10 @@ public class CommonStepDef extends BaseStepDef {
         commonObjPage.clickOnNextButton();
     }
 
-    @Then("^click Add extra location or director button$")
-    public void clickAddExtraLocationOrDirectorButton() throws InterruptedException {
-        commonObjPage.clickAddExtraLocationOrDirectorButton();
+    // add extra director, location or official
+    @Then("^click Add extra group button$")
+    public void clickAddExtraGroupObjButton() throws InterruptedException {
+        commonObjPage.clickAddExtraGroupObjButton();
     }
 
     @Then("^click on the Valideren button$")

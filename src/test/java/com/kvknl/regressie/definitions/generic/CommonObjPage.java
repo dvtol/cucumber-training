@@ -32,7 +32,7 @@ public class CommonObjPage extends BasePage {
         Thread.sleep(2000);
     }
 
-    protected void clickAddExtraLocationOrDirectorButton() {
+    protected void clickAddExtraGroupObjButton() {
         buttonClick(By.id("ObjectGroupAdd"));
     }
 
