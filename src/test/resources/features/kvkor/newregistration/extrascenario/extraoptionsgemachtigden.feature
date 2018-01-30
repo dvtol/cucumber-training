@@ -1,6 +1,6 @@
 @NewRegistrationExtraOptionsCommissary
 
-  Feature: Add and remove extra commissary scenarios - OR frontoffice
+Feature: Add and remove extra commissary scenarios - OR frontoffice
 
   Background: Feature: Extra scenario's OR frontoffice - new registration
 
@@ -23,3 +23,11 @@
     And within "Gemachtigde(n)" the user chooses for "question" the radiobutton "Ja"
 
   Scenario: Add extra commissary with legal type BV
+    Then click Add extra group button
+
+  Scenario: Delete extra added commissary with legal type BV
+    Then click Add extra group button
+    And click on the Delete button
+
+  Scenario: Delete extra added commissary with legal type BV
+    And within "Gemachtigde(n)" the user enters the "Datum_waarop_de_gemachtigde_in_functie_is_getreden" with "01-01-2018"
