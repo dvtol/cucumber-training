@@ -1,5 +1,6 @@
 package com.kvknl.regressie.definitions.generic;
 
+import com.kvknl.regressie.definitions.kvkor.newregistration.NewRegistrationPage;
 import com.kvknl.regressie.driver.CukeConfigurator;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -62,6 +63,12 @@ public class CommonStepDef extends BaseStepDef {
     @Then("^click add extra trade name button$")
     public void clickAddExtraTradenameButton() throws InterruptedException {
         commonObjPage.clickExtraTradeNameButton();
+    }
+
+    @Then("^within \"([^\"]*)\" click takeover or cancel takeover Director button option \"([^\"]*)\"$")
+    public void clickTakeOverButton(String page, String chooseoption) throws InterruptedException {
+        commonObjPage.verifyPageTitle(page);
+        commonObjPage.takeOverOrCancelDirectorButton(chooseoption);
     }
 
     @Then("^click add extra telephone number button$")

@@ -45,6 +45,10 @@ public class CommonObjPage extends BasePage {
         buttonClick(By.id("Toevoegen_handelsnaam"));
     }
 
+    protected void takeOverOrCancelDirectorButton(String chooseoption) {
+        buttonClick(By.xpath("//*[@id=\"Overnemen bestuurder\"]/div/table/tbody/tr/td["+chooseoption+"]/button/span"));
+    }
+
     protected void clickExtraTelephoneNumberButton() {
         buttonClick(By.id("Toevoegen_telefoonnummer"));
     }

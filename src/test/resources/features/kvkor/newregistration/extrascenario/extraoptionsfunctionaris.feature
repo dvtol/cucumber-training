@@ -1,5 +1,5 @@
 @NewRegistrationExtraOptionsFunctionaris
-Feature: Add and remove extra functionaris scenario - OR frontoffice
+  Feature: Add and remove extra functionaris scenario - OR frontoffice
 
   Background: Feature: Extra scenario's OR frontoffice - new registration
 
@@ -29,3 +29,9 @@ Feature: Add and remove extra functionaris scenario - OR frontoffice
 
   Scenario: Take over director
     And within "Functionaris(sen)" the user chooses for the added Director "2"
+    Then within "Functionaris(sen)" click takeover or cancel takeover Director button option "2"
+
+  Scenario: Cancel take over director
+    And within "Functionaris(sen)" the user chooses for the added Director "2"
+    Then within "Functionaris(sen)" click takeover or cancel takeover Director button option "2"
+    Then within "Functionaris(sen)" click takeover or cancel takeover Director button option "3"
