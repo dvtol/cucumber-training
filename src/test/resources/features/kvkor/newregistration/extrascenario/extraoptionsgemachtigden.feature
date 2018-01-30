@@ -1,5 +1,6 @@
-@NewRegistrationExtraOptionsFunctionaris
-  Feature: Add and remove extra functionaris scenarios - OR frontoffice
+@NewRegistrationExtraOptionsCommissary
+
+  Feature: Add and remove extra commissary scenarios - OR frontoffice
 
   Background: Feature: Extra scenario's OR frontoffice - new registration
 
@@ -18,20 +19,7 @@
     And the user clicks checkbox to validate the BSN number
     Then click on the Volgende button
     Then click on the Volgende button
-    And within "Functionaris(sen)" the user chooses for "question" the radiobutton "Ja"
+    Then click on the Volgende button
+    And within "Gemachtigde(n)" the user chooses for "question" the radiobutton "Ja"
 
-  Scenario: Add extra official with legal type BV
-    Then click Add extra group button
-
-  Scenario: Delete extra official with legal type BV
-    Then click Add extra group button
-    And click on the Delete button
-
-  Scenario: Take over director
-    And within "Functionaris(sen)" the user chooses for the added Director "2"
-    Then within "Functionaris(sen)" click takeover or cancel takeover Director button option "2"
-
-  Scenario: Cancel take over director
-    And within "Functionaris(sen)" the user chooses for the added Director "2"
-    Then within "Functionaris(sen)" click takeover or cancel takeover Director button option "2"
-    Then within "Functionaris(sen)" click takeover or cancel takeover Director button option "3"
+  Scenario: Add extra commissary with legal type BV
