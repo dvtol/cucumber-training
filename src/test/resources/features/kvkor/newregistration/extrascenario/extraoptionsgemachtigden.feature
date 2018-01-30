@@ -29,5 +29,10 @@ Feature: Add and remove extra commissary scenarios - OR frontoffice
     Then click Add extra group button
     And click on the Delete button
 
-  Scenario: Delete extra added commissary with legal type BV
+  Scenario: Select commissary with type proxy in use of legal type BV
     And within "Gemachtigde(n)" the user enters the "Datum_waarop_de_gemachtigde_in_functie_is_getreden" with "01-01-2018"
+    And within "Gemachtigde(n)" the user chooses for "Type_gemachtigde" the option "Gevolmachtigde"
+
+  Scenario: Select commissary with type commercial agent in use of legal type BV
+    And within "Gemachtigde(n)" the user enters the "Datum_waarop_de_gemachtigde_in_functie_is_getreden" with "01-01-2018"
+    And within "Gemachtigde(n)" the user chooses for "Type_gemachtigde" the option "Handelsagent"
