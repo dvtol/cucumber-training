@@ -72,6 +72,11 @@ public class NewRegistrationPage extends BasePage {
         dropdownSelectByValue(locator, activity);
     }
 
+    // option to choose director
+    public void chooseDirector(String number) {
+        $(By.xpath("//*[@id=\"Overnemen bestuurder\"]/div/table/tbody/tr/td[1]/select/option["+number+"]")).click();
+    }
+
     // validate check for BSN number
     public void checkBoxBSN() {
         By locator = By.id("Vanya Ebben");

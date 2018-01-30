@@ -63,6 +63,12 @@ public class NewRegistrationStepDef extends BaseStepDef {
         newRegistrationPage.chooseActivity(number, activity);
     }
 
+    @And("^within \"([^\"]*)\" the user chooses for the added Director \"([^\"]*)\"$")
+    public void chooseDirector(String page, String number) {
+        commonObjPage.verifyPageTitle(page);
+        newRegistrationPage.chooseDirector(number);
+    }
+
     @And("^the user clicks checkbox to validate the BSN number$")
     public void checkBSNValidation() {
         newRegistrationPage.checkBoxBSN();
