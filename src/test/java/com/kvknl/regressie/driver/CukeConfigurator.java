@@ -118,7 +118,7 @@ public class CukeConfigurator {
 
         // set kvk.nl proxy server
         //org.openqa.selenium.Proxy proxy = new Proxy().setHttpProxy(Proxy).setFtpProxy(Proxy).setSslProxy(Proxy)
-                //.setSocksProxy(Proxy);
+        //.setSocksProxy(Proxy);
         DesiredCapabilities capabilities = null;
         if (remoteBrowserName.toLowerCase().contains("chrome")) {
             capabilities = DesiredCapabilities.chrome();
