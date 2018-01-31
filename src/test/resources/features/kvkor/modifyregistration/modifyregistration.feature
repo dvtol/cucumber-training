@@ -1,4 +1,4 @@
 @ModifyRegistrationBV
-Functionaliteit: modify existing registration with legal type BV
+Feature: modify existing registration with legal type BV
 
-  Achtergrond: Feature: modify existing registration
+  Background: Feature: modify existing registration

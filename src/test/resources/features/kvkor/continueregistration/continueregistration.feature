@@ -1,4 +1,4 @@
 @ContinueRegistrationBV
-Functionaliteit: continue registration with legal type BV
+Feature: continue registration with legal type BV
 
-  Achtergrond: Feature: continue registration
+  Background: Feature: continue registration
