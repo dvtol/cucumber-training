@@ -46,7 +46,7 @@ public class CommonObjPage extends BasePage {
     }
 
     protected void takeOverOrCancelDirectorButton(String chooseoption) {
-        buttonClick(By.xpath("//*[@id=\"Overnemen bestuurder\"]/div/table/tbody/tr/td["+chooseoption+"]/button/span"));
+        buttonClick(By.xpath("//*[@id=\"Overnemen bestuurder\"]/div/table/tbody/tr/td[" + chooseoption + "]/button/span"));
     }
 
     protected void clickExtraTelephoneNumberButton() {
@@ -66,7 +66,7 @@ public class CommonObjPage extends BasePage {
         textInputSetText(By.id(locator), text);
     }
 
-    protected void typeValueMessageInbox(By locator, String text){
+    protected void typeValueMessageInbox(By locator, String text) {
         textInputSetText(locator, text);
     }
 
@@ -75,7 +75,7 @@ public class CommonObjPage extends BasePage {
     }
 
     protected void chooseRadiobutton(String id, String radiobutton) {
-        radioButtonVisibleAndSelect(By.id(id+radiobutton));
+        radioButtonVisibleAndSelect(By.id(id + radiobutton));
     }
 
     protected void tab(String id) {

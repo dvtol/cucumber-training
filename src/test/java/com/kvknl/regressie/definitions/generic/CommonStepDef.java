@@ -98,7 +98,7 @@ public class CommonStepDef extends BaseStepDef {
     }
 
     @And("^within \"([^\"]*)\" the user enters the Geboortedatum with \"([^\"]*)\"$")
-    public void enterDateOfBirth(String page, String input){
+    public void enterDateOfBirth(String page, String input) {
         commonObjPage.verifyPageTitle(page);
         commonObjPage.typeValueDateOfBirth(input);
     }
@@ -106,7 +106,7 @@ public class CommonStepDef extends BaseStepDef {
     @Then("^the message Validate is succesvol is shown$")
     public void checkTextValidateMessage() {
         String text = "Validatie is succesvol";
-        By locater = By.xpath("//div[contains(text(), '"+text+"')]");
+        By locater = By.xpath("//div[contains(text(), '" + text + "')]");
         commonObjPage.verifyText(locater, text);
     }
 

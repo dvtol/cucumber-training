@@ -1,5 +1,5 @@
 @NewRegistrationExtraOptionsFunctionaris
-  Feature: Add and remove extra functionaris scenarios - OR frontoffice
+Feature: Add and remove extra functionaris scenarios - OR frontoffice
 
   Background: Feature: Extra scenario's OR frontoffice - new registration
 
