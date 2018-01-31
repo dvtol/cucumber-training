@@ -1,6 +1,5 @@
 package com.kvknl.regressie.definitions.generic;
 
-import com.kvknl.regressie.definitions.kvkor.newregistration.NewRegistrationPage;
 import com.kvknl.regressie.driver.CukeConfigurator;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -15,7 +14,6 @@ import java.io.IOException;
 public class CommonStepDef extends BaseStepDef {
 
     private CommonObjPage commonObjPage;
-    private BasePage basePage;
     private CukeConfigurator cukeconfig = new CukeConfigurator();
 
 
