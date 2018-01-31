@@ -9,7 +9,7 @@ target.host.name: or-notarissen-frontoffice.acp.k94.kvk.nl/zb/secureL2/kvkonline
 
 # zoeken for the dev-page
 dev.login: admin
-dev.password: uzGcALbMUXaWJzWQ
+dev.password: ********
 
 # implicit wait timeout for element(s) search
 implicit.wait.timeout.seconds: 15
