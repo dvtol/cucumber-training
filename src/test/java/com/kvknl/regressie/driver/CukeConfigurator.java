@@ -139,8 +139,11 @@ public class CukeConfigurator {
             capabilities.setBrowserName("firefox");
             capabilities.setCapability("recordVideo", false);
             capabilities.setCapability("idleTimeout", 60);
+            FirefoxProfile CucumberFirefoxProfiel = new FirefoxProfile();
+            capabilities.setCapability(FirefoxDriver.PROFILE, CucumberFirefoxProfiel);
             //capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
+
         // request node to the hub
         driver = new RemoteWebDriver(new URL(remoteUrl), capabilities);
 

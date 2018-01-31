@@ -28,7 +28,7 @@ public class CommonStepDef extends BaseStepDef {
     }
 
     @Then("^click on the Volgende button$")
-    public void clickOnTheVolgendeButton() {
+    public void clickOnTheNextButton() {
         commonObjPage.clickOnNextButton();
     }
 
