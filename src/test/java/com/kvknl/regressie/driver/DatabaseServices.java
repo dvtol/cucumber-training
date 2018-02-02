@@ -56,6 +56,11 @@ public class DatabaseServices {
         log.info("*** MONGO DB *** De collectie '" + collectionTitle + "' is gevonden en opgehaald!");
     }
 
-    public MongoDatabase returnMongoDatabase() { return this.database; /* return database for class TestDataServices which queries the MongoDB */ }
-    public MongoCollection returnMongoCollection() { return this.collection; /* return collection for class TestDataServices which queries the MongoDB */ }
+    public MongoDatabase returnMongoDatabase() {
+        return this.database; /* return database for class TestDataServices which queries the MongoDB */
+    }
+
+    public MongoCollection returnMongoCollection() {
+        return this.collection; /* return collection for class TestDataServices which queries the MongoDB */
+    }
 }

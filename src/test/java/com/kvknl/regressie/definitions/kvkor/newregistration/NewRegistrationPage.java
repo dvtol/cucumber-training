@@ -72,64 +72,15 @@ public class NewRegistrationPage extends BasePage {
         dropdownSelectByValue(locator, activity);
     }
 
+    // option to choose director
+    public void chooseDirector(String number) {
+        $(By.xpath("//*[@id=\"Overnemen bestuurder\"]/div/table/tbody/tr/td[1]/select/option["+number+"]")).click();
+    }
+
     // validate check for BSN number
     public void checkBoxBSN() {
         By locator = By.id("Vanya Ebben");
         checkBoxVisibleAndCheck(locator);
-    }
-
-    // TODO
-    public void addMultipleDirector() {
-
-    }
-
-    public void deleteDirector() {
-
-    }
-
-    // TODO
-    public void addMultipleofficial() {
-
-    }
-
-    // TODO
-    public void addMultipleLocation() {
-
-    }
-
-    // TODO
-    public void openLocation() {
-
-    }
-
-    // TODO
-    public void deleteLocation() {
-
-    }
-
-    // TODO
-    public void extraTradenameVisitAddress() {
-
-    }
-
-    // TODO
-    public void extraPhoneNumberVisitAddress() {
-
-    }
-
-    // TODO
-    public void extraFaxNumberVisitAddress() {
-
-    }
-
-    // TODO
-    public void dataAuthorizedRepresentitive() {
-
-    }
-
-    // TODO
-    public void deleteAuthorizedRepresentitive() {
-
     }
 }
 

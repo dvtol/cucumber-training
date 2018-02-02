@@ -13,7 +13,10 @@ Feature: OR frontoffice login
     Then click on the Volgende button
     And within "Adresgegevens rechtspersoon" the user enters the "Postcode" with "3447GT"
     And within "Adresgegevens rechtspersoon" the user enters the "Huisnummer" with "1"
-    And within "Adresgegevens rechtspersoon" the user enters the "Activiteitomschrijving" with "Dit is een activiteitomschrijving"
+    And within "Adresgegevens rechtspersoon" the user chooses for "isPostAdresGelijkAanBezoekAdres" the radiobutton "Nee"
+    And within "Adresgegevens rechtspersoon" the user enters the "Postcode" with "3447GT"
+    And within "Adresgegevens rechtspersoon" the user enters the "Huisnummer" with "1"
+    And within "Adresgegevens rechtspersoon" the user enters the "Activiteitomschrijving" with "Dit is een activiteitomschrijving 12313"
     Then click on the Opslaan button
     Then click on the Volgende button
     And within "Bestuurder(s)" the user enters the "Datum_waarop_de_functionaris_in_functie_is_getreden" with "01-01-2018"

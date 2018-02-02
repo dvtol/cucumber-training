@@ -28,8 +28,18 @@ public class CommonStepDef extends BaseStepDef {
     }
 
     @Then("^click on the Volgende button$")
-    public void clickOnTheVolgendeButton() {
+    public void clickOnTheNextButton() {
         commonObjPage.clickOnNextButton();
+    }
+
+    @Then("^click Add extra group button$")
+    public void clickAddExtraGroupObjButton() throws InterruptedException {
+        commonObjPage.clickAddExtraGroupObjButton();
+    }
+
+    @Then("^click on the Valideren button$")
+    public void clickOnTheValiderenButton() throws InterruptedException {
+        commonObjPage.clickOnValidateButton();
     }
 
     @Then("^click on the Opslaan button$")
@@ -37,10 +47,35 @@ public class CommonStepDef extends BaseStepDef {
         commonObjPage.clickOnSaveButton();
     }
 
-    @Then("^click on the Valideren button$")
-    public void clickOnTheValiderenButton() throws InterruptedException {
-        commonObjPage.clickOnValidateButton();
+    @And("^click on the Delete button$")
+    public void clickOnTheDeleteButton() throws InterruptedException {
+        commonObjPage.clickOnDeleteButton();
+    }
 
+    @Then("^click on the clear button$")
+    public void clickOnClearButton() throws InterruptedException {
+        commonObjPage.clickOnClearButton();
+    }
+
+    @Then("^click add extra trade name button$")
+    public void clickAddExtraTradenameButton() throws InterruptedException {
+        commonObjPage.clickExtraTradeNameButton();
+    }
+
+    @Then("^within \"([^\"]*)\" click takeover or cancel takeover Director button option \"([^\"]*)\"$")
+    public void clickTakeOverButton(String page, String chooseoption) throws InterruptedException {
+        commonObjPage.verifyPageTitle(page);
+        commonObjPage.takeOverOrCancelDirectorButton(chooseoption);
+    }
+
+    @Then("^click add extra telephone number button$")
+    public void clickAddExtraTelephoneNumberButton() throws InterruptedException {
+        commonObjPage.clickExtraTelephoneNumberButton();
+    }
+
+    @Then("^click add extra fax number button$")
+    public void clickAddExtraFaxNumberButton() throws InterruptedException {
+        commonObjPage.clickExtraFaxNumberButton();
     }
 
     @And("^within \"([^\"]*)\" the user enters the \"([^\"]*)\" with \"([^\"]*)\"$")
@@ -63,7 +98,7 @@ public class CommonStepDef extends BaseStepDef {
     }
 
     @And("^within \"([^\"]*)\" the user enters the Geboortedatum with \"([^\"]*)\"$")
-    public void enterDateOfBirth(String page, String input){
+    public void enterDateOfBirth(String page, String input) {
         commonObjPage.verifyPageTitle(page);
         commonObjPage.typeValueDateOfBirth(input);
     }
@@ -71,7 +106,7 @@ public class CommonStepDef extends BaseStepDef {
     @Then("^the message Validate is succesvol is shown$")
     public void checkTextValidateMessage() {
         String text = "Validatie is succesvol";
-        By locater = By.xpath("//div[contains(text(), '"+text+"')]");
+        By locater = By.xpath("//div[contains(text(), '" + text + "')]");
         commonObjPage.verifyText(locater, text);
     }
 

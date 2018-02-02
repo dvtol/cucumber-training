@@ -34,7 +34,7 @@ Feature: OR frontoffice login
     And within "Bestuurder(s)" the user enters the "Geboorteplaats" with "Amsterdam"
     And within "Bestuurder(s)" the user chooses for "Geslacht" the option "Mannelijk"
     And within "Bestuurder(s)" the user chooses for "isBuitenlandsAdres" the radiobutton "Nee"
-    And within "Bestuurder(s)" the user enters the "Postcode" with "1061tl"
+    And within "Bestuurder(s)" the user enters the "Postcode" with "1061TL"
     And within "Bestuurder(s)" the user enters the Huisnummer with "17"
     And within "Bestuurder(s)" the user enters the "Toevoeging_adres" with "AB"
     And within "Bestuurder(s)" the user chooses for "isFunctieTitelStatutairBepaald" the radiobutton "Nee"
