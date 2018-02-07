@@ -77,7 +77,7 @@ We use [Git](https://git-scm.com//) for versioning. For the versions available, 
 ## Authors - Cucumber training Team
 
 * **Danny van Tol** danny@opencore.nl
-* **Glenn Dasai** glenn_gd@hotmail.com
+* **Glenn Dasai** glenn.dasai@testautomationschool.nl
 
 ## License
 
