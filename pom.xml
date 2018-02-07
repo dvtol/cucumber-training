@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kvknl.regressie</groupId>
-    <artifactId>kvknl.regressie</artifactId>
+    <groupId>com.cucumber.training</groupId>
+    <artifactId>cucumber.training</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Regressie KvK OR</name>
+    <name>Cucumber-training</name>
 
     <properties>
         <selenium.version>3.4.0</selenium.version>
@@ -23,7 +23,7 @@
         <maven.surefire.version>2.20</maven.surefire.version>
         <webdrivermanager.version>1.7.0</webdrivermanager.version>
         <aspectj.version>1.8.4</aspectj.version>
-        <number.of.threads>4</number.of.threads>
+        <number.of.threads>3</number.of.threads>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -197,7 +197,7 @@
                             <!-- Mandatory -->
                             <!-- List of package names to scan for glue code. -->
                             <glue>
-                                <package>com.kvknl.regressie</package>
+                                <package>com.cucumber.functionaltest</package>
                             </glue>
                             <!-- These are optional, with the default values -->
                             <!-- Where to output the generated tests -->

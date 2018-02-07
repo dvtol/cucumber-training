@@ -5,11 +5,7 @@ webdriver.screenshots: true
 remote.url.address: http://zalenium.tools.ecom.ahold.nl/wd/hub
 
 # set environment of choice
-target.host.name: tst2
-
-# login for the dev-page
-dev.login: admin
-dev.password: uzGcALbMUXaWJzWQ
+target.host.name: <url_to_connect>
 
 # implicit wait timeout for element(s) search
 implicit.wait.timeout.seconds: 15
