@@ -5,7 +5,7 @@ webdriver.screenshots: true
 remote.url.address: http://zalenium.tools.ecom.kvknl.nl/wd/hub
 
 # set environment of choice - SAMPLE!
-target.host.name: <url_to_connect>
+target.host.name: www.testautomationschool.nl/test
 
 # zoeken for the dev-page
 dev.login: admin

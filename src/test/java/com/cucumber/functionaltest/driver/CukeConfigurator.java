@@ -34,7 +34,6 @@ public class CukeConfigurator {
     }
 
     private static RemoteWebDriver driver;
-    private String Proxy = "proxy1.kvk.nl:8080";
 
     @Value("${browser.name.local}")
     private String localBrowserName;
@@ -82,9 +81,9 @@ public class CukeConfigurator {
 
         if (localBrowserName.contains("chrome")) {
             if (chromeDriverVersion.equals("latest")) {
-                ChromeDriverManager.getInstance().proxy(Proxy).setup();
+                ChromeDriverManager.getInstance();
             } else {
-                ChromeDriverManager.getInstance().version(chromeDriverVersion).proxy(Proxy).setup();
+                ChromeDriverManager.getInstance().version(chromeDriverVersion);
             }
             final ChromeOptions options = new ChromeOptions();
             if (localBrowserName.toLowerCase().contains("headless")) {
@@ -98,10 +97,10 @@ public class CukeConfigurator {
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
 
             if (firefoxDriverVersion.equals("latest")) {
-                FirefoxDriverManager.getInstance().proxy(Proxy).setup();
+                FirefoxDriverManager.getInstance();
 
             } else {
-                FirefoxDriverManager.getInstance().version(firefoxDriverVersion).proxy(Proxy).setup();
+                FirefoxDriverManager.getInstance().version(firefoxDriverVersion);
             }
             ProfilesIni profile = new ProfilesIni();
             final FirefoxProfile firefoxProfile = profile.getProfile("CucumberFirefoxProfiel");
