@@ -4,6 +4,7 @@ import com.cucumber.functionaltest.driver.CukeConfigurator;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
@@ -126,5 +127,20 @@ public class CommonStepDef extends BaseStepDef {
         commonObjPage.verifyPageTitle(page);
         By locator = By.xpath("//*[@id='Naam_berichtenbox']/input");
         commonObjPage.typeValueMessageInbox(locator, input);
+    }
+
+
+    @Given("^the user has opened a browser$")
+    public void theUserHasOpenedABrowser() {
+    }
+
+    @When("^the user enters \"([^\"]*)\" in the browser$")
+    public void openPage (String url) throws AWTException {
+        commonObjPage.navigateToEnvironment(url);
+    }
+
+    @Then("^the user is on the login page$")
+    public void verifyOnLoginPage() {
+        commonObjPage.verifyPageTitle("Selenium demo pagina");
     }
 }
