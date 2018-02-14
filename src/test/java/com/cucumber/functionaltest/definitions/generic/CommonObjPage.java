@@ -62,8 +62,8 @@ public class CommonObjPage extends BasePage {
     }
 
     public void verifyPageTitle(String page) {
-        By pageTitle = By.xpath("/html/body/div[2]/div[4]/div/h2");
-        assertTextInputContainsText(pageTitle, page);
+        String pageTitle = getTitle();
+        assertEquals(pageTitle, page);
     }
 
     protected void typeValue(String locator, String text) {
