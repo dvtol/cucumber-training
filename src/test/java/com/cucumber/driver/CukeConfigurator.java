@@ -1,6 +1,6 @@
-package com.cucumber.functionaltest.driver;
+package com.cucumber.driver;
 
-import com.cucumber.functionaltest.definitions.generic.BasePage;
+import com.cucumber.definitions.pageobject.BasePage;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 
@@ -57,7 +57,7 @@ public class CukeConfigurator {
     private String browserScreenSize;
     /**
      * screenshot value links to class/method:
-     * {@link com.cucumber.functionaltest.driver.TestHooks#embedScreenshot}
+     * {@link com.cucumber.driver.TestHooks#embedScreenshot}
      */
     @Value("${webdriver.screenshots:false}")
     protected boolean screenshots;

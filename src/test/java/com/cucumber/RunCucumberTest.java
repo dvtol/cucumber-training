@@ -1,4 +1,4 @@
-package com.cucumber.functionaltest;
+package com.cucumber;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;

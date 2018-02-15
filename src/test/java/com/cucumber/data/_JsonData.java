@@ -1,6 +1,6 @@
-package com.cucumber.functionaltest.data;
+package com.cucumber.data;
 
-import com.cucumber.functionaltest.driver.CukeConfigurator;
+import com.cucumber.driver.CukeConfigurator;
 import io.qameta.allure.Step;
 import java.io.FileReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.cucumber.functionaltest.driver;
+package com.cucumber.driver;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
