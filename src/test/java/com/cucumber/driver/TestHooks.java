@@ -1,6 +1,6 @@
-package com.cucumber.functionaltest.driver;
+package com.cucumber.driver;
 
-import com.cucumber.functionaltest.definitions.generic.BasePage;
+import com.cucumber.definitions.pageobject.BasePage;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;

@@ -1,4 +1,4 @@
-package com.cucumber.functionaltest.driver;
+package com.cucumber.driver;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;

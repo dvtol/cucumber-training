@@ -1,4 +1,4 @@
-package com.cucumber.functionaltest.definitions.generic;
+package com.cucumber.definitions.pageobject;
 
 import static java.lang.String.format;
 import static org.openqa.selenium.support.ui.ExpectedConditions.or;
@@ -7,7 +7,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentI
 import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-import com.cucumber.functionaltest.driver.CukeConfigurator;
+import com.cucumber.driver.CukeConfigurator;
 import com.google.common.base.Function;
 
 import java.awt.*;
@@ -40,7 +40,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BasePage extends CukeConfigurator {
 
-    protected WebDriver webDriver;
+    public WebDriver webDriver;
     private static final long SECONDS_PAGELOAD_REFRESH = 5;
 
     public BasePage(final WebDriver webdriver) {
@@ -478,11 +478,11 @@ public class BasePage extends CukeConfigurator {
     }
 
     /* WebDriver */
-    protected void turnOnImplicitWaits(final int time, final TimeUnit timeUnit) {
+    public void turnOnImplicitWaits(final int time, final TimeUnit timeUnit) {
         webDriver.manage().timeouts().implicitlyWait(time, timeUnit);
     }
 
-    protected void turnOffImplicitWaits() {
+    public void turnOffImplicitWaits() {
         webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
 
