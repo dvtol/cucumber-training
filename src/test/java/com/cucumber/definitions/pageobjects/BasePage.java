@@ -1,4 +1,4 @@
-package com.cucumber.definitions.pageobject;
+package com.cucumber.definitions.pageobjects;
 
 import static java.lang.String.format;
 import static org.openqa.selenium.support.ui.ExpectedConditions.or;

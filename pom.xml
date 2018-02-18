@@ -21,7 +21,7 @@
         <allure-cucumber-jvm.version>2.0-BETA14</allure-cucumber-jvm.version>
         <ashot.version>1.5.4</ashot.version>
         <maven.surefire.version>2.20</maven.surefire.version>
-        <webdrivermanager.version>1.7.0</webdrivermanager.version>
+        <webdrivermanager.version>2.1.0</webdrivermanager.version>
         <aspectj.version>1.8.4</aspectj.version>
         <number.of.threads>3</number.of.threads>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
