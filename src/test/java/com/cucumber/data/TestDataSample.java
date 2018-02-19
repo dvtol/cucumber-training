@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class _JsonData extends CukeConfigurator {
+public class TestDataSample extends CukeConfigurator {
 
     public String JsonData(String category, String data) {
         JSONParser parser = new JSONParser();

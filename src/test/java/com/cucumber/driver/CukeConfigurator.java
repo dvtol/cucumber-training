@@ -1,8 +1,10 @@
 package com.cucumber.driver;
 
-import com.cucumber.definitions.pageobject.BasePage;
+import com.cucumber.definitions.pageobjects.BasePage;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import static io.github.bonigarcia.wdm.DriverManagerType.CHROME;
+import static io.github.bonigarcia.wdm.DriverManagerType.FIREFOX;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -81,7 +83,8 @@ public class CukeConfigurator {
 
         if (localBrowserName.contains("chrome")) {
             if (chromeDriverVersion.equals("latest")) {
-                ChromeDriverManager.getInstance();
+                ChromeDriverManager.getInstance(CHROME).setup();
+
             } else {
                 ChromeDriverManager.getInstance().version(chromeDriverVersion);
             }
@@ -97,7 +100,7 @@ public class CukeConfigurator {
         if ("firefox".equalsIgnoreCase(localBrowserName)) {
 
             if (firefoxDriverVersion.equals("latest")) {
-                FirefoxDriverManager.getInstance();
+                ChromeDriverManager.getInstance(FIREFOX).setup();
 
             } else {
                 FirefoxDriverManager.getInstance().version(firefoxDriverVersion);

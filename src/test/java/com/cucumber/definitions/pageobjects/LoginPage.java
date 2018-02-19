@@ -1,4 +1,4 @@
-package com.cucumber.definitions.pageobject;
+package com.cucumber.definitions.pageobjects;
 
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
@@ -7,11 +7,19 @@ import org.openqa.selenium.WebDriver;
 import static junit.framework.TestCase.assertEquals;
 
 
-public class InloggenPage extends BasePage {
+public class LoginPage extends BasePage {
 
-    public InloggenPage(WebDriver webDriver) {
+    public LoginPage(WebDriver webDriver) {
         super(webDriver);
         WebDriverRunner.setWebDriver(webDriver);
+    }
+
+    public void typeValue(String locator, String text) {
+        textInputSetText(By.id(locator), text);
+    }
+
+    public void signInButton(String locator) {
+        buttonClick(By.id(locator));
     }
 
     public void verifyPageTitle(String page) {
