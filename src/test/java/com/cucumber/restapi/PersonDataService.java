@@ -26,7 +26,7 @@ public class PersonDataService extends BaseStepDef {
     }
 
     @When("a user retrieves the name by xml")
-    public void a_user_retrieves_the_book_by_isbn(){
+    public void retreiveXmlPersonData(){
         response = request.when().get(API_ENDPOINT);
         System.out.println("response: " + response.prettyPrint());
     }
