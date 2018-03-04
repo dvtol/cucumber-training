@@ -2,7 +2,7 @@
 webdriver.screenshots: true
 
 # default remote node address
-remote.url.address: http://zalenium.tools.ecom.kvknl.nl/wd/hub
+remote.url.address: http://localhost:4444/wd/hub
 
 # set environment of choice - SAMPLE!
 target.host.name: www.testautomationschool.nl/test
@@ -18,7 +18,7 @@ implicit.wait.timeout.seconds: 15
 timeout.interval.seconds: 15
 
 # set local or remote browser
-browser.name.local: chrome
+browser.name.local: chrome headless
 browser.name.remote: chrome
 
 # set local browser driver version. latest is the latest version
