@@ -3,7 +3,7 @@ package com.cucumber.restapi;
 import com.cucumber.definitions.stepdefs.BaseStepDef;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.And;
 
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
@@ -17,7 +17,7 @@ public class PersonDataService extends BaseStepDef {
     private Response response;
     public ValidatableResponse json;
     private RequestSpecification request;
-    private static String API_ENDPOINT = "http://www.testautomationschool.nl/test/test.xml";
+    private static String API_ENDPOINT = "http://www.testautomationschool.nl/v1/test/cars.json";
 
 
     @Given("a person with the name (.*)")
@@ -25,14 +25,14 @@ public class PersonDataService extends BaseStepDef {
         request = given().param("q", "name:" + name);
     }
 
-    @When("a user retrieves the name by xml")
+    @And("a the user is retrieved data in JSON format")
     public void retreiveXmlPersonData(){
         response = request.when().get(API_ENDPOINT);
         System.out.println("response: " + response.prettyPrint());
     }
 
     @Then("the status code is (\\d+)")
-    public void verify_status_code(int statusCode){
+    public void verify_status_code(int statusCode) {
         json = response.then().statusCode(statusCode);
     }
 }
