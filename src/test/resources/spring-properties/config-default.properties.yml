@@ -1,15 +1,11 @@
 # sets boolean value for screenshots
-webdriver.screenshots: true
+webdriver.screenshots: treu
 
 # default remote node address
 remote.url.address: http://localhost:4444/wd/hub
 
 # set environment of choice - SAMPLE!
 target.host.name: www.testautomationschool.nl/test
-
-# zoeken for the dev-page
-dev.login: admin
-dev.password: ********
 
 # implicit wait timeout for element(s) search
 implicit.wait.timeout.seconds: 15
@@ -18,7 +14,7 @@ implicit.wait.timeout.seconds: 15
 timeout.interval.seconds: 15
 
 # set local or remote browser
-browser.name.local: chrome headless
+browser.name.local: chrome
 browser.name.remote: chrome
 
 # set local browser driver version. latest is the latest version
@@ -26,9 +22,6 @@ firefox.driver.version: latest
 # e.g.: 0.19.x
 chrome.driver.version: latest
 # e.g.: 2.35
-
-# directory for JSON data
-test.data.dir: src/test/java/com/kvknl/regressie/data/testdata.json
 
 # screensize
 browser.screen.size: default
