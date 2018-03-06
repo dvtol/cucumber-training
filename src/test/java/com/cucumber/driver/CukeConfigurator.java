@@ -118,9 +118,6 @@ public class CukeConfigurator {
     // remote spring profile. runs via selenium grid
     public WebDriver getRemoteDriver() throws MalformedURLException {
 
-        // set kvk.nl proxy server
-        //org.openqa.selenium.Proxy proxy = new Proxy().setHttpProxy(Proxy).setFtpProxy(Proxy).setSslProxy(Proxy)
-        //.setSocksProxy(Proxy);
         DesiredCapabilities capabilities = null;
         if (remoteBrowserName.toLowerCase().contains("chrome")) {
             capabilities = DesiredCapabilities.chrome();
@@ -134,7 +131,6 @@ public class CukeConfigurator {
             } else {
                 capabilities.setCapability("screenResolution", browserScreenSize);
             }
-            //capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
         if (remoteBrowserName.toLowerCase().contains("firefox")) {
             capabilities = DesiredCapabilities.firefox();
@@ -143,7 +139,6 @@ public class CukeConfigurator {
             capabilities.setCapability("idleTimeout", 60);
             FirefoxProfile CucumberFirefoxProfiel = new FirefoxProfile();
             capabilities.setCapability(FirefoxDriver.PROFILE, CucumberFirefoxProfiel);
-            //capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
 
         // request node to the hub
