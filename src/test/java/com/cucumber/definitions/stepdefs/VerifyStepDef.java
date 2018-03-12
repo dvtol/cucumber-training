@@ -18,7 +18,7 @@ public class VerifyStepDef extends BaseStepDef {
 
     @And("^the user is verifying text \"([^\"]*)\" on the page$")
     public void verifyPageText(String pagetext) {
-        verifyPage.verifyText(By.id("slogan"), pagetext);
+        verifyPage.verifyText(By.xpath("/html/body/div/h1"), pagetext);
     }
 
     @And("^the user is verifying pagetitle text on the page$")

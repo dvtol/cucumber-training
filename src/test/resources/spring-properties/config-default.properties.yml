@@ -1,5 +1,5 @@
 # sets boolean value for screenshots
-webdriver.screenshots: treu
+webdriver.screenshots: true
 
 # default remote node address
 remote.url.address: http://localhost:4444/wd/hub

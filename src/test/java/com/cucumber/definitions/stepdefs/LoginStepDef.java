@@ -2,10 +2,11 @@ package com.cucumber.definitions.stepdefs;
 
 import com.cucumber.definitions.pageobjects.LoginPage;
 import com.cucumber.driver.CukeConfigurator;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.en.And;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.annotation.PostConstruct;
@@ -27,7 +28,7 @@ public class LoginStepDef extends BaseStepDef {
     }
 
     @When("^the user enters the \"([^\"]*)\" \"([^\"]*)\"")
-    public void openPage(String userid, String username) {
+    public void enterCredentials(String userid, String username) {
         loginPage.typeValue(userid, username);
     }
 
@@ -38,7 +39,27 @@ public class LoginStepDef extends BaseStepDef {
 
     @And("^the user clicks the signin button$")
     public void signIn() {
-        loginPage.signInButton("SubmitCreds");
+        loginPage.clickSignInButton();
+    }
+
+    @Then("^the user should be on the default landing page of the cucumber website$")
+    public void verifyOnCucumberPage() {
+        loginPage.verifyPageTitle("Cucumber");
+    }
+
+    @Then("^the user should receive the following error message \"([^\"]*)\"$")
+    public void verifyErrorMessage(String message) {
+        loginPage.verifyText(By.id("loginerror"), message);
+    }
+
+    @When("^the user enters the username with \"([^\"]*)\"$")
+    public void enterUsername(String username) {
+        loginPage.enterUsername(username);
+    }
+
+    @And("^the user enters the password \"([^\"]*)\"$")
+    public void enterPassword(String password) {
+        loginPage.enterPassword(password);
     }
 }
 
