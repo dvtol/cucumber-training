@@ -37,6 +37,21 @@ public class LoginStepDef extends BaseStepDef {
         loginPage.verifyPageTitle("Selenium demo pagina");
     }
 
+    @And("^the user clicks the signin button$")
+    public void signIn() {
+        loginPage.clickSignInButton();
+    }
+
+    @Then("^the user should be on the default landing page of the cucumber website$")
+    public void verifyOnCucumberPage() {
+        loginPage.verifyPageTitle("Cucumber");
+    }
+
+    @Then("^the user should receive the following error message \"([^\"]*)\"$")
+    public void verifyErrorMessage(String message) {
+        loginPage.verifyText(By.id("loginerror"), message);
+    }
+
     @When("^the user enters the username with \"([^\"]*)\"$")
     public void enterUsername(String username) {
         loginPage.enterUsername(username);
