@@ -27,11 +27,6 @@ public class LoginStepDef extends BaseStepDef {
         loginPage.navigateToEnvironment(cukeconfig.targetHostName);
     }
 
-    @When("^the user enters the \"([^\"]*)\" \"([^\"]*)\"")
-    public void enterCredentials(String userid, String username) {
-        loginPage.typeValue(userid, username);
-    }
-
     @Then("^the user is on the login page$")
     public void verifyOnLoginPage() {
         loginPage.verifyPageTitle("Selenium demo pagina");
@@ -40,11 +35,6 @@ public class LoginStepDef extends BaseStepDef {
     @When("^the user enters the username with \"([^\"]*)\"$")
     public void enterUsername(String username) {
         loginPage.enterUsername(username);
-    }
-
-    @And("^the user enters the password \"([^\"]*)\"$")
-    public void enterPassword(String password) {
-        loginPage.enterPassword(password);
     }
 }
 

@@ -18,10 +18,6 @@ public class LoginPage extends BasePage {
         textInputSetText(By.id(locator), text);
     }
 
-    public void clickSignInButton() {
-        buttonClick(By.id("SubmitCreds"));
-    }
-
     public void verifyPageTitle(String page) {
         String pageTitle = getTitle();
         assertEquals(pageTitle, page);
@@ -33,9 +29,5 @@ public class LoginPage extends BasePage {
 
     public void enterUsername(String username) {
         textInputSetText(By.id("username"), username);
-    }
-
-    public void enterPassword(String password) {
-        textInputSetText(By.id("password"), password);
     }
 }
