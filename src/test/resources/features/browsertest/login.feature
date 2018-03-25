@@ -10,14 +10,21 @@ Feature: User wants to visit the website and login
 
     Given the user visits the training login page
 
-  Scenario: 1 User logs in with invalid credentials
-    When the user enters the "username" "test"
-    And the user enters the "password" "test"
+  Scenario: 1 User logs in with invalid password
+    When the user enters the username with "cursus"
+    And the user enters the password "fout"
     And the user clicks the signin button
     Then the user should receive the following error message "U kunt niet worden aangemeld. Controleer uw gebruikersnaam en wachtwoord en probeer het opnieuw."
 
-  Scenario: 2 User logs in with valid credentials
-    When the user enters the "username" "cursus"
-    And the user enters the "password" "selenium"
+  Scenario: 2 User logs in with invalid username
+    When the user enters the username with "fout"
+    And the user enters the password "selenium"
     And the user clicks the signin button
-    Then the user should be on the default landing page of the cucumber website
+    Then the user should receive the following error message "U kunt niet worden aangemeld. Controleer uw gebruikersnaam en wachtwoord en probeer het opnieuw."
+
+  Scenario: 3 User logs in with invalid credentials
+    When the user enters the username with "fout"
+    And the user enters the password "fout"
+    And the user clicks the signin button
+    Then the user should receive the following error message "U kunt niet worden aangemeld. Controleer uw gebruikersnaam en wachtwoord en probeer het opnieuw."
+
