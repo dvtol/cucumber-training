@@ -38,4 +38,16 @@ public class LoginPage extends BasePage {
     public void enterPassword(String password) {
         textInputSetText(By.id("password"), password);
     }
+
+    public void clickVerklaringButton() {
+        buttonClick(By.id("lnkShwSec"));
+    }
+
+    public void clickSecondRadiobutton() {
+        radioButtonVisibleAndSelect(By.id("rdoPrvt"));
+    }
+
+    public void checkCheckbox() {
+        checkBoxVisibleAndCheck(By.id("chpwd"));
+    }
 }

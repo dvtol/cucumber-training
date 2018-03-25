@@ -1,17 +1,15 @@
 @Smoketest
 
-Feature: User wants to verify text on the page after login
+Feature: User wants to verify text on the page
 
-  Background: Training (test) page to verify text
-
+  Scenario: 1 User verifies text on the page
     Given the user visits the training login page
-
-  Scenario: 1 User is logging in and verifies text on the page
-    Then the user enters the "username" "cursus"
-    Then the user enters the "password" "selenium"
-    And the user clicks the signin button
-    And the user is verifying text "Simple, human collaboration" on the page
-
-  Scenario: 2 User visits website and verifies title
-    And the user is verifying pagetitle text on the page
-
+    Then the user is verifying text "LET OP!!" on the page with id "letop"
+    And the user is verifying text "!!DIT IS EEN DEMO INLOG PAGINA VOOR DE Fitnesse / Cucumber Training!!" on the page with id "letop2"
+    And the user clicks the verklaring button
+    And the user is verifying text "Selecteer deze optie als u verbinding maakt op een openbare computer. Vergeet niet om u aan het einde van de sessie af te melden en alle browservensters te sluiten." on the page with id "info1"
+    And the user is verifying text "Selecteer deze optie als u de enige bent die deze computer gebruikt. Met deze optie is een langere periode van inactiviteit toegestaan voordat u automatisch wordt afgemeld." on the page with id "info2"
+    And the user clicks the second radiobutton
+    And the user is verifying text "Waarschuwing: door deze optie te selecteren, bevestigt u dat de computer voldoet aan het beveiligingsbeleid van uw organisatie." on the page with id "letop3"
+    And the user checks the checkbox
+    And the user is verifying text "Als deze optie is geselecteerd, verschijnt een pagina waarop u uw wachtwoord kunt wijzigen nadat u uw referenties hebt ingediend." on the page with id "wwaaninfo"

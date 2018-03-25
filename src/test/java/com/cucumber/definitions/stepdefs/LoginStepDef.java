@@ -2,6 +2,7 @@ package com.cucumber.definitions.stepdefs;
 
 import com.cucumber.definitions.pageobjects.LoginPage;
 import com.cucumber.driver.CukeConfigurator;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -60,6 +61,26 @@ public class LoginStepDef extends BaseStepDef {
     @And("^the user enters the password \"([^\"]*)\"$")
     public void enterPassword(String password) {
         loginPage.enterPassword(password);
+    }
+
+    @Then("^the user is verifying text \"([^\"]*)\" on the page with id \"([^\"]*)\"$")
+    public void theUserIsVerifyingTextOnThePageWithId(String pagetext, String id) {
+        loginPage.verifyText(By.id(id), pagetext);
+    }
+
+    @And("^the user clicks the verklaring button$")
+    public void theUserClicksTheVerklaringButton() {
+        loginPage.clickVerklaringButton();
+    }
+
+    @And("^the user clicks the second radiobutton$")
+    public void theUserClicksTheSecondRadiobutton() {
+        loginPage.clickSecondRadiobutton();
+    }
+
+    @And("^the user checks the checkbox$")
+    public void theUserChecksTheCheckbox() {
+        loginPage.checkCheckbox();
     }
 }
 
