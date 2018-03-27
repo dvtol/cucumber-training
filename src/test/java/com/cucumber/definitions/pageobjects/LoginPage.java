@@ -4,6 +4,8 @@ import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.awt.*;
+
 import static junit.framework.TestCase.assertEquals;
 
 
@@ -49,5 +51,9 @@ public class LoginPage extends BasePage {
 
     public void checkCheckbox() {
         checkBoxVisibleAndCheck(By.id("chpwd"));
+    }
+
+    public void theUserClicksALink() {
+        buttonClick(By.xpath("//*[@id=\"main-nav-collapse\"]/ul/li[2]/a"));
     }
 }

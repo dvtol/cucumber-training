@@ -552,6 +552,10 @@ public class BasePage extends CukeConfigurator {
         navigateToPage("http://" + environment);
     }
 
+    public void navigateToWebsite() throws AWTException {
+        navigateToPage("https://cucumber.io/docs/reference/browser-automation");
+    }
+
     public void navigateForward() {
         webDriver.navigate().forward();
     }

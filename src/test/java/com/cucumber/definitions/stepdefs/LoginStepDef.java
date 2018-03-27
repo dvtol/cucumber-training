@@ -1,5 +1,6 @@
 package com.cucumber.definitions.stepdefs;
 
+import com.cucumber.definitions.pageobjects.BasePage;
 import com.cucumber.definitions.pageobjects.LoginPage;
 import com.cucumber.driver.CukeConfigurator;
 import cucumber.api.PendingException;
@@ -26,6 +27,11 @@ public class LoginStepDef extends BaseStepDef {
     @Given("^the user visits the training login page$")
     public void loginCucumberTrainingTestEnv() throws AWTException {
         loginPage.navigateToEnvironment(cukeconfig.targetHostName);
+    }
+
+    @Given("^the user visits the official Cucumber page$")
+    public void visitOfficialCucumberPage() throws AWTException {
+        loginPage.navigateToWebsite();
     }
 
     @When("^the user enters the \"([^\"]*)\" \"([^\"]*)\"")
@@ -81,6 +87,11 @@ public class LoginStepDef extends BaseStepDef {
     @And("^the user checks the checkbox$")
     public void theUserChecksTheCheckbox() {
         loginPage.checkCheckbox();
+    }
+
+    @And("^the user selects a different tab on the website$")
+    public void theUserSelectAnItem() {
+        loginPage.theUserClicksALink();
     }
 }
 
