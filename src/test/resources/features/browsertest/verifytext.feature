@@ -1,6 +1,9 @@
 @Smoketest
 
 Feature: User wants to verify text on the page
+  AC 1: The user should be able to visit the training page
+  AC 2: The user should be able to verify checks after actions made
+  AC 3: There should be an error message shown if the user verifies text which isn't displayed on the page
 
   Scenario: 1 User verifies text on the page
     Given the user visits the training login page
